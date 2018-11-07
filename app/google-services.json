@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "313533013416",
+    "firebase_url": "https://bring2you-da7a0.firebaseio.com",
+    "project_id": "bring2you-da7a0",
+    "storage_bucket": "bring2you-da7a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:313533013416:android:b1d5e18117251bab",
+        "android_client_info": {
+          "package_name": "com.example.ateam.bring2you"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "313533013416-2esepb9njb4mjvikhk6cfr1sfb6bhu8g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqjysAZ5UATC4KNjFJqGd6eJaEXAAsW6U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
