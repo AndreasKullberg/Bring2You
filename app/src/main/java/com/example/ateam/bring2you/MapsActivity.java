@@ -11,8 +11,13 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
+    /**
+     * Användbara länkar:
+     * https://www.latlong.net
+     */
     private GoogleMap mMap;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +44,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
+        // Latitude, Longitude
         LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+
+
+        // Added a new marker on IT- Högskolan
+        LatLng iths = new LatLng(57.679690, 12.000870);
+        mMap.addMarker(new MarkerOptions().position(iths).title("IT-Högskolan"));
+
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        /**
+         * Will zoom to the chosen location
+         * */
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(iths, 18), 5000, null);
     }
 }
