@@ -16,34 +16,33 @@
 
         <TextView
             android:id="@+id/textAdress"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="356dp"
             android:text="TextView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteY="8dp"
             tools:text="Adress" />
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="99dp"
+            android:layout_width="wrap_content"
             android:layout_height="20dp"
-            android:layout_marginTop="12dp"
             android:layout_marginEnd="300dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textAdress"
             tools:text="Name" />
 
         <TextView
             android:id="@+id/textPostalCode"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="324dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textName"
             tools:text="Postal code" />
 
@@ -51,10 +50,11 @@
             android:id="@+id/textSenderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="340dp"
             android:text="TextView"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPostalCode"
             tools:text="SenderId" />
     </android.support.constraint.ConstraintLayout>
