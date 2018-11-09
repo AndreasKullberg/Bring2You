@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -19,21 +21,22 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
+    // TODO Ifall Man får fel om att API nyckeln är expired eller invalid,
+    // TODO så måste api nyckeln bytas i Json filen, mot nycklarna som ligger här: https://console.developers.google.com/apis/credentials?project=bring2you-da7a0
+
     private static final String TAG = "LoginActivity";
 
     private  FirebaseAuth mAuth;
-
-   // private FirebaseAuth.AuthStateListener mAuthListener;
-
     private EditText mUsername , mPassword;
     private Button loginButton;
    private ProgressBar progressBar;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -44,13 +47,17 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
 
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginButton.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
+                if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    toastMessage("no blank fields!");
+                }
+                else
                 mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -63,7 +70,8 @@ public class LoginActivity extends AppCompatActivity {
                             toastMessage("Successfully logged in as: " + user.getEmail());
                             startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         } else{
-                            toastMessage("Failure login in..");
+                           // toastMessage(task.getException().getMessage());
+                           toastMessage("Failure login in..");
                         }
                     }
                 });
