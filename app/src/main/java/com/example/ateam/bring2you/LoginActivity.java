@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     // TODO Ifall Man får fel om att API nyckeln är expired eller invalid,
-    // TODO så måste api nyckeln bytas i Json filen, mot nycklarna som ligger här: https://console.developers.google.com/apis/credentials?project=bring2you-da7a0
+    // TODO så måste api nyckeln bytas i Json filen, mot någon av  nycklarna som ligger här: https://console.developers.google.com/apis/credentials?project=bring2you-da7a0
 
     private static final String TAG = "LoginActivity";
 
@@ -47,15 +47,29 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setVisibility(View.INVISIBLE);
 
 
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginButton.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.VISIBLE);
+
                 if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
+                    mUsername.setError("No blank fields");
+                    mPassword.setError("No blank fields!");
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    toastMessage("no blank fields!");
+                }
+                else if(mUsername.getText().toString().equals("")){
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mUsername.setError("No blank fields!");
+
+                    //toastMessage("no blank fields!");
+                }else if(mPassword.getText().toString().equals("")){
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mPassword.setError("No blank fields!");
                 }
                 else
                 mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
@@ -80,9 +94,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
-
-
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
