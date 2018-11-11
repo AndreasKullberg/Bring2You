@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Bring2You</string>
     <string name="title_activity_maps">Map</string>
+    <string name="coordinates">Coordinates</string>
+    <string name="address">Address</string>
+    <string name="fetch">Fetch</string>
 </resources>

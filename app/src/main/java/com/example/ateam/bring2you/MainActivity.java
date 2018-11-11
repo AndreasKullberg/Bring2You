@@ -7,18 +7,19 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity {
 
+
+public class MainActivity extends AppCompatActivity {
     private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println("blomqvist");
     }
 
-    public void openMaps(View view) {
+    public void openMapsButtonClicked(View view) {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
