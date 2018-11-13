@@ -33,4 +33,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     public int getItemCount() {
         return listItems.size();
     }
+
+    public void addItem(ListItemInfo info){
+        listItems.add(info);
+        this.notifyItemInserted(listItems.size()-1);
+    }
 }
