@@ -13,6 +13,7 @@ import android.view.Menu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 public class MainActivity extends AppCompatActivity {
 
     private Button signOutButton;
@@ -55,4 +56,9 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+    public void hello(){
+        System.out.println("Hello TEAM!");
+    }
+
 }
