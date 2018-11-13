@@ -23,4 +23,5 @@
     <string name="order">Order</string>
     <string name="maps">maps</string>
     <string name="add">add</string>
+    <string name="logout">Logout</string>
 </resources>
