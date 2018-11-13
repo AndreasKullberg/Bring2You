@@ -38,4 +38,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         listItems.add(info);
         this.notifyItemInserted(listItems.size()-1);
     }
+
+    public void removeItem(int index){
+        if( index >= 0 && index < listItems.size()) {
+            listItems.remove(index);
+            this.notifyItemRemoved(index);
+        }
+    }
+
+    public void removeItem(String id) {
+        for (int i = 0; i < listItems.size(); i++) {
+            if( listItems.get(i).id.equals(id) ) {
+                removeItem(i);
+                return;
+            }
+        }
+    }
 }

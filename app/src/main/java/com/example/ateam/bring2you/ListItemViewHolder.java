@@ -6,11 +6,11 @@ import android.view.View;
 import android.widget.TextView;
 
 class ListItemViewHolder extends RecyclerView.ViewHolder {
-    public View itemview;
-    public TextView adress;
+    private View itemview;
+    private TextView adress;
     private TextView name;
-    public TextView postalCode;
-    public TextView senderId;
+    private TextView postalCode;
+    private TextView senderId;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);

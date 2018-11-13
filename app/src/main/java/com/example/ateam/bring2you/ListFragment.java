@@ -65,7 +65,8 @@ public class ListFragment extends Fragment {
                         adapter.addItem(sending);
 
                     } else if (dc.getType() == DocumentChange.Type.REMOVED) {
-
+                        String id = dc.getDocument().getId();
+                        adapter.removeItem(id);
                     }
                 }
             }
