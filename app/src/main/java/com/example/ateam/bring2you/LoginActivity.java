@@ -2,6 +2,8 @@ package com.example.ateam.bring2you;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUsername , mPassword;
     private Button loginButton;
    private ProgressBar progressBar;
+    boolean swap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,7 +98,20 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void about() {
-       toastMessage("Hejsan");
+
+        if(swap == true) {
+            swap = false;
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.about_target, aboutFragment);
+            fragmentTransaction.commit();
+        }
+        else if(swap == false){
+            swap = true;
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
 

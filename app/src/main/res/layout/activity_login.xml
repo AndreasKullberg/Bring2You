@@ -105,4 +105,14 @@
         app:layout_constraintStart_toStartOf="@+id/loginButton"
         app:layout_constraintTop_toTopOf="@+id/loginButton" />
 
+    <FrameLayout
+        android:id="@+id/about_target"
+        android:layout_width="match_parent"
+        android:layout_height="209dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </FrameLayout>
+
 </android.support.constraint.ConstraintLayout>

@@ -12,7 +12,8 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false//Sätt till true för att ta bort så mycket klasser som inte används som möjligt
+            minifyEnabled false
+//Sätt till true för att ta bort så mycket klasser som inte används som möjligt
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
