@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -35,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent intent = new Intent(this, ListActivity.class);
+        Intent intent = new Intent(this, ListFragment.class);
         startActivity(intent);
 
 
@@ -83,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             toastMessage("Successfully logged in as: " + user.getEmail());
-                            startActivity(new Intent(LoginActivity.this,ListActivity.class));
+                            startActivity(new Intent(LoginActivity.this,ListFragment.class));
                         } else{
                            // toastMessage(task.getException().getMessage());
                            toastMessage("Failure login in..");

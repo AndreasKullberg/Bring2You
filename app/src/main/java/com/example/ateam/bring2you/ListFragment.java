@@ -1,12 +1,13 @@
 package com.example.ateam.bring2you;
 
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -18,41 +19,28 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 import javax.annotation.Nullable;
 
-public class ListActivity extends AppCompatActivity {
+public class ListFragment extends Fragment {
     List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
     FirebaseFirestore firestore;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_list, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
 
-
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-
-        // specify an adapter (see also next example)
-        //mAdapter = new MyAdapter(myDataset);
         mRecyclerView.setAdapter(adapter);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerView);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         adapter = new RecyclerViewAdapter(listItems);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
@@ -76,15 +64,14 @@ public class ListActivity extends AppCompatActivity {
                         sending.id = id;
                         adapter.addItem(sending);
 
-                    }
-                    else if(dc.getType() == DocumentChange.Type.REMOVED){
+                    } else if (dc.getType() == DocumentChange.Type.REMOVED) {
 
                     }
                 }
             }
         });
         //Floating action button, register onclick listener
-        findViewById(R.id.floatingActionButton).setOnClickListener(view -> {
+        view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
 
             ListItemInfo info = new ListItemInfo("Pennygången 59", "Andreas Kullberg", "414 82", "63978256");
 
@@ -102,8 +89,11 @@ public class ListActivity extends AppCompatActivity {
                         public void onFailure(@NonNull Exception e) {
 
                         }
-                    });;
+                    });
+            ;
         });
+        return view;
     }
-
 }
+
+
