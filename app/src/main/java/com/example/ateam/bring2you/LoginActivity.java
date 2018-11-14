@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
+        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -94,6 +93,11 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    private void about() {
+       toastMessage("Hejsan");
+    }
+
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
