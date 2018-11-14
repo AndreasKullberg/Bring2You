@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
-
-        /* sign out */
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,6 +6,8 @@ public class ListItemInfo {
     private String postalCode;
     private String senderId;
 
+    public String id;
+
     public String getAdress() {
         return adress;
     }
@@ -20,6 +22,9 @@ public class ListItemInfo {
 
     public String getSenderId() {
         return senderId;
+    }
+
+    public ListItemInfo(){
     }
 
     public ListItemInfo(String adress, String name, String postalCode, String senderId) {
