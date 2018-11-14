@@ -65,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     public void removeItem(String id) {
         for (int i = 0; i < listItems.size(); i++) {
-            if( listItems.get(i).id.equals(id) ) {
+            if( listItems.get(i).getId().equals(id) ) {
                 removeItem(i);
                 return;
             }

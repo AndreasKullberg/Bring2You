@@ -7,8 +7,25 @@ public class ListItemInfo implements Serializable {
     private String name;
     private String postalCode;
     private String senderId;
+    private String signedBy;
 
-    public String id;
+    public String getSignedBy() {
+        return signedBy;
+    }
+
+    private String id;
+
+    public void setSignedBy(String signedBy) {
+        this.signedBy = signedBy;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
+    }
 
     public String getAdress() {
         return adress;
