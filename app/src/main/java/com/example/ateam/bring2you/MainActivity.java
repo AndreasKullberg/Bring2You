@@ -56,10 +56,14 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new listFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -68,19 +72,19 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFrag = null;
 
-                    switch (item.getItemId()){
-                        case R.id.
-                                selectedFrag = new /* fyll i */    ();
-                                break;
-                        case R.id.
-                                selectedFrag = new /* fyll i */     ();
-                                   break;
-                        case R.id.
-                                selectedFrag = new /* fyll i */     ();
-                                break;
-
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+//                    switch (item.getItemId()){
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */    ();
+//                                break;
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */     ();
+//                                   break;
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */     ();
+//                                break;
+//
+//                    }
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
 
                     return true;
 
