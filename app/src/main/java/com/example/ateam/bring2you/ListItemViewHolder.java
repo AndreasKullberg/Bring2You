@@ -1,8 +1,11 @@
 package com.example.ateam.bring2you;
 
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 class ListItemViewHolder extends RecyclerView.ViewHolder {
@@ -11,6 +14,7 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
     private TextView name;
     private TextView postalCode;
     private TextView senderId;
+    CardView constraintLayout;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -19,6 +23,7 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.textName);
         postalCode = itemView.findViewById(R.id.textPostalCode);
         senderId = itemView.findViewById(R.id.textSenderId);
+        this.constraintLayout = itemView.findViewById(R.id.cardview);
     }
 
     public void setData(ListItemInfo info){
