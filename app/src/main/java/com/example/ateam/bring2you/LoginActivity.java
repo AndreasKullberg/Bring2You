@@ -2,6 +2,7 @@ package com.example.ateam.bring2you;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText mUsername , mPassword;
     private Button loginButton;
    private ProgressBar progressBar;
+   private Button settings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,15 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+        settings = findViewById(R.id.themeButton);
 
-
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container, new SettingsFragment()).commit();
+            }
+        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,4 +107,5 @@ public class LoginActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
 }
