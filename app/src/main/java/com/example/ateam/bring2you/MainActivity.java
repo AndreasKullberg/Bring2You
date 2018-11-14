@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
                 toastMessage("Signing out..");
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -54,10 +54,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -70,18 +67,18 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFrag = null;
 
-//                    switch (item.getItemId()){
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */    ();
-//                                break;
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */     ();
-//                                   break;
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */     ();
-//                                break;
-//
-//                    }
+                    switch (item.getItemId()) {
+                        case R.id.nav_assignment:
+                            selectedFrag = new ListFragment();
+                            break;
+                        case R.id.nav_add:
+                            selectedFrag = new /* fyll i */();
+                            break;
+                        case R.id.nav_maps:
+                            selectedFrag = new /* fyll i */ ();
+                            break;
+
+                    }
 //                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
 
                     return true;
@@ -90,12 +87,8 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-    private void toastMessage(String message){
+    private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    public void hello(){
-        System.out.println("Hello TEAM!");
     }
 
 }
