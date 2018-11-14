@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,fragmentlist).commit();
 
-        currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
        /* signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
