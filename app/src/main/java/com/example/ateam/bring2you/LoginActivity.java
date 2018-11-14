@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -29,14 +26,12 @@ public class LoginActivity extends AppCompatActivity {
     private  FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
-   private ProgressBar progressBar;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -45,6 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
+
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             toastMessage("Successfully logged in as: " + user.getEmail());
-                            startActivity(new Intent(LoginActivity.this,ListActivity.class));
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         } else{
                            // toastMessage(task.getException().getMessage());
                            toastMessage("Failure login in..");
@@ -93,11 +89,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-
-    private void about() {
-       toastMessage("Hejsan");
-    }
-
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
