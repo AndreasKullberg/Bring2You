@@ -34,9 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Intent intent = new Intent(this, ListFragment.class);
-        startActivity(intent);
-
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -89,7 +86,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             toastMessage("Successfully logged in as: " + user.getEmail());
-                            startActivity(new Intent(LoginActivity.this,ListFragment.class));
+                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         } else{
                            // toastMessage(task.getException().getMessage());
                            toastMessage("Failure login in..");
