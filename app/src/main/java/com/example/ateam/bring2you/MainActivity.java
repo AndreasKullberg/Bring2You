@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                         case R.id.
                                 selectedFrag = new /* fyll i */     ();
-                                break;
-                        case R.id
+                                   break;
+                        case R.id.
                                 selectedFrag = new /* fyll i */     ();
                                 break;
 
