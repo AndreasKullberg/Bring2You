@@ -61,37 +61,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFrag = null;
+            item -> {
+                Fragment selectedFrag = null;
 
-                    switch (item.getItemId()){
-                        case R.id.
-                                selectedFrag = new /* fyll i */    ();
-                                break;
-                        case R.id.
-                                selectedFrag = new /* fyll i */     ();
-                                   break;
-                        case R.id.
-                                selectedFrag = new /* fyll i */     ();
-                                break;
+                /*switch (item.getItemId()){
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
+                    case R.id.
+                            selectedFrag = new    ();
+                               break;
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
 
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+                }*/
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                    return true;
+                return true;
 
-                }
             };
 
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
-    public void hello(){
-        System.out.println("Hello TEAM!");
-    }
+    
 
 }
