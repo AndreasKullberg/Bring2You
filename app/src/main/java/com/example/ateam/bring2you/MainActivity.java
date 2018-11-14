@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
 
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.f, selectedFrag).commit();
 
                     return true;
 
