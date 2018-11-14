@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOutButton = findViewById(R.id.signOutButton);
+        // signOutButton = findViewById(R.id.signOutButton);
         currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+        signOutButton.setOnClickListener(new View.OnClickListener()  {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new listFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
+                new ListFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -71,15 +71,15 @@ public class MainActivity extends AppCompatActivity {
                         case R.id.nav_assignment:
                             selectedFrag = new ListFragment();
                             break;
-                        case R.id.nav_add:
-                            selectedFrag = new /* fyll i */();
-                            break;
+                    //    case R.id.nav_add:
+                      //      selectedFrag = new /* fyll i */ ();
+                    //        break;
                         case R.id.nav_maps:
-                            selectedFrag = new /* fyll i */ ();
+                            selectedFrag = new MapFragment();
                             break;
 
                     }
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                     return true;
 
