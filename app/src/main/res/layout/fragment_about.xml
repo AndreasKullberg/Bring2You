@@ -10,6 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/background_light"
-        android:text="@string/hello_blank_fragment" />
+        android:text="App made by the A-Team" />
 
 </FrameLayout>
