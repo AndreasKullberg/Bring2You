@@ -38,17 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        Fragment fragmentlist= new ListFragment();
+        Fragment listFragment= new ListFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,fragmentlist).commit();
+        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
 
 
        /* signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                //toastMessage("Signing out..");
+                toastMessage("Signing out..");
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -61,32 +61,28 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationsView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFrag = null;
+            item -> {
+                Fragment selectedFrag = null;
 
-                    /*switch (item.getItemId()){
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                   break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
+                /*switch (item.getItemId()){
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
+                    case R.id.
+                            selectedFrag = new    ();
+                               break;
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
 
-                    }*/
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                }*/
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                    return true;
+                return true;
 
-                }
             };
 
 
@@ -94,8 +90,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void hello(){
-        System.out.println("Hello TEAM!");
-    }
 
 }
