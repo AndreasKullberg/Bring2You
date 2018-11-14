@@ -2,9 +2,14 @@ package com.example.ateam.bring2you;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -26,12 +31,15 @@ public class LoginActivity extends AppCompatActivity {
     private  FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
-    private ProgressBar progressBar;
+   private ProgressBar progressBar;
+    boolean swap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -40,7 +48,6 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -89,6 +96,24 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    private void about() {
+
+        if(swap == true) {
+            swap = false;
+            AboutFragment aboutFragment = new AboutFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.about_target, aboutFragment);
+            fragmentTransaction.commit();
+        }
+        else if(swap == false){
+            swap = true;
+            Intent intent = new Intent(this,LoginActivity.class);
+            startActivity(intent);
+        }
+    }
+
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
