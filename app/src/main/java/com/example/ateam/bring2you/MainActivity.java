@@ -53,39 +53,31 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new listFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFrag = null;
+            item -> {
+                Fragment selectedFrag = null;
 
-//                    switch (item.getItemId()){
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */    ();
-//                                break;
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */     ();
-//                                   break;
-//                        case R.id.
-//                                selectedFrag = new /* fyll i */     ();
-//                                break;
-//
-//                    }
-//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+                /*switch (item.getItemId()){
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
+                    case R.id.
+                            selectedFrag = new    ();
+                               break;
+                    case R.id.
+                            selectedFrag = new   ();
+                            break;
 
-                    return true;
+                }*/
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                }
+                return true;
+
             };
 
 
@@ -93,8 +85,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void hello(){
-        System.out.println("Hello TEAM!");
-    }
 
 }
