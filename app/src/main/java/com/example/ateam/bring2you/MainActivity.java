@@ -1,9 +1,13 @@
 package com.example.ateam.bring2you;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -50,8 +54,37 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        bottomNav.setOnNavigationItemSelectedListener(navListener);
+
 
     }
+
+    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFrag = null;
+
+                    switch (item.getItemId()){
+                        case R.id.
+                                selectedFrag = new /* fyll i */    ();
+                                break;
+                        case R.id.
+                                selectedFrag = new /* fyll i */     ();
+                                break;
+                        case R.id
+                                selectedFrag = new /* fyll i */     ();
+                                break;
+
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
+
+                    return true;
+
+                }
+            };
+
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
