@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,34 +32,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        signOutButton = findViewById(R.id.signOutButton);
         currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        Fragment fragmentlist= new ListFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,fragmentlist).commit();
 
 
-       /* signOutButton.setOnClickListener(new View.OnClickListener() {
+        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                //toastMessage("Signing out..");
+                toastMessage("Signing out..");
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
             }
-        });*/
+        });
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationsView);
+
+
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                new listFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -70,19 +69,19 @@ public class MainActivity extends AppCompatActivity {
                 public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                     Fragment selectedFrag = null;
 
-                    /*switch (item.getItemId()){
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                   break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
-
-                    }*/
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+//                    switch (item.getItemId()){
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */    ();
+//                                break;
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */     ();
+//                                   break;
+//                        case R.id.
+//                                selectedFrag = new /* fyll i */     ();
+//                                break;
+//
+//                    }
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
 
                     return true;
 
