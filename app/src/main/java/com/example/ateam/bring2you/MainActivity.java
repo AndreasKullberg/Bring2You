@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity {
 
         currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
-
-        /* sign out */
         signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
 
                     }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.f, selectedFrag).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFrag).commit();
 
                     return true;
 
