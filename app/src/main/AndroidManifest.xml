@@ -25,6 +25,7 @@
         </activity>
         <activity android:name=".ListActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".FragmentContainerActivity"></activity>
     </application>
 
 </manifest>
