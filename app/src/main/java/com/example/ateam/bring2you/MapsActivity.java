@@ -17,17 +17,21 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 // TODO Permissions
 import java.io.IOException;
 import java.security.Permission;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.RandomAccess;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
     private GoogleMap mMap;
-    private int defaultZoom = 15;
-    //private static final String TAG = "MapsActivity";
-
+    ArrayList markerPoints= new ArrayList();
+    private int DEFAULT_ZOOM = 13;
+    private String ORDER_NUMBER = "001";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +42,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
     }
-
 
     /**
      * Manipulates the map once available.
@@ -54,38 +56,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        // TODO : Byta kartan, mGoogleMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        googleMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
 
+        // Fågelvägen mellan IT-Högskolan och Göteborg
+        LatLng ITHS = new LatLng(57.679690, 12.000870);
+        LatLng GBG = new LatLng(57.708870, 11.974560);
+        // Add polylines and polygons to the map. This section shows just
+        // a single polyline. Read the rest of the tutorial to learn more.
+        Polyline polyline = googleMap.addPolyline(new PolylineOptions()
+                .clickable(true)
+                .color(0xffb71c1c) //TODO Byta färg för att passa vårt valda tema
+                .add(
+                        ITHS,
+                        GBG));
 
-        /**
-         * Added a new marker on IT- Högskolan
-         * LatLng(Latitude,Longitude)
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ITHS, DEFAULT_ZOOM));
 
-
-        LatLng iths = new LatLng(57.679690, 12.000870);
-        LatLng delivery1 = new LatLng(57.679690, 12.001870);
-        LatLng delivery2 = new LatLng(57.679790, 12.002870);
-        LatLng delivery3 = new LatLng(57.679890, 12.000870);
-
-        mMap.addMarker(new MarkerOptions().position(iths).title("IT-Högskolan"));
-        mMap.addMarker(new MarkerOptions().position(delivery1).title("1"));
-        mMap.addMarker(new MarkerOptions().position(delivery2).title("2"));
-        mMap.addMarker(new MarkerOptions().position(delivery3).title("3"));
-
-
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        /**
-         * Will zoom to the chosen location
-         * */
-        //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(iths, 18), 5000, null);
     }
+
+
 
     private void gotoLocation(double latitude, double longitude, float zoomSpeed) {
         LatLng newLocation = new LatLng(latitude,longitude);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(newLocation, zoomSpeed);
 
+        //TODO Order number från databasen
+        mMap.addMarker(new MarkerOptions().position(newLocation).title(ORDER_NUMBER));
+        //TODO Marker on myself
 
-        mMap.addMarker(new MarkerOptions().position(newLocation).title("address new location:"));
         mMap.moveCamera(update);
     }
 
@@ -97,16 +95,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         List<Address> list = geocoder.getFromLocationName(location, 1);
         // Give me the first item off the list
         Address add = list.get(0);
+        // Gives me googles locality of my input location
         String locality = add.getLocality();
-
+        // Simple toast that displays the locality
         Toast.makeText(this, locality, Toast.LENGTH_LONG).show();
 
+        
         double latitude = add.getLatitude();
         double longitude = add.getLongitude();
 
-        gotoLocation(latitude,longitude, defaultZoom);
-    }
 
+        gotoLocation(latitude,longitude, DEFAULT_ZOOM);
+    }
 }
 
 /**
