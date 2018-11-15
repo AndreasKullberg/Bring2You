@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button signOutButton;
+  //  private Button signOutButton;
     private TextView currentUserSignedIn;
 
     FirebaseAuth firebaseAuth;
@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOutButton = findViewById(R.id.signOutButton);
+      //  signOutButton = findViewById(R.id.signOutButton);
         currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+      /*  signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
 
 
