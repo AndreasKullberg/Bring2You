@@ -9,14 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.view.Menu;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-
 public class MainActivity extends AppCompatActivity {
 
-    private Button signOutButton;
+  //  private Button signOutButton;
     private TextView currentUserSignedIn;
 
     FirebaseAuth firebaseAuth;
@@ -81,6 +81,4 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
-
 }
