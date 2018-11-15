@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // signOutButton = findViewById(R.id.signOutButton);
+        signOutButton = findViewById(R.id.signOutButton);
         currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
-        signOutButton.setOnClickListener(new View.OnClickListener()  {
+        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -89,6 +89,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    public void hello(){
+        System.out.println("Hello TEAM!");
     }
 
 }
