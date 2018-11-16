@@ -73,25 +73,9 @@ public class ListFragment extends Fragment {
         });
         //Floating action button, register onclick listener
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
-
-            ListItemInfo info = new ListItemInfo("Mellangården 55", "Andreas Kullberg", "414 82", "63978256");
-
-
-            firestore.collection("Deliveries")
-                    .add(info)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("firebase", "Error adding document", e);
-                        }
-                    });
-
+            Fragment createDeliveryFragment = new CreateDeliveryFragment();
+            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+                    .commit();
         });
         return view;
     }
