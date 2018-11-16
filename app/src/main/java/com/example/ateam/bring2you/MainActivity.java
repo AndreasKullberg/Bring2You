@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,15 +34,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOutButton = findViewById(R.id.signOutButton);
         currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
+        Fragment listFragment= new ListFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+
+       /* signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -51,12 +56,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationsView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
 
     }
 
@@ -64,18 +68,18 @@ public class MainActivity extends AppCompatActivity {
             item -> {
                 Fragment selectedFrag = null;
 
-                /*switch (item.getItemId()){
-                    case R.id.
-                            selectedFrag = new   ();
-                            break;
-                    case R.id.
-                            selectedFrag = new    ();
-                               break;
-                    case R.id.
-                            selectedFrag = new   ();
-                            break;
+                switch (item.getItemId()) {
+                    case R.id.nav_assignment:
+                        selectedFrag = new ListFragment();
+                        break;
+                    case R.id.nav_settings:
+                        selectedFrag = new SettingsFragment();
+                        break;
+                    case R.id.nav_maps:
+                        selectedFrag = new MapFragment();
+                        break;
 
-                }*/
+                }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 return true;
@@ -86,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+
 
 
 }

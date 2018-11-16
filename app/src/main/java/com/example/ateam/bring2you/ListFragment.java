@@ -1,5 +1,6 @@
 package com.example.ateam.bring2you;
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -36,35 +37,34 @@ public class ListFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_list, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
-
         mRecyclerView.setHasFixedSize(true);
+
+
+        adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        adapter = new RecyclerViewAdapter(listItems);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
         firestore.collection("Deliveries").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                Log.d("hej","Event?");
                 if (e != null) {
                     return;
                 }
 
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
-                        /*String adress = dc.getDocument().getString("adress");
-                        String name = dc.getDocument().getString("name");
-                        String postalCode = dc.getDocument().getString("postalCode");
-                        String sendingId = dc.getDocument().getString("senderId");
-                        ListItemInfo sending = new ListItemInfo(adress,name,postalCode,sendingId);*/
+                        Log.d("hej","added?");
                         String id = dc.getDocument().getId();
-                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
-                        sending.id = id;
-                        adapter.addItem(sending);
 
-                    } else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
+                        sending.setId(id);
+                        adapter.addItem(sending);
+                    }
+                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
                         String id = dc.getDocument().getId();
                         adapter.removeItem(id);
                     }
@@ -74,21 +74,21 @@ public class ListFragment extends Fragment {
         //Floating action button, register onclick listener
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
 
-            ListItemInfo info = new ListItemInfo("Pennygången 59", "Andreas Kullberg", "414 82", "63978256");
+            ListItemInfo info = new ListItemInfo("Mellangården 55", "Andreas Kullberg", "414 82", "63978256");
 
 
-            firestore.collection("Deliveries").document()
-                    .set(info)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+            firestore.collection("Deliveries")
+                    .add(info)
+                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                         @Override
-                        public void onSuccess(Void aVoid) {
-
+                        public void onSuccess(DocumentReference documentReference) {
+                            Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-
+                            Log.w("firebase", "Error adding document", e);
                         }
                     });
 
