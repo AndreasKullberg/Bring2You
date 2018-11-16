@@ -5,10 +5,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:colorForeground">@android:color/transparent</item>
+        <item name="colorAccent">@android:color/holo_blue_light</item>
         <item name="android:statusBarColor">@android:color/black</item>
-
     </style>
 
 </resources>
