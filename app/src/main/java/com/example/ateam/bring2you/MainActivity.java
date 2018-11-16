@@ -68,18 +68,18 @@ public class MainActivity extends AppCompatActivity {
             item -> {
                 Fragment selectedFrag = null;
 
-                    /*switch (item.getItemId()){
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                   break;
-                        case R.id.
-                                selectedFrag = new    ();
-                                break;
+                switch (item.getItemId()) {
+                    case R.id.nav_assignment:
+                        selectedFrag = new ListFragment();
+                        break;
+                    case R.id.nav_settings:
+                        selectedFrag = new SettingsFragment();
+                        break;
+                    case R.id.nav_maps:
+                        selectedFrag = new MapFragment();
+                        break;
 
-                }*/
+                }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 return true;
@@ -87,13 +87,9 @@ public class MainActivity extends AppCompatActivity {
             };
 
 
-    private void toastMessage(String message) {
+    private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void settings(View view) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.frameLayout, new SettingsFragment());
-        fragmentTransaction.commit();
-    }
+
 }
