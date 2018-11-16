@@ -1,6 +1,7 @@
 package com.example.ateam.bring2you;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -36,8 +37,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     listItemViewHolder.setData(item);
     listItemViewHolder.constraintLayout.setOnClickListener(v ->{
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
-        Fragment mapFragment = new MapFragment();
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, mapFragment)
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("Item",item);
+        Fragment signFragment = new SignFragment();
+        signFragment.setArguments(bundle);
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signFragment)
                 .addToBackStack(null).commit();
         });
     }
@@ -61,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     public void removeItem(String id) {
         for (int i = 0; i < listItems.size(); i++) {
-            if( listItems.get(i).id.equals(id) ) {
+            if( listItems.get(i).getId().equals(id) ) {
                 removeItem(i);
                 return;
             }
