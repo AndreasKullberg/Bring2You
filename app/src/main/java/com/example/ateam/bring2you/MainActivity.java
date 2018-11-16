@@ -1,18 +1,12 @@
 package com.example.ateam.bring2you;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
+
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.view.Menu;
+import android.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,8 +14,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button signOutButton;
-    private TextView currentUserSignedIn;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -32,30 +24,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOutButton = findViewById(R.id.signOutButton);
-        currentUserSignedIn = findViewById(R.id.currentUserText);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(myToolbar);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
-
-        signOutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                toastMessage("Signing out..");
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-
-            }
-        });
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+
 
     }
 
@@ -63,18 +44,18 @@ public class MainActivity extends AppCompatActivity {
             item -> {
                 Fragment selectedFrag = null;
 
-                /*switch (item.getItemId()){
-                    case R.id.
-                            selectedFrag = new   ();
+                switch (item.getItemId()){
+                    case R.id.nav_assignment:
+                            selectedFrag = new ListFragment();
                             break;
-                    case R.id.
-                            selectedFrag = new    ();
-                               break;
-                    case R.id.
-                            selectedFrag = new   ();
+                /*    case R.id.nav_add:
+                            selectedFrag = new  ();
+                               break; */
+                    case R.id.nav_maps:
+                            selectedFrag = new MapFragment();
                             break;
 
-                }*/
+                }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 return true;
@@ -85,6 +66,5 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 
 }
