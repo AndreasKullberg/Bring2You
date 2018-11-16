@@ -1,10 +1,13 @@
 package com.example.ateam.bring2you;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import android.view.Menu;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,35 +54,42 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
+                new ListFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            item -> {
-                Fragment selectedFrag = null;
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFrag = null;
 
-                /*switch (item.getItemId()){
-                    case R.id.
-                            selectedFrag = new   ();
+                    switch (item.getItemId()) {
+                        case R.id.nav_assignment:
+                            selectedFrag = new ListFragment();
                             break;
-                    case R.id.
-                            selectedFrag = new    ();
-                               break;
-                    case R.id.
-                            selectedFrag = new   ();
+                    //    case R.id.nav_add:
+                      //      selectedFrag = new /* fyll i */ ();
+                    //        break;
+                        case R.id.nav_maps:
+                            selectedFrag = new MapFragment();
                             break;
 
-                }*/
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                return true;
+                    return true;
 
+                }
             };
 
 
-    private void toastMessage(String message){
+    private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
+
 }
