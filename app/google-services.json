@@ -15,13 +15,29 @@
       },
       "oauth_client": [
         {
+          "client_id": "313533013416-hj5rtoqa24m90cgc6fqa9tocqjr6ltio.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ateam.bring2you",
+            "certificate_hash": "01f7d0f9925c8dd555c6dd2327fd2ff1bf8c57dd"
+          }
+        },
+        {
+          "client_id": "313533013416-l8mcg1h77jcnlelsvsf1ohi0mf0hrvbb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ateam.bring2you",
+            "certificate_hash": "e716d832543c9f2f372b32d686175d768417ff05"
+          }
+        },
+        {
           "client_id": "313533013416-2esepb9njb4mjvikhk6cfr1sfb6bhu8g.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqjysAZ5UATC4KNjFJqGd6eJaEXAAsW6U"
+          "current_key": "AIzaSyBPTy1kwLGG9OBJp2T5DZPFhpLsEDk8dxw"
         }
       ],
       "services": {
@@ -29,8 +45,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "313533013416-2esepb9njb4mjvikhk6cfr1sfb6bhu8g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
