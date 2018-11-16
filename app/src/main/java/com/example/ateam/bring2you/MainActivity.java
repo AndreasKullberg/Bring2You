@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,15 +34,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signOutButton = findViewById(R.id.signOutButton);
-        currentUserSignedIn = findViewById(R.id.currentUserText);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(myToolbar);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
+        Fragment listFragment= new ListFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
 
-        signOutButton.setOnClickListener(new View.OnClickListener() {
+
+/*        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -51,39 +58,37 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
-                new ListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFrag = null;
+            item -> {
+                Fragment selectedFrag = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.nav_assignment:
+                switch (item.getItemId()){
+                    case R.id.nav_assignment:
                             selectedFrag = new ListFragment();
                             break;
-                    //    case R.id.nav_add:
-                      //      selectedFrag = new /* fyll i */ ();
-                    //        break;
-                        case R.id.nav_maps:
+                /*    case R.id.nav_add:
+                            selectedFrag = new  ();
+                               break; */
+                    case R.id.nav_maps:
                             selectedFrag = new MapFragment();
                             break;
 
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                }*/
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                    return true;
+                return true;
 
-                }
             };
 
 
@@ -91,8 +96,9 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void hello(){
-        System.out.println("Hello TEAM!");
+    public void settings(View view) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.frameLayout, new SettingsFragment());
+        fragmentTransaction.commit();
     }
-
 }

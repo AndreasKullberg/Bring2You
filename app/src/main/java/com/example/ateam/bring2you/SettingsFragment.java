@@ -14,6 +14,9 @@ import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import java.util.Locale;
+import java.util.Objects;
+
+@SuppressWarnings("deprecation")
 
 public class SettingsFragment extends Fragment {
 
@@ -24,20 +27,18 @@ public class SettingsFragment extends Fragment {
 
     public void onViewCreated (@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         Switch theme = getView().findViewById(R.id.themeSwitch);
         Switch language = getView().findViewById(R.id.languageSwitch);
+        language.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                Configuration config = Objects.requireNonNull(getContext()).getResources().getConfiguration();
+                Locale locale = new Locale("sv");
+                Locale.setDefault(locale);
+                config.locale = locale;
+                getContext().getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
 
-        theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+            }else {
 
-
-
-                }else {
-
-                }
             }
         });
     }
