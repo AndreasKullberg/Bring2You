@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         if(task.isSuccessful()){
                             toastMessage("Successfully logged in as: " + user.getEmail());
-                            startActivity(new Intent(LoginActivity.this,ListActivity.class));
+                            startActivity(new Intent(LoginActivity.this, MainActivity.class));
                         } else{
                            // toastMessage(task.getException().getMessage());
                            toastMessage("Failure login in..");
@@ -105,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.about_target, aboutFragment);
+            //fragmentTransaction.add(R.id.about_target, aboutFragment);
             fragmentTransaction.commit();
         }
         else if(swap == false){
@@ -118,5 +118,11 @@ public class LoginActivity extends AppCompatActivity {
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
+
+    public void settings(View view) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.frameLayout, new SettingsFragment());
+        fragmentTransaction.commit();
     }
 }

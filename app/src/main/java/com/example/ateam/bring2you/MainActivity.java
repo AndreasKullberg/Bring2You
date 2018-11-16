@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //signOutButton = findViewById(R.id.signOutButton);
-        currentUserSignedIn = findViewById(R.id.currentUserText);
+        //currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
+        //currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
 
 /*        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,4 +94,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void settings(View view) {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.frameLayout, new SettingsFragment());
+        fragmentTransaction.commit();
+    }
 }
