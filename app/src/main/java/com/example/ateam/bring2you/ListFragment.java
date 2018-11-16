@@ -39,15 +39,8 @@ public class ListFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
-        if(!model.isListFilled()){
-            adapter = new RecyclerViewAdapter(listItems);
-            model.setRecyclerViewAdapter(adapter);
-            model.setListFilled(true);
-        }
-        else{
-            adapter = model.getRecyclerViewAdapter();
-        }
 
+        adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
@@ -64,18 +57,14 @@ public class ListFragment extends Fragment {
 
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
-                        /*String adress = dc.getDocument().getString("adress");
-                        String name = dc.getDocument().getString("name");
-                        String postalCode = dc.getDocument().getString("postalCode");
-                        String sendingId = dc.getDocument().getString("senderId");
-                        ListItemInfo sending = new ListItemInfo(adress,name,postalCode,sendingId);*/
                         Log.d("hej","added?");
                         String id = dc.getDocument().getId();
+
                         ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
                         sending.setId(id);
                         adapter.addItem(sending);
-
-                    } else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                    }
+                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
                         String id = dc.getDocument().getId();
                         adapter.removeItem(id);
                     }
