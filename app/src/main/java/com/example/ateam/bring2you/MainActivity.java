@@ -34,13 +34,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //signOutButton = findViewById(R.id.signOutButton);
-        //currentUserSignedIn = findViewById(R.id.currentUserText);
+        currentUserSignedIn = findViewById(R.id.currentUserText);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        //currentUserSignedIn.setText("Välkommen " + firebaseUser.getEmail());
+        Fragment listFragment= new ListFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
+
 
 /*        signOutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,40 +62,34 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout,
-                new ListFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
-            new BottomNavigationView.OnNavigationItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                    Fragment selectedFrag = null;
+            item -> {
+                Fragment selectedFrag = null;
 
-                    switch (item.getItemId()) {
-                        case R.id.nav_assignment:
-                            selectedFrag = new ListFragment();
-                            break;
-                    //    case R.id.nav_add:
-                      //      selectedFrag = new /* fyll i */ ();
-                    //        break;
-                        case R.id.nav_maps:
-                            selectedFrag = new MapFragment();
-                            break;
+                    /*switch (item.getItemId()){
+                        case R.id.
+                                selectedFrag = new    ();
+                                break;
+                        case R.id.
+                                selectedFrag = new    ();
+                                   break;
+                        case R.id.
+                                selectedFrag = new    ();
+                                break;
 
-                    }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                }*/
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
-                    return true;
+                return true;
 
-                }
             };
 
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 
     public void settings(View view) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
