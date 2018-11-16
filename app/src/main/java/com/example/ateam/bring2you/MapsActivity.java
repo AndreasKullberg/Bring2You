@@ -8,6 +8,8 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -52,7 +54,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private double ITHS_LAT = 57.679690;
     private double ITHS_LNG = 12.000870;
 
-    private GoogleApiClient mLocationClient;
+
 
     private static final String TAG = "MapActivity";
 
@@ -78,7 +80,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Log.d(TAG, "@deviceLocation::: getting the current location of the user");
         //TODO !!!Priority!!!
         //mMap.setMyLocationEnabled(true);
+        mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
+        try {
 
+        } catch (SecurityException e) {
+
+        }
     }
 
 
@@ -105,12 +112,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SwedenCenterPoint, 4));
     }
 
-    //TODO Buttons? Information on marker?
+
     public void TEMP_BUTTON_FOR_RESET_LOCATION(View view) {
         LatLng SwedenCenterPoint = new LatLng(62.3833318, 16.2824905);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SwedenCenterPoint, 4));
     }
 
+
+    //TODO WORKS WITH TAPPING
     public void TEMP_BUTTON_FOR_ZOOM_IN(View view) {
         DEFAULT_ZOOM++;
     }
@@ -130,7 +139,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .title(ORDER_INFORMATION_TITLE)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_VIOLET))
                 .snippet(ORDER_INFORMATION)
-
 
         );
         mMap.moveCamera(update);
@@ -160,6 +168,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
         gotoLocation(latitude, longitude, DEFAULT_ZOOM);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        //inflater.inflate(R.menu.menucontext , menu);
+        return true;
     }
 
     //TODO Add a settings icon
