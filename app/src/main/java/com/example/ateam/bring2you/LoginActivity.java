@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.loginButton);
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.INVISIBLE);
-        settings = findViewById(R.id.themeButton);
+        settings = findViewById(R.id.nav_settings);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

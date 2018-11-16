@@ -8,10 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
 import java.util.Locale;
+import java.util.Objects;
+
 @SuppressWarnings("deprecation")
 public class SettingsFragment extends Fragment {
 
@@ -23,31 +26,27 @@ public class SettingsFragment extends Fragment {
     public void onViewCreated (@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Switch theme = getView().findViewById(R.id.themeSwitch);
-        Switch language = getView().findViewById(R.id.languageSwitch);
+        Button btn_english = view.findViewById(R.id.btn_english);
+        Button btn_swedish = view.findViewById(R.id.btn_swedish);
 
-        language.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+        btn_english.setOnClickListener(v -> {
+            Locale locale = new Locale("GB");
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
 
-                    Configuration config = getActivity().getBaseContext().getResources().getConfiguration();
-                    Locale locale = new Locale("en");
-                    Locale.setDefault(locale);
-                    config.locale = locale;
-                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-
-                }else {
-
-                    Configuration config = getActivity().getBaseContext().getResources().getConfiguration();
-                    Locale locale = new Locale("sv");
-                    Locale.setDefault(locale);
-                    config.locale = locale;
-                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-
-                }
-            }
         });
+
+        btn_swedish.setOnClickListener(v -> {
+            Locale locale = new Locale("SE");
+            Locale.setDefault(locale);
+            Configuration config = new Configuration();
+            config.locale = locale;
+            getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
+
+        });
+
     }
 
 }

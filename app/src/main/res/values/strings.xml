@@ -1,32 +1,40 @@
 <resources>
     <string name="app_name">Bring2You</string>
-    <string name="settings">Settings</string>
-    <string name="about">About</string>
-    <string name="title_activity_login2">Sign in</string>
+    <string name="settings" translatable="false">Settings</string>
+    <string name="about" translatable="false">About</string>
+    <string name="title_activity_login2" translatable="false">Sign in</string>
 
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
+    <string name="prompt_email" translatable="false">Email</string>
+    <string name="prompt_password" translatable="false">Password (optional)</string>
+    <string name="action_sign_in" translatable="false">Sign in or register</string>
+    <string name="action_sign_in_short" translatable="false">Sign in</string>
+    <string name="error_invalid_email" translatable="false">This email address is invalid</string>
+    <string name="error_invalid_password" translatable="false">This password is too short</string>
+    <string name="error_incorrect_password" translatable="false">This password is incorrect</string>
+    <string name="error_field_required" translatable="false">This field is required</string>
+    <string name="permission_rationale" translatable="false">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="title_activity_bottom_nav">BottomNav</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="order">Order</string>
-    <string name="maps">maps</string>
-    <string name="add">add</string>
-    <string name="logout">Logout</string>
+    <string name="title_activity_bottom_nav" translatable="false">BottomNav</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="order" translatable="false">Order</string>
+    <string name="maps" translatable="false">maps</string>
+    <string name="add" translatable="false">add</string>
+    <string name="logout" translatable="false">Logout</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="skicka">SKICKA</string>
-    <string name="send">SEND</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="skicka" translatable="false">SKICKA</string>
+    <string name="send" translatable="false">SEND</string>
+    <string name="password" translatable="false">password</string>
+    <string name="login" translatable="false">login</string>
+    <string name="email" translatable="false">email</string>
+    <string name="theme">Theme</string>
+    <string name="language">Language</string>
+    <string name="signout" translatable="false">signout</string>
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
 </resources>

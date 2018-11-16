@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bring2You</string>
+    <string name="theme" translatable="false">Theme</string>
+    <string name="language">Language</string>
+    <string name="english">English</string>
+    <string name="swedish">Swedish</string>
+</resources>

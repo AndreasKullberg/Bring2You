@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
 
-        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationsView);
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
     }
