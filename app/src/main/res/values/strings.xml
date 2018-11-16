@@ -33,4 +33,6 @@
     <string name="en" translatable="false">EN</string>
     <string name="sv" translatable="false">SV</string>
     <string name="signout">Signout</string>
+    <string name="send" translatable="false">SEND</string>
+    <string name="logout" translatable="false">logout</string>
 </resources>

@@ -40,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
+        //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -98,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void about() {
+    /*private void about() {
 
         if(swap == true) {
             swap = false;
@@ -113,7 +113,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 
 
     private void toastMessage(String message){
