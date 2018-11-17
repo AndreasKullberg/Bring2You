@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
+        // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
 
        /* signOutButton.setOnClickListener(new View.OnClickListener() {
