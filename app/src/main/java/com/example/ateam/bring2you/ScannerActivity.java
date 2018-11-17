@@ -40,7 +40,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
             }
             else{
                 requestPermission();
-                
+
             }
 
         }
@@ -124,7 +124,10 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
+
+
+        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Scan Result");
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -141,6 +144,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         });
         builder.setMessage(result.getText());
         AlertDialog alert1 = builder.create();
-        alert1.show();
+        alert1.show();*/
     }
 }
