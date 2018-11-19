@@ -39,12 +39,14 @@
     <EditText
 
         android:id="@+id/passwordEditText"
-        android:layout_width="258dp"
-        android:layout_height="39dp"
+        android:layout_width="306dp"
+        android:layout_height="46dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:background="@drawable/rounded_edittext"
+        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_lock_outline_black_24dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
@@ -70,12 +72,14 @@
 
     <EditText
         android:id="@+id/usernameEditText"
-        android:layout_width="257dp"
-        android:layout_height="37dp"
+        android:layout_width="308dp"
+        android:layout_height="46dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/rounded_edittext"
+        android:drawableLeft="@drawable/ic_person_black_24dp"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_person_black_24dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textPersonName"
@@ -119,16 +123,18 @@
     </FrameLayout>
 
     <CheckBox
-        android:id="@+id/checkBox2"
-        android:layout_width="134dp"
-        android:layout_height="29dp"
+        android:id="@+id/rememberMeChk"
+        android:layout_width="177dp"
+        android:layout_height="33dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:buttonTint="@android:color/black"
         android:checked="false"
         android:text="Remember me"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
 
