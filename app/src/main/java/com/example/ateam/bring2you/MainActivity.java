@@ -19,8 +19,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button signOutButton;
-    private TextView currentUserSignedIn;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -31,9 +29,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar myToolbar = findViewById(R.id.app_bar);
+        /* Toolbar set up*/
+        Toolbar myToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(myToolbar);
 
+        getSupportActionBar().setTitle("Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -48,10 +49,18 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+        /* Den aktivitet som startas upp efter man har loggat in */
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
 
 
     }
+
+
+
+    /* Om en av knapparna på Bottom navigation baren klickas så skickas det vidare till dess fragment
+    *
+    * Retunerar: klickad "knapp"
+    * */
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
@@ -80,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-    public void settings(View view) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.add(R.id.frameLayout, new SettingsFragment());
-        fragmentTransaction.commit();
-    }
 }
+/* getSupportActionBar().setTitle("Name")
+ * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+ */
