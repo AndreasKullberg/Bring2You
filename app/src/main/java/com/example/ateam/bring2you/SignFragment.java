@@ -5,6 +5,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,6 +33,7 @@ public class SignFragment extends Fragment {
         Bundle bundle = getArguments();
         ListItemInfo item = (ListItemInfo) bundle.getSerializable("Item");
         firestore = FirebaseFirestore.getInstance();
+        sign();
 
         view.findViewById(R.id.sendButton).setOnClickListener(v -> {
             item.setSignedBy(signedByView.getText().toString());
@@ -63,6 +66,9 @@ public class SignFragment extends Fragment {
 
 
         return view;
+    }
+
+    private void sign() {
     }
 
 
