@@ -88,8 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     mUsername.setError("No blank fields!");
-
-                    //toastMessage("no blank fields!");
+                    
                 }else if(mPassword.getText().toString().equals("")){
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
