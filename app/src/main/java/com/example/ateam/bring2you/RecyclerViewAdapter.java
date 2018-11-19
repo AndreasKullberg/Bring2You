@@ -35,7 +35,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
     ListItemInfo item = listItems.get(index);
     listItemViewHolder.setData(item);
-    listItemViewHolder.constraintLayout.setOnClickListener(v ->{
+    listItemViewHolder.cardView.setOnClickListener(v ->{
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         Bundle bundle = new Bundle();
         bundle.putSerializable("Item",item);
