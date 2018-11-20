@@ -7,11 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,12 +25,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Toolbar set up*/
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-
-        getSupportActionBar().setTitle("Order");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -54,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     /* Om en av knapparna på Bottom navigation baren klickas så skickas det vidare till dess fragment
@@ -84,12 +73,4 @@ public class MainActivity extends AppCompatActivity {
 
             };
 
-
-    private void toastMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
 }
-/* getSupportActionBar().setTitle("Name")
- * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
- */
