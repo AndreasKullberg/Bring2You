@@ -35,4 +35,7 @@
     <string name="signout">Signout</string>
     <string name="send" translatable="false">SEND</string>
     <string name="logout" translatable="false">logout</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

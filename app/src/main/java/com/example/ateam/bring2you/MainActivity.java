@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
   //  private Button signOutButton;
     private TextView currentUserSignedIn;
 
+    String scanResult;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
@@ -37,6 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
        // currentUserSignedIn = findViewById(R.id.currentUserText);
         //currentUserSignedIn = findViewById(R.id.currentUserText);
+        if (getIntent().getStringExtra("scanResult") != null){
+
+            Fragment signfragment = new SignFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
+            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
+        }
+
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -45,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
+
         // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
 
@@ -68,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Scan() {
+
         Intent intent = new Intent(this, ScannerActivity.class);
         startActivity(intent);
     }

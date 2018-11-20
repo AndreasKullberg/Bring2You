@@ -16,10 +16,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import me.dm7.barcodescanner.core.BarcodeScannerView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
 import static android.Manifest.permission.CAMERA;
@@ -30,12 +32,18 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     private static final int requestCamera = 1;
     private ZXingScannerView scannerView;
 
+    {
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         scannerView = new ZXingScannerView(this);
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(scannerView);
+        getWindow().setLayout(800,700);
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (checkPermission()){
@@ -128,13 +136,16 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
 
         Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
-
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("scanResult",myResult);
+        startActivity(intent);
+/*
         Fragment signfragment = new SignFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         SignFragment.setScanResult(myResult);
         fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
-
+*/
 
 
         /*AlertDialog.Builder builder = new AlertDialog.Builder(this);

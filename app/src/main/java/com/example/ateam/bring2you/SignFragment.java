@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,6 +29,7 @@ public class SignFragment extends Fragment {
     ListItemInfo item;
 
     public static void setScanResult(String myResult) {
+
         SignFragment.scanResult = myResult;
     }
 
@@ -35,6 +37,7 @@ public class SignFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
+        firestore = FirebaseFirestore.getInstance();
         if (scanResult != null){
         firestore.collection("Deliveries").document(scanResult).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -56,9 +59,11 @@ public class SignFragment extends Fragment {
             Bundle bundle = getArguments();
             item = (ListItemInfo) bundle.getSerializable("Item");
         }
-        firestore = FirebaseFirestore.getInstance();
+
 
         view.findViewById(R.id.sendButton).setOnClickListener(v -> {
+            ImageView signature = view.findViewById(R.id.my_canvas);
+
             item.setSignedBy(signedByView.getText().toString());
 
             firestore.collection("Delivered").document(item.getId())
