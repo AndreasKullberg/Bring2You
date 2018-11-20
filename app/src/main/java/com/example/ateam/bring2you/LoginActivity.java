@@ -75,20 +75,17 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else
                 mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        FirebaseUser user = mAuth.getCurrentUser();
-                        progressBar.setVisibility(View.INVISIBLE);
-                        loginButton.setVisibility(View.VISIBLE);
+                .addOnCompleteListener(task -> {
+                    FirebaseUser user = mAuth.getCurrentUser();
+                    progressBar.setVisibility(View.INVISIBLE);
+                    loginButton.setVisibility(View.VISIBLE);
 
-                        if(task.isSuccessful()){
-                            toastMessage("Successfully logged in as: " + user.getEmail());
-                            startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                        } else{
-                           // toastMessage(task.getException().getMessage());
-                           toastMessage("Failure login in..");
-                        }
+                    if(task.isSuccessful()){
+                        toastMessage("Successfully logged in as: " + user.getEmail());
+                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
+                    } else{
+                       // toastMessage(task.getException().getMessage());
+                       toastMessage("Failure login in..");
                     }
                 });
 

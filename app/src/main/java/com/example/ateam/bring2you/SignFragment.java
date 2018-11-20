@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,31 +39,29 @@ public class SignFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
         firestore = FirebaseFirestore.getInstance();
-        if (scanResult != null){
-        firestore.collection("Deliveries").document(scanResult).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        item.setId(scanResult);
-                    } else {
-
-                    }
-                } else {
-
-                }
-            }
-        });}
         signedByView = view.findViewById(R.id.signedBy);
+
+        if (scanResult != null){
+        firestore.collection("Deliveries").document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
+        }
+
         if (scanResult == null) {
             Bundle bundle = getArguments();
             item = (ListItemInfo) bundle.getSerializable("Item");
         }
 
 
-        view.findViewById(R.id.sendButton).setOnClickListener(v -> {
-            ImageView signature = view.findViewById(R.id.my_canvas);
+
+
+
+        return view;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        getActivity().findViewById(R.id.sendButton).setOnClickListener(v -> {
+            ImageView signature = getActivity().findViewById(R.id.my_canvas);
 
             item.setSignedBy(signedByView.getText().toString());
 
@@ -91,9 +90,18 @@ public class SignFragment extends Fragment {
                 }
             });
         });
+    }
 
-
-        return view;
+    private void checkScan(Task<DocumentSnapshot> task) {
+        if (task.isSuccessful()) {
+            DocumentSnapshot document = task.getResult();
+            if (document.exists()) {
+                item = document.toObject(ListItemInfo.class);
+                item.setId(scanResult);
+            }
+            else {}
+        }
+        else {}
     }
 
 

@@ -36,26 +36,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       // currentUserSignedIn = findViewById(R.id.currentUserText);
         //currentUserSignedIn = findViewById(R.id.currentUserText);
-        if (getIntent().getStringExtra("scanResult") != null){
-
-            Fragment signfragment = new SignFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
-            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
-        }
-
-
-
+        ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-
-        Fragment listFragment= new ListFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
+        openList();
 
         // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
@@ -77,6 +62,29 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+    }
+
+    private void openList() {
+        if(getIntent().getStringExtra("scanResult") == null) {
+            Fragment listFragment = new ListFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, listFragment).commit();
+        }
+    }
+
+    private void ScannerFilter() {
+        if (getIntent().getStringExtra("scanResult") != null){
+
+            Fragment signfragment = new SignFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
+            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
+
+
+
+        }
     }
 
     private void Scan() {
