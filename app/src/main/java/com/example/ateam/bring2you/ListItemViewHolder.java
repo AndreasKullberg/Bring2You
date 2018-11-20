@@ -14,7 +14,7 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
     private TextView name;
     private TextView postalCode;
     private TextView senderId;
-    CardView constraintLayout;
+    CardView cardView;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -23,7 +23,7 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
         name = itemView.findViewById(R.id.textName);
         postalCode = itemView.findViewById(R.id.textPostalCode);
         senderId = itemView.findViewById(R.id.textSenderId);
-        this.constraintLayout = itemView.findViewById(R.id.cardview);
+        this.cardView = itemView.findViewById(R.id.cardview);
     }
 
     public void setData(ListItemInfo info){

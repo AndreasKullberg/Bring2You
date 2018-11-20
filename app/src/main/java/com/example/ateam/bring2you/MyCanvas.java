@@ -26,6 +26,7 @@ import android.widget.ImageView;
  */
 public class MyCanvas extends View {
 
+    Canvas myCanvas;
     Paint myPaint = new Paint();
     Path path = new Path();
 

@@ -27,7 +27,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ScannerActivity"></activity>
+        <activity android:name=".ScannerActivity" android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            ></activity>
     </application>
 
 </manifest>
