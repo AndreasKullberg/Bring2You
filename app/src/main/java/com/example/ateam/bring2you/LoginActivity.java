@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
    private CheckBox rememberMeCheckBox;
    private SharedPreferences mPrefs;
    private static final String PREFS_NAME = "PrefsFile";
-    boolean swap = true;
+    //boolean swap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
+        //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                     mUsername.setError("No blank fields!");
-                    
+
                 }else if(mPassword.getText().toString().equals("")){
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
@@ -138,14 +138,14 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void about() {
+    /*private void about() {
 
         if(swap == true) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.add(R.id.about_target, aboutFragment);
+            //fragmentTransaction.add(R.id.about_target, aboutFragment);
             fragmentTransaction.commit();
         }
         else if(swap == false){
@@ -153,10 +153,11 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }
-    }
+    }*/
 
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
+
 }
