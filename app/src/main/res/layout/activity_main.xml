@@ -5,6 +5,7 @@
     android:background="?attr/backgroundcolor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textColor="?attr/textcolor"
     tools:context=".MainActivity">
 
 

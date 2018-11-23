@@ -12,7 +12,8 @@
             android:id="@+id/theme_pref"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/theme" />
+            android:text="@string/theme"
+            android:textColor="?attr/textcolor"/>
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
