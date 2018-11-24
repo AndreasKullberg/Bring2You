@@ -37,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
    private CheckBox rememberMeCheckBox;
    private SharedPreferences mPrefs;
    private static final String PREFS_NAME = "PrefsFile";
-    //boolean swap = true;
+    boolean swap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
+        findViewById(R.id.about_btn).setOnClickListener(view -> about());
         //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
