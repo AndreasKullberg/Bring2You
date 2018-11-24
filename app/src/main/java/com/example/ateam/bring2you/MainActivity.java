@@ -1,9 +1,6 @@
 package com.example.ateam.bring2you;
 
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -14,8 +11,6 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.util.Locale;
 
 
 public class MainActivity extends AppCompatActivity {

@@ -1,11 +1,9 @@
 package com.example.ateam.bring2you;
 
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 class ListItemViewHolder extends RecyclerView.ViewHolder {
