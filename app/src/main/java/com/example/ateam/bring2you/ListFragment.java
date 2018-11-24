@@ -1,8 +1,6 @@
 package com.example.ateam.bring2you;
 
-import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -10,10 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -29,7 +26,9 @@ public class ListFragment extends Fragment {
     List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
-    FirebaseFirestore firestore;
+    private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -39,6 +38,9 @@ public class ListFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        Log.d("user", firebaseUser.getEmail());
 
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
@@ -71,7 +73,7 @@ public class ListFragment extends Fragment {
                 }
             }
         });
-        //Floating action button, register onclick listener
+
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
             getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)

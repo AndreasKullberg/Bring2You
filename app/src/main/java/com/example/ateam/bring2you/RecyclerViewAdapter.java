@@ -35,15 +35,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
     ListItemInfo item = listItems.get(index);
     listItemViewHolder.setData(item);
+        Fragment signFragment = new SignFragment();
+        Fragment infoFragment = new InfoFragment();
     listItemViewHolder.cardView.setOnClickListener(v ->{
+        transaction(item, signFragment, v);
+        });
+    listItemViewHolder.infoButton.setOnClickListener(v -> {
+        transaction(item, infoFragment, v);
+    });
+    }
+
+    private void transaction(ListItemInfo item, Fragment fragment, View v) {
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         Bundle bundle = new Bundle();
         bundle.putSerializable("Item",item);
-        Fragment signFragment = new SignFragment();
-        signFragment.setArguments(bundle);
-        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signFragment)
+        fragment.setArguments(bundle);
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment)
                 .addToBackStack(null).commit();
-        });
     }
 
     @Override

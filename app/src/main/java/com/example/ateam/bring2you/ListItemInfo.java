@@ -1,5 +1,7 @@
 package com.example.ateam.bring2you;
 
+import android.media.Image;
+
 import java.io.Serializable;
 
 public class ListItemInfo implements Serializable {
@@ -8,12 +10,20 @@ public class ListItemInfo implements Serializable {
     private String postalCode;
     private String senderId;
     private String signedBy;
+    private String id;
+    private String signImageUrl;
+
+    public String getSignImageUrl() {
+        return signImageUrl;
+    }
+
+    public void setSignImageUrl(String signImageUrl) {
+        this.signImageUrl = signImageUrl;
+    }
 
     public String getSignedBy() {
         return signedBy;
     }
-
-    private String id;
 
     public void setSignedBy(String signedBy) {
         this.signedBy = signedBy;

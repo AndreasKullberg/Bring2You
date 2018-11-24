@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private Button loginButton;
     private ProgressBar progressBar;
     boolean swap = true;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,60 +43,63 @@ public class LoginActivity extends AppCompatActivity {
         //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
+        if(user != null){
+            toastMessage("logged in as: " + user.getEmail());
+            startActivity(new Intent(LoginActivity.this,MainActivity.class));
+        }
+        else {
+            mUsername = findViewById(R.id.usernameEditText);
+            mPassword = findViewById(R.id.passwordEditText);
+            loginButton = findViewById(R.id.loginButton);
+            progressBar = findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.INVISIBLE);
 
-        mUsername = findViewById(R.id.usernameEditText);
-        mPassword = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.loginButton);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
 
+            loginButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    loginButton.setVisibility(View.INVISIBLE);
+                    progressBar.setVisibility(View.VISIBLE);
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setVisibility(View.INVISIBLE);
-                progressBar.setVisibility(View.VISIBLE);
+                    if (mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")) {
+                        mUsername.setError("No blank fields");
+                        mPassword.setError("No blank fields!");
+                        loginButton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                    } else if (mUsername.getText().toString().equals("")) {
+                        loginButton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        mUsername.setError("No blank fields!");
 
-                if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
-                    mUsername.setError("No blank fields");
-                    mPassword.setError("No blank fields!");
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
+                        //toastMessage("no blank fields!");
+                    } else if (mPassword.getText().toString().equals("")) {
+                        loginButton.setVisibility(View.VISIBLE);
+                        progressBar.setVisibility(View.INVISIBLE);
+                        mPassword.setError("No blank fields!");
+                    } else
+                        mAuth.signInWithEmailAndPassword(mUsername.getText().toString(), mPassword.getText().toString())
+                                .addOnCompleteListener(task -> {
+                                    user = mAuth.getCurrentUser();
+                                    progressBar.setVisibility(View.INVISIBLE);
+                                    loginButton.setVisibility(View.VISIBLE);
+
+                                    if (task.isSuccessful()) {
+                                        toastMessage("Successfully logged in as: " + user.getEmail());
+                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    } else {
+                                        // toastMessage(task.getException().getMessage());
+                                        toastMessage("Failure login in..");
+                                    }
+                                });
+
                 }
-                else if(mUsername.getText().toString().equals("")){
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    mUsername.setError("No blank fields!");
-
-                    //toastMessage("no blank fields!");
-                }else if(mPassword.getText().toString().equals("")){
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    mPassword.setError("No blank fields!");
-                }
-                else
-                mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
-                .addOnCompleteListener(task -> {
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    progressBar.setVisibility(View.INVISIBLE);
-                    loginButton.setVisibility(View.VISIBLE);
-
-                    if(task.isSuccessful()){
-                        toastMessage("Successfully logged in as: " + user.getEmail());
-                        startActivity(new Intent(LoginActivity.this,MainActivity.class));
-                    } else{
-                       // toastMessage(task.getException().getMessage());
-                       toastMessage("Failure login in..");
-                    }
-                });
-
-            }
-        });
+            });
+        }
 
     }
 
     /*private void about() {
-
         if(swap == true) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();

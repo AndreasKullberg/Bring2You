@@ -1,15 +1,20 @@
 package com.example.ateam.bring2you;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,13 +26,19 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
 
 public class SignFragment extends Fragment {
-    FirebaseFirestore firestore;
-    EditText signedByView;
+    private FirebaseFirestore firestore;
+    private EditText signedByView;
     static String scanResult;
     ListItemInfo item;
+    private ImageView signature;
+    private StorageReference storageReference;
+    private StorageTask storageTask;
 
     public static void setScanResult(String myResult) {
 
@@ -40,6 +51,8 @@ public class SignFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
+        storageReference = FirebaseStorage.getInstance().getReference("SignImage");
+
 
         if (scanResult != null){
         firestore.collection("Deliveries").document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
@@ -50,10 +63,6 @@ public class SignFragment extends Fragment {
             item = (ListItemInfo) bundle.getSerializable("Item");
         }
 
-
-
-
-
         return view;
     }
 
@@ -61,7 +70,14 @@ public class SignFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         getActivity().findViewById(R.id.sendButton).setOnClickListener(v -> {
-            ImageView signature = getActivity().findViewById(R.id.my_canvas);
+
+            /*storageTask = storageReference.putFile().addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                    item.setSignImageUrl(taskSnapshot.getStorage().getDownloadUrl().toString());
+                }
+            });*/
 
             item.setSignedBy(signedByView.getText().toString());
 
@@ -90,6 +106,7 @@ public class SignFragment extends Fragment {
                 }
             });
         });
+
     }
 
     private void checkScan(Task<DocumentSnapshot> task) {
@@ -103,6 +120,4 @@ public class SignFragment extends Fragment {
         }
         else {}
     }
-
-
 }

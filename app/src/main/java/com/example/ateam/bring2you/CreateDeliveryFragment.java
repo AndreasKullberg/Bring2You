@@ -37,24 +37,29 @@ public class CreateDeliveryFragment extends Fragment {
             postalCode = createPostal.getText().toString();
             senderId = createSender.getText().toString();
 
+            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")){
+                Log.d("nej", "works");
+            }
+            else {
+                ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
 
-            ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-
-            firestore.collection("Deliveries")
-                    .add(info)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("firebase", "Error adding document", e);
-                        }
-                    });
+                firestore.collection("Deliveries")
+                        .add(info)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w("firebase", "Error adding document", e);
+                            }
+                        });
+            }
         });
+
         return view;
     }
 }

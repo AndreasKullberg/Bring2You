@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
         openList();
 
         // on click listener for navbar button.
