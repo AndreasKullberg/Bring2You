@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /*private void about() {
+    private void about() {
 
         if(swap == true) {
             swap = false;
@@ -154,7 +154,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }
-    }*/
+    }
 
 
     private void toastMessage(String message){
