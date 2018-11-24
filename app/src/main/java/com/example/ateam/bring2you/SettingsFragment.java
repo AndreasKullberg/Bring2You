@@ -1,17 +1,20 @@
 package com.example.ateam.bring2you;
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.Switch;
 
+import java.util.Locale;
 import java.util.Objects;
 
-
+@SuppressWarnings( "deprecation" )
 public class SettingsFragment extends Fragment {
 
     ThemeSharedPref themeSharedPref;
@@ -43,5 +46,28 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button english = getView().findViewById(R.id.en_btn);
+        Button swedish = getView().findViewById(R.id.se_btn);
+
+        english.setOnClickListener(v -> changeLanguage("en"));
+
+        swedish.setOnClickListener(v -> changeLanguage("sv"));
+
+    }
+
+    private void changeLanguage(String languageToLoad){
+
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        Objects.requireNonNull(getContext()).getResources().updateConfiguration(config,getContext().getResources().getDisplayMetrics());
+
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).recreate();
     }
 }
+
+//TODO: Fix sharedpreferences for when application is ended. Currently all settings that is stored are lost when user closes app

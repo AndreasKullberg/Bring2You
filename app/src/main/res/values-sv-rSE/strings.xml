@@ -23,4 +23,6 @@
     <string name="theme">Tema</string>
     <string name="language">Språk</string>
     <string name="signout">Logga ut</string>
+    <string name="swedish">Svenska</string>
+    <string name="english">Engelska</string>
 </resources>
