@@ -29,13 +29,6 @@
         android:layout_height="match_parent"
         android:id="@+id/frameLayout">
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Main page">
-
-        </android.support.v7.widget.Toolbar>
-
     </FrameLayout>
 
 </android.support.constraint.ConstraintLayout>
