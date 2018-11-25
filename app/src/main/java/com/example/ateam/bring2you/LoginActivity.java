@@ -2,7 +2,6 @@ package com.example.ateam.bring2you;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -14,11 +13,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,11 +28,11 @@ public class LoginActivity extends AppCompatActivity {
     private  FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
-   private ProgressBar progressBar;
-   private CheckBox rememberMeCheckBox;
-   private SharedPreferences mPrefs;
-   private static final String PREFS_NAME = "PrefsFile";
-    boolean swap = true;
+    private ProgressBar progressBar;
+    private CheckBox rememberMeCheckBox;
+    private SharedPreferences mPrefs;
+    private static final String PREFS_NAME = "PrefsFile";
+    private boolean swap = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,7 +98,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginButton.setVisibility(View.VISIBLE);
 
                 if (task.isSuccessful()) {
-                    toastMessage("Successfully logged in as: " + user.getEmail());
+                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
                     // toastMessage(task.getException().getMessage());
@@ -131,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private void about() {
 
-        if(swap == true) {
+        if(swap) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();

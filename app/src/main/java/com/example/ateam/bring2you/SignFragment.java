@@ -9,14 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 
 public class SignFragment extends Fragment {
-    FirebaseFirestore firestore;
-    EditText signedByView;
+    private FirebaseFirestore firestore;
+    private EditText signedByView;
 
 
     @Override
@@ -25,7 +25,7 @@ public class SignFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
         signedByView = view.findViewById(R.id.signedBy);
         Bundle bundle = getArguments();
-        ListItemInfo item = (ListItemInfo) bundle.getSerializable("Item");
+        ListItemInfo item = (ListItemInfo) Objects.requireNonNull(bundle).getSerializable("Item");
         firestore = FirebaseFirestore.getInstance();
 
         view.findViewById(R.id.sendButton).setOnClickListener(v -> {

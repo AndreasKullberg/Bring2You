@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 class ThemeSharedPref {
 
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     ThemeSharedPref(Context context) {
         sharedPreferences = context.getSharedPreferences("filename",Context.MODE_PRIVATE);

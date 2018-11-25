@@ -7,16 +7,15 @@ import android.view.View;
 import android.widget.TextView;
 
 class ListItemViewHolder extends RecyclerView.ViewHolder {
-    private View itemview;
-    private TextView adress;
-    private TextView name;
-    private TextView postalCode;
-    private TextView senderId;
-    CardView constraintLayout;
+    private final TextView adress;
+    private final TextView name;
+    private final TextView postalCode;
+    private final TextView senderId;
+    final CardView constraintLayout;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.itemview = itemView;
+        View itemview = itemView;
         adress = itemview.findViewById(R.id.textAdress);
         name = itemView.findViewById(R.id.textName);
         postalCode = itemView.findViewById(R.id.textPostalCode);

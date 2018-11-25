@@ -38,4 +38,5 @@
     <string name="logout" translatable="false">logout</string>
     <string name="swedish">Swedish</string>
     <string name="english">English</string>
+    <string name="remember_me">Remember me</string>
 </resources>

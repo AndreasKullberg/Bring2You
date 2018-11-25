@@ -14,12 +14,11 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
-    List<ListItemInfo> listItems;
-    Context context;
+    private final List<ListItemInfo> listItems;
+    private Context context;
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
         this.listItems = listItems;
-        context = context;
     }
 
     @NonNull
@@ -55,7 +54,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         this.notifyItemInserted(listItems.size()-1);
     }
 
-    public void removeItem(int index){
+    private void removeItem(int index){
         if( index >= 0 && index < listItems.size()) {
             listItems.remove(index);
             this.notifyItemRemoved(index);

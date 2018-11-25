@@ -7,27 +7,25 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-    ThemeSharedPref themeSharedPref;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ThemeSharedPref themeSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+        //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
         if(themeSharedPref.loadDarkModeState()) {
@@ -72,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     * Retunerar: klickad "knapp"
     * */
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
 
@@ -88,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
 
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
 
                 return true;
 

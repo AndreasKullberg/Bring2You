@@ -9,32 +9,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ListFragment extends Fragment {
-    List<ListItemInfo> listItems = new ArrayList<>();
+    private final List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
-    private RecyclerView mRecyclerView;
-    FirebaseFirestore firestore;
+    private FirebaseFirestore firestore;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-        mRecyclerView = view.findViewById(R.id.recyclerView);
+
+        //TODO: Kolla varför recuclerview används två gånger
+        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
@@ -52,7 +45,7 @@ public class ListFragment extends Fragment {
                 return;
             }
 
-            for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+            for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
                 if (dc.getType() == DocumentChange.Type.ADDED) {
                     Log.d("hej","added?");
                     String id = dc.getDocument().getId();

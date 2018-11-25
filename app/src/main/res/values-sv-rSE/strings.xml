@@ -25,4 +25,5 @@
     <string name="signout">Logga ut</string>
     <string name="swedish">Svenska</string>
     <string name="english">Engelska</string>
+    <string name="remember_me">Kom ihåg mig</string>
 </resources>

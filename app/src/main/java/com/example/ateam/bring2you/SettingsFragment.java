@@ -17,7 +17,7 @@ import java.util.Objects;
 @SuppressWarnings( "deprecation" )
 public class SettingsFragment extends Fragment {
 
-    ThemeSharedPref themeSharedPref;
+    private ThemeSharedPref themeSharedPref;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -71,3 +71,4 @@ public class SettingsFragment extends Fragment {
 }
 
 //TODO: Fix sharedpreferences for when application is ended. Currently all settings that is stored are lost when user closes app
+//TODO: Fix if user chooses same language with if else (TOAST warning?)
