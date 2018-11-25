@@ -85,9 +85,11 @@ public class LoginActivity extends AppCompatActivity {
                                     loginButton.setVisibility(View.VISIBLE);
 
                                     if (task.isSuccessful()) {
+                                        Log.d(TAG, "success");
                                         toastMessage("Successfully logged in as: " + user.getEmail());
                                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                     } else {
+                                        Log.d(TAG, "fail");
                                         // toastMessage(task.getException().getMessage());
                                         toastMessage("Failure login in..");
                                     }

@@ -23,7 +23,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-  //  private Button signOutButton;
+    private Button signOutButton;
     private TextView currentUserSignedIn;
 
     String scanResult;
@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
         // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
 
-/*        signOutButton.setOnClickListener(new View.OnClickListener() {
+
+        findViewById(R.id.nav_signout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });*/
+        });
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
@@ -108,9 +109,6 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_maps:
                         selectedFrag = new MapFragment();
                         break;
-
-
-
 
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();

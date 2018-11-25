@@ -12,11 +12,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
     List<ListItemInfo> listItems;
     Context context;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
         this.listItems = listItems;
@@ -38,11 +43,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         Fragment signFragment = new SignFragment();
         Fragment infoFragment = new InfoFragment();
     listItemViewHolder.cardView.setOnClickListener(v ->{
-        transaction(item, signFragment, v);
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        if(firebaseUser.getEmail().equals("admin@hotmail.com")){
+            transaction(item,infoFragment, v);
+        }
+        else {
+            transaction(item, signFragment, v);
+        }
         });
-    listItemViewHolder.infoButton.setOnClickListener(v -> {
-        transaction(item, infoFragment, v);
-    });
     }
 
     private void transaction(ListItemInfo item, Fragment fragment, View v) {

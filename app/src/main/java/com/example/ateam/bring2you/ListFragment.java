@@ -29,6 +29,7 @@ public class ListFragment extends Fragment {
     private FirebaseFirestore firestore;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private String collection;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,6 +42,12 @@ public class ListFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         Log.d("user", firebaseUser.getEmail());
+        if(firebaseUser.getEmail().equals("admin@hotmail.com")){
+            collection = "Delivered";
+        }
+        else{
+            collection = firebaseUser.getEmail();
+        }
 
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
@@ -49,7 +56,7 @@ public class ListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
-        firestore.collection("Deliveries").addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                 Log.d("hej","Event?");

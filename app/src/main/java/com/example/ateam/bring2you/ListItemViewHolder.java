@@ -16,7 +16,7 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
     private TextView postalCode;
     private TextView senderId;
     CardView cardView;
-    Button infoButton;
+
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -26,7 +26,6 @@ class ListItemViewHolder extends RecyclerView.ViewHolder {
         postalCode = itemView.findViewById(R.id.textPostalCode);
         senderId = itemView.findViewById(R.id.textSenderId);
         this.cardView = itemView.findViewById(R.id.cardview);
-        this.infoButton = itemView.findViewById(R.id.infoButton);
     }
 
     public void setData(ListItemInfo info){

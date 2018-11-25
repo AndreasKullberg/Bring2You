@@ -35,7 +35,7 @@ public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
     private EditText signedByView;
     static String scanResult;
-    ListItemInfo item;
+    private ListItemInfo item;
     private ImageView signature;
     private StorageReference storageReference;
     private StorageTask storageTask;
@@ -81,7 +81,8 @@ public class SignFragment extends Fragment {
 
             item.setSignedBy(signedByView.getText().toString());
 
-            firestore.collection("Delivered").document(item.getId())
+            firestore.collection("Delivered")
+                    .document(item.getId())
                     .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
@@ -93,7 +94,8 @@ public class SignFragment extends Fragment {
                     Log.w("succsesSet", "Error deleting document", e);
                 }
             });
-            firestore.collection("Deliveries").document(item.getId())
+            firestore.collection("Deliveries")
+                    .document(item.getId())
                     .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {

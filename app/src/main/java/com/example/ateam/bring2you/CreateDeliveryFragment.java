@@ -18,9 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CreateDeliveryFragment extends Fragment {
-    FirebaseFirestore firestore;
+    private FirebaseFirestore firestore;
     private EditText createAdress, createName, createPostal, createSender;
     private String adress, name, postalCode, senderId;
+    private String collection = "test@hotmail.com";
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class CreateDeliveryFragment extends Fragment {
             else {
                 ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
 
-                firestore.collection("Deliveries")
+                firestore.collection(collection)
                         .add(info)
                         .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                             @Override
