@@ -1,7 +1,6 @@
 package com.example.ateam.bring2you;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
+
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,24 +19,39 @@ import android.view.Menu;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button signOutButton;
-    private TextView currentUserSignedIn;
-
     String scanResult;
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ThemeSharedPref themeSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Sätter upp temat beroende på vad som är valt i settings menyn
+        themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //currentUserSignedIn = findViewById(R.id.currentUserText);
-        ScannerFilter();
+/*        *//* Toolbar set up*//*
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
+
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -84,6 +98,8 @@ public class MainActivity extends AppCompatActivity {
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
 
+        /* Den aktivitet som startas upp efter man har loggat in */
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
 
 
         }
@@ -95,32 +111,39 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
 
-                switch (item.getItemId()) {
+                switch (item.getItemId()){
                     case R.id.nav_assignment:
-                        selectedFrag = new ListFragment();
-                        break;
+                            selectedFrag = new ListFragment();
+                            break;
                     case R.id.nav_settings:
-                        selectedFrag = new SettingsFragment();
-                        break;
+                            selectedFrag = new SettingsFragment();
+                               break;
                     case R.id.nav_maps:
-                        selectedFrag = new MapFragment();
-                        break;
-
+                            selectedFrag = new MapFragment();
+                            break;
+                    case R.id.nav_signout:
+                        FirebaseAuth.getInstance().signOut();
+                        toastMessage("Signing out..");
+                        finish();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        return  true;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
 
                 return true;
 
             };
 
 
-    private void toastMessage(String message){
+    private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
 }
+/* getSupportActionBar().setTitle("Name")
+ * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+ */
