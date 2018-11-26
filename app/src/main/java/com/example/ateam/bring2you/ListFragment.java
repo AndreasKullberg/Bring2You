@@ -26,18 +26,12 @@ public class ListFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
 
-        //TODO: Kolla varför recuclerview används två gånger
         RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
-
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
-
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
 
         firestore.collection("Deliveries").addSnapshotListener((queryDocumentSnapshots, e) -> {
             Log.d("hej","Event?");
