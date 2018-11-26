@@ -1,6 +1,7 @@
 package com.example.ateam.bring2you;
 
 
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -84,9 +85,18 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_maps:
                             selectedFrag = new MapFragment();
                             break;
-
+                    case R.id.nav_signout:
+                        FirebaseAuth.getInstance().signOut();
+                        toastMessage("Signing out..");
+                        finish();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        return  true;
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 return true;
 
@@ -98,6 +108,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-/* getSupportActionBar().setTitle("Name")
- * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
- */
