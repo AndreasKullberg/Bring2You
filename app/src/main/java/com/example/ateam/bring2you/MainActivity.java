@@ -1,6 +1,9 @@
 package com.example.ateam.bring2you;
 
 
+import android.content.Intent;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -24,10 +27,12 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
+
     String scanResult;
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
     private ThemeSharedPref themeSharedPref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,14 +49,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*        *//* Toolbar set up*//*
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-
-        getSupportActionBar().setTitle("Order");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-
-
+        //currentUserSignedIn = findViewById(R.id.currentUserText);
+        ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -142,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 
 }
 /* getSupportActionBar().setTitle("Name")

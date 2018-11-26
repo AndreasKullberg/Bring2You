@@ -34,10 +34,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
 <activity android:name=".MapsActivity"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
+
+        <activity android:name=".ScannerActivity" android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            ></activity>
     </application>
 
 </manifest>
