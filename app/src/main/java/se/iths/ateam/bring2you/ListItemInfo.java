@@ -1,4 +1,4 @@
-package com.example.ateam.bring2you;
+package se.iths.ateam.bring2you;
 
 import java.io.Serializable;
 
