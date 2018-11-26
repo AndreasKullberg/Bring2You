@@ -1,4 +1,4 @@
-package com.example.ateam.bring2you;
+package se.iths.ateam.bring2you;
 
 import android.Manifest;
 import android.content.Context;
@@ -23,6 +23,7 @@ import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.core.BarcodeScannerView;
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import se.iths.ateam.bring2you.MainActivity;
 
 import static android.Manifest.permission.CAMERA;
 
