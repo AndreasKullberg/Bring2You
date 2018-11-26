@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+import com.google.android.gms.internal.firebase_auth.zzai;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -42,8 +43,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         Fragment signFragment = new SignFragment();
         Fragment infoFragment = new InfoFragment();
     listItemViewHolder.constraintLayout.setOnClickListener(v ->{
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser.getEmail().equals("admin@hotmail.com")){
             transaction(item,infoFragment, v);
         }
