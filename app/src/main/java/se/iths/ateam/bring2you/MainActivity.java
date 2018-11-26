@@ -60,20 +60,6 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
 
 
-        findViewById(R.id.nav_signout).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                toastMessage("Signing out..");
-                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-
-            }
-        });
-
-
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
@@ -105,8 +91,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Scan() {
-
-        Intent intent = new Intent(this, ScannerActivity.class);
+        Log.d("Bitch", "fuck");
+        Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         startActivity(intent);
     }
 

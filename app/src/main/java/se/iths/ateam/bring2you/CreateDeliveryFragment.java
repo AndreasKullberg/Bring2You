@@ -1,4 +1,4 @@
-package com.example.ateam.bring2you;
+package se.iths.ateam.bring2you;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +16,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import se.iths.ateam.bring2you.R;
 
 public class CreateDeliveryFragment extends Fragment {
     private FirebaseFirestore firestore;
