@@ -22,7 +22,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="order">Order</string>
     <string name="maps">maps</string>
-    <string name="add">add</string>
+    <string name="Find">Find</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -37,5 +37,4 @@
     <string name="logout" translatable="false">logout</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
