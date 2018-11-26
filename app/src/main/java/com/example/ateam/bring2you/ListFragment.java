@@ -63,7 +63,7 @@ public class ListFragment extends Fragment {
         //Floating action button, register onclick listener
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
 
-            ListItemInfo info = new ListItemInfo("Mellangården 55", "Andreas Kullberg", "414 82", "63978256");
+            ListItemInfo info = new ListItemInfo("Håkansgårdsgatan", "A", "420 69", "00001");
 
 
             firestore.collection("Deliveries")
