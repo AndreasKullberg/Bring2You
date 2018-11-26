@@ -2,7 +2,7 @@ package com.example.ateam.bring2you;
 
 import android.arch.lifecycle.ViewModel;
 
-public class Model extends ViewModel {
+class Model extends ViewModel {
     public void setRecyclerViewAdapter(RecyclerViewAdapter recyclerViewAdapter) {
         this.recyclerViewAdapter = recyclerViewAdapter;
     }

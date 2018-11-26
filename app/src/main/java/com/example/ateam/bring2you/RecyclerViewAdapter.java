@@ -1,13 +1,11 @@
 package com.example.ateam.bring2you;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,12 +14,11 @@ import android.view.ViewGroup;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
-    List<ListItemInfo> listItems;
-    Context context;
+    private final List<ListItemInfo> listItems;
+    private Context context;
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
         this.listItems = listItems;
-        context = context;
     }
 
     @NonNull
@@ -38,6 +35,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     listItemViewHolder.setData(item);
     listItemViewHolder.constraintLayout.setOnClickListener(view ->{
         AppCompatActivity activity = (AppCompatActivity) view.getContext();
+    listItemViewHolder.constraintLayout.setOnClickListener(v ->{
+        AppCompatActivity activity = (AppCompatActivity) v.getContext();
         Bundle bundle = new Bundle();
         bundle.putSerializable("Item",item);
         Fragment signFragment = new SignFragment();
@@ -66,7 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         this.notifyItemInserted(listItems.size()-1);
     }
 
-    public void removeItem(int index){
+    private void removeItem(int index){
         if( index >= 0 && index < listItems.size()) {
             listItems.remove(index);
             this.notifyItemRemoved(index);
@@ -81,5 +80,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
             }
         }
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 }

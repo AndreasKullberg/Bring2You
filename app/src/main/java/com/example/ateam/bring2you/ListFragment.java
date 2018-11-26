@@ -1,8 +1,5 @@
 package com.example.ateam.bring2you;
 
-import android.app.Activity;
-import android.arch.lifecycle.ViewModelProviders;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,43 +8,26 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import javax.annotation.Nullable;
+import java.util.Objects;
 
 public class ListFragment extends Fragment {
-    List<ListItemInfo> listItems = new ArrayList<>();
+    private final List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
-    private RecyclerView mRecyclerView;
-    FirebaseFirestore firestore;
-    Button button;
-   /* @Override
-    public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        button.setOnClickListener(view -> maps());
-    }*/
-
-
+    private FirebaseFirestore firestore;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        button = view.findViewById(R.id.button2);
+
+        //TODO: Kolla varför recuclerview används två gånger
+        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
@@ -59,27 +39,24 @@ public class ListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
+        firestore.collection("Deliveries").addSnapshotListener((queryDocumentSnapshots, e) -> {
+            Log.d("hej","Event?");
+            if (e != null) {
+                return;
+            }
 
-        firestore.collection("Deliveries").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                Log.d("hej", "Event?");
-                if (e != null) {
-                    return;
+            for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
+                if (dc.getType() == DocumentChange.Type.ADDED) {
+                    Log.d("hej","added?");
+                    String id = dc.getDocument().getId();
+
+                    ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
+                    sending.setId(id);
+                    adapter.addItem(sending);
                 }
-
-                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
-                    if (dc.getType() == DocumentChange.Type.ADDED) {
-                        Log.d("hej", "added?");
-                        String id = dc.getDocument().getId();
-
-                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
-                        sending.setId(id);
-                        adapter.addItem(sending);
-                    } else if (dc.getType() == DocumentChange.Type.REMOVED) {
-                        String id = dc.getDocument().getId();
-                        adapter.removeItem(id);
-                    }
+                else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                    String id = dc.getDocument().getId();
+                    adapter.removeItem(id);
                 }
             }
         });
@@ -91,24 +68,11 @@ public class ListFragment extends Fragment {
 
             firestore.collection("Deliveries")
                     .add(info)
-                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                        @Override
-                        public void onSuccess(DocumentReference documentReference) {
-                            Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.w("firebase", "Error adding document", e);
-                        }
-                    });
-
+                    .addOnSuccessListener(documentReference -> Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                    .addOnFailureListener(e -> Log.w("firebase", "Error adding document", e));
 
         });
         return view;
-
-
     }
 }
 

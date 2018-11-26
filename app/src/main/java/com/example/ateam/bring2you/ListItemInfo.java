@@ -2,7 +2,7 @@ package com.example.ateam.bring2you;
 
 import java.io.Serializable;
 
-public class ListItemInfo implements Serializable {
+class ListItemInfo implements Serializable {
     private String adress;
     private String name;
     private String postalCode;

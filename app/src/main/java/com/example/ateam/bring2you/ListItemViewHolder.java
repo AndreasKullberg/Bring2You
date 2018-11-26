@@ -1,6 +1,21 @@
 package com.example.ateam.bring2you;
 
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
+
+class ListItemViewHolder extends RecyclerView.ViewHolder {
+    private final TextView adress;
+    private final TextView name;
+    private final TextView postalCode;
+    private final TextView senderId;
+    final CardView constraintLayout;
+
+    public ListItemViewHolder(@NonNull View itemView) {
+        super(itemView);
+        View itemview = itemView;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
