@@ -1,6 +1,7 @@
 package com.example.ateam.bring2you;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,13 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +35,7 @@ public class ListFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String collection;
+    private MyUser myUser = new MyUser();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,13 +47,30 @@ public class ListFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        Log.d("user", firebaseUser.getEmail());
-        if(firebaseUser.getEmail().equals("admin@hotmail.com")){
-            collection = "Delivered";
-        }
-        else{
-            collection = firebaseUser.getEmail();
-        }
+        collection = firebaseUser.getEmail();
+
+        firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String id = document.getId();
+                        myUser = document.toObject(MyUser.class);
+                        myUser.setId(id);
+                        if(myUser.isAdmin()){
+                            collection = "Delivered";
+                            Log.d("Collection", collection);
+                        }
+
+                    } else {
+
+                    }
+                } else {
+
+                }
+            }
+        });
 
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
