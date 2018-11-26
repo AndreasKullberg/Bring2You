@@ -1,6 +1,8 @@
 package com.example.ateam.bring2you;
 
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -23,18 +25,11 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /* Toolbar set up*/
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-
-        getSupportActionBar().setTitle("Order");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -76,8 +71,14 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_maps:
                             selectedFrag = new MapFragment();
                             break;
-
+                    case R.id.nav_signout:
+                        FirebaseAuth.getInstance().signOut();
+                        toastMessage("Signing out..");
+                        finish();
+                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        return  true;
                 }
+
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 return true;
@@ -89,7 +90,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+
 }
-/* getSupportActionBar().setTitle("Name")
- * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
- */
