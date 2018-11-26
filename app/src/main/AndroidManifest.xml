@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ateam.bring2you">
+    package="se.iths.ateam.bring2you">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -24,20 +24,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="se.iths.ateam.bring2you.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-<activity android:name=".MapsActivity"/>
+        <activity android:name=".MapsActivity"></activity>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".LoginActivity" />
+        <activity android:name="se.iths.ateam.bring2you.MainActivity" />
     </application>
 
 </manifest>
