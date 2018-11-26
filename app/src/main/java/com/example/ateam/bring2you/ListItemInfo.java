@@ -4,7 +4,7 @@ import android.media.Image;
 
 import java.io.Serializable;
 
-public class ListItemInfo implements Serializable {
+class ListItemInfo implements Serializable {
     private String adress;
     private String name;
     private String postalCode;

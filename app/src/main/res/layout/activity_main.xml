@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/backgroundcolor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textColor="?attr/textcolor"
     tools:context=".MainActivity">
 
 
@@ -23,13 +25,9 @@
     </android.support.design.widget.BottomNavigationView>
 
     <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frameLayout">
 
     </FrameLayout>
 

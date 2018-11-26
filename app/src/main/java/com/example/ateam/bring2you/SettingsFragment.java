@@ -1,53 +1,74 @@
 package com.example.ateam.bring2you;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.Switch;
 
 import java.util.Locale;
-@SuppressWarnings("deprecation")
+import java.util.Objects;
+
+@SuppressWarnings( "deprecation" )
 public class SettingsFragment extends Fragment {
 
-    public View onCreateView (LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    private ThemeSharedPref themeSharedPref;
 
-        return inflater.inflate(R.layout.settings_fragment, container, false);
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
-    public void onViewCreated (@NonNull View view, @Nullable Bundle savedInstanceState) {
+    @Override
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
         super.onViewCreated(view, savedInstanceState);
 
-        Switch theme = getView().findViewById(R.id.themeSwitch);
-        Switch language = getView().findViewById(R.id.languageSwitch);
+        themeSharedPref = new ThemeSharedPref(Objects.requireNonNull(getActivity()));
 
-        language.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
+        Switch themeSwitch = Objects.requireNonNull(getView()).findViewById(R.id.theme_pref);
+        if (themeSharedPref.loadDarkModeState()){
+            themeSwitch.setChecked(true);
+        }
 
-                    Configuration config = getActivity().getBaseContext().getResources().getConfiguration();
-                    Locale locale = new Locale("en");
-                    Locale.setDefault(locale);
-                    config.locale = locale;
-                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-
-                }else {
-
-                    Configuration config = getActivity().getBaseContext().getResources().getConfiguration();
-                    Locale locale = new Locale("sv");
-                    Locale.setDefault(locale);
-                    config.locale = locale;
-                    getActivity().getBaseContext().getResources().updateConfiguration(config, getActivity().getBaseContext().getResources().getDisplayMetrics());
-
-                }
+        themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                themeSharedPref.setDarkModeState(true);
+                getActivity().recreate();
+            }else{
+                themeSharedPref.setDarkModeState(false);
+                getActivity().recreate();
             }
         });
+
+        Button english = getView().findViewById(R.id.en_btn);
+        Button swedish = getView().findViewById(R.id.se_btn);
+
+        english.setOnClickListener(v -> changeLanguage("en"));
+
+        swedish.setOnClickListener(v -> changeLanguage("sv"));
+
     }
 
+    private void changeLanguage(String languageToLoad){
+
+        Locale locale = new Locale(languageToLoad);
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        Objects.requireNonNull(getContext()).getResources().updateConfiguration(config,getContext().getResources().getDisplayMetrics());
+
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).recreate();
+    }
 }
+
+//TODO: Fix sharedpreferences for when application is ended. Currently all settings that is stored are lost when user closes app
+//TODO: Fix if user chooses same language with if else (TOAST warning?)
