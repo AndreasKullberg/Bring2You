@@ -129,9 +129,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void about() {
-
-        if(swap) {
-    /*private void about() {
         if(swap == true) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();

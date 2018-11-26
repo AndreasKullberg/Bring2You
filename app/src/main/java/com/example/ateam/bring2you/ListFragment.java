@@ -75,10 +75,6 @@ public class ListFragment extends Fragment {
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-
         firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {

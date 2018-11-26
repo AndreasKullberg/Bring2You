@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     listItemViewHolder.setData(item);
         Fragment signFragment = new SignFragment();
         Fragment infoFragment = new InfoFragment();
-    listItemViewHolder.cardView.setOnClickListener(v ->{
+    listItemViewHolder.constraintLayout.setOnClickListener(v ->{
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         if(firebaseUser.getEmail().equals("admin@hotmail.com")){
