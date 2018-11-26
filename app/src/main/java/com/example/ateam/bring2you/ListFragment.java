@@ -1,6 +1,8 @@
 package com.example.ateam.bring2you;
 
+import android.app.Activity;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -30,12 +33,21 @@ public class ListFragment extends Fragment {
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
     FirebaseFirestore firestore;
+    Button button;
+   /* @Override
+    public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        button.setOnClickListener(view -> maps());
+    }*/
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
+        button = view.findViewById(R.id.button2);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
@@ -47,24 +59,24 @@ public class ListFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
 
+
         firestore.collection("Deliveries").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                Log.d("hej","Event?");
+                Log.d("hej", "Event?");
                 if (e != null) {
                     return;
                 }
 
                 for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
                     if (dc.getType() == DocumentChange.Type.ADDED) {
-                        Log.d("hej","added?");
+                        Log.d("hej", "added?");
                         String id = dc.getDocument().getId();
 
                         ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
                         sending.setId(id);
                         adapter.addItem(sending);
-                    }
-                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                    } else if (dc.getType() == DocumentChange.Type.REMOVED) {
                         String id = dc.getDocument().getId();
                         adapter.removeItem(id);
                     }
@@ -92,8 +104,11 @@ public class ListFragment extends Fragment {
                         }
                     });
 
+
         });
         return view;
+
+
     }
 }
 

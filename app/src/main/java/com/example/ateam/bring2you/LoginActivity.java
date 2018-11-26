@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private  FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
-   private ProgressBar progressBar;
+    private ProgressBar progressBar;
     boolean swap = true;
 
     @Override

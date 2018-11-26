@@ -1,6 +1,7 @@
 package com.example.ateam.bring2you;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -44,6 +45,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signFragment)
                 .addToBackStack(null).commit();
         });
+
+    listItemViewHolder.openMap.setOnClickListener(view -> {
+        // show marker google maps intent
+
+
+        Intent i = new Intent(view.getContext(), MapsActivity.class);
+        i.putExtra("mapKey", item);
+        view.getContext().startActivity(i);
+    });
     }
 
     @Override
@@ -71,4 +81,5 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
             }
         }
     }
+
 }
