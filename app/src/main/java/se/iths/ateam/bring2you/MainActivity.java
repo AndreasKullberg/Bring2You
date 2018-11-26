@@ -1,6 +1,7 @@
-package com.example.ateam.bring2you;
+package se.iths.ateam.bring2you;
 
 
+import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
@@ -9,28 +10,42 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import android.support.v7.widget.Toolbar;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity {
 
 
-    FirebaseAuth firebaseAuth;
-    FirebaseUser firebaseUser;
-
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private ThemeSharedPref themeSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //Sätter upp temat beroende på vad som är valt i settings menyn
+        themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+/*        *//* Toolbar set up*//*
+        Toolbar myToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
+        getSupportActionBar().setTitle("Order");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -58,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     * Retunerar: klickad "knapp"
     * */
 
-    private BottomNavigationView.OnNavigationItemSelectedListener navListener =
+    private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
 
@@ -66,9 +81,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_assignment:
                             selectedFrag = new ListFragment();
                             break;
-                /*    case R.id.nav_add:
-                            selectedFrag = new  ();
-                               break; */
+                    case R.id.nav_settings:
+                            selectedFrag = new SettingsFragment();
+                               break;
                     case R.id.nav_maps:
                             selectedFrag = new MapFragment();
                             break;
@@ -79,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         return  true;
                 }
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
@@ -92,6 +108,5 @@ public class MainActivity extends AppCompatActivity {
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-
 
 }
