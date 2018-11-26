@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.example.ateam.bring2you"
-        minSdkVersion 26
+        applicationId "se.iths.ateam.bring2you"
+        minSdkVersion 28
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -20,6 +20,8 @@ android {
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
+    }
+    productFlavors {
     }
 }
 
@@ -48,5 +50,9 @@ dependencies {
     implementation 'com.android.support:cardview-v7:28.0.0'
     implementation 'android.arch.lifecycle:extensions:1.1.1'
     implementation 'android.arch.lifecycle:viewmodel:1.1.1'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+
+
 }
 apply plugin: 'com.google.gms.google-services'
