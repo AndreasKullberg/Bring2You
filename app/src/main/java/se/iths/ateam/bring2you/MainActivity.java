@@ -2,13 +2,22 @@ package se.iths.ateam.bring2you;
 
 
 import android.content.Intent;
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
+import android.view.Menu;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,9 +28,11 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity {
 
 
-    private FirebaseAuth firebaseAuth;
-    private FirebaseUser firebaseUser;
+    String scanResult;
+    FirebaseAuth firebaseAuth;
+    FirebaseUser firebaseUser;
     private ThemeSharedPref themeSharedPref;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,38 +49,66 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-/*        *//* Toolbar set up*//*
-        Toolbar myToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-
-        getSupportActionBar().setTitle("Order");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);*/
-
-
+        //currentUserSignedIn = findViewById(R.id.currentUserText);
+        ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-        Fragment listFragment= new ListFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout,listFragment).commit();
+        openList();
+
+        // on click listener for navbar button.
+        findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
+
+
+        findViewById(R.id.nav_signout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                toastMessage("Signing out..");
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+            }
+        });
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
+    }
+
+    private void openList() {
+        if(getIntent().getStringExtra("scanResult") == null) {
+            Fragment listFragment = new ListFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, listFragment).commit();
+        }
+    }
+
+    private void ScannerFilter() {
+        if (getIntent().getStringExtra("scanResult") != null){
+
+            Fragment signfragment = new SignFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
+            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
+
         /* Den aktivitet som startas upp efter man har loggat in */
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
 
 
+        }
     }
 
+    private void Scan() {
 
-
-    /* Om en av knapparna på Bottom navigation baren klickas så skickas det vidare till dess fragment
-    *
-    * Retunerar: klickad "knapp"
-    * */
+        Intent intent = new Intent(this, ScannerActivity.class);
+        startActivity(intent);
+    }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
@@ -94,10 +133,6 @@ public class MainActivity extends AppCompatActivity {
                 }
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
 
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
-
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
-
                 return true;
 
             };
@@ -107,4 +142,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+
 }
+/* getSupportActionBar().setTitle("Name")
+ * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+ */

@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
     private boolean swap = true;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,8 +129,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void about() {
-
-        if(swap) {
+        if(swap == true) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
