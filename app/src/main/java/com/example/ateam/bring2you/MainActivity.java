@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         return  true;
                 }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).commit();
 

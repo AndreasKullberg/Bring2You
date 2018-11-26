@@ -7,10 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -23,6 +20,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     // TODO Ifall Man får fel om att API nyckeln är expired eller invalid,
@@ -33,11 +32,15 @@ public class LoginActivity extends AppCompatActivity {
     private  FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
-   private ProgressBar progressBar;
-   private CheckBox rememberMeCheckBox;
-   private SharedPreferences mPrefs;
-   private static final String PREFS_NAME = "PrefsFile";
-    //boolean swap = true;
+
+    private ProgressBar progressBar;
+    private CheckBox rememberMeCheckBox;
+    private SharedPreferences mPrefs;
+    private static final String PREFS_NAME = "PrefsFile";
+    private boolean swap = true;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,45 +66,27 @@ public class LoginActivity extends AppCompatActivity {
 
         getPreferencesData();
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginButton.setVisibility(View.INVISIBLE);
-                progressBar.setVisibility(View.VISIBLE);
+        loginButton.setOnClickListener(v -> {
+            loginButton.setVisibility(View.INVISIBLE);
+            progressBar.setVisibility(View.VISIBLE);
 
-                if(rememberMeCheckBox.isChecked()){
-                    Boolean boolIsChecked = rememberMeCheckBox.isChecked();
-                    SharedPreferences.Editor editor = mPrefs.edit();
-                    editor.putString("pref_name",mUsername.getText().toString());
-                    editor.putString("pref_password",mPassword.getText().toString());
-                    editor.putBoolean("pref_check",boolIsChecked);
-                    editor.apply();
+            if(rememberMeCheckBox.isChecked()){
+                Boolean boolIsChecked = rememberMeCheckBox.isChecked();
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putString("pref_name",mUsername.getText().toString());
+                editor.putString("pref_password",mPassword.getText().toString());
+                editor.putBoolean("pref_check",boolIsChecked);
+                editor.apply();
 
-                }else {
-                    mPrefs.edit().clear().apply();
-                }
 
-                if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
-                    mUsername.setError("No blank fields");
-                    mPassword.setError("No blank fields!");
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                }
-                else if(mUsername.getText().toString().equals("")){
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    mUsername.setError("No blank fields!");
-
-                }else if(mPassword.getText().toString().equals("")){
-                    loginButton.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
-                    mPassword.setError("No blank fields!");
-                }
-
+            }else {
+                mPrefs.edit().clear().apply();
+            }
 
                 else
                 mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         FirebaseUser user = mAuth.getCurrentUser();
@@ -117,7 +102,40 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
+
+            if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
+                mUsername.setError("No blank fields");
+                mPassword.setError("No blank fields!");
+                loginButton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
             }
+            else if(mUsername.getText().toString().equals("")){
+                loginButton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+                mUsername.setError("No blank fields!");
+
+            }else if(mPassword.getText().toString().equals("")){
+                loginButton.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.INVISIBLE);
+                mPassword.setError("No blank fields!");
+            }
+
+
+            else
+            mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
+            .addOnCompleteListener(task -> {
+                FirebaseUser user = mAuth.getCurrentUser();
+                progressBar.setVisibility(View.INVISIBLE);
+                loginButton.setVisibility(View.VISIBLE);
+
+                if (task.isSuccessful()) {
+                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                } else {
+                    // toastMessage(task.getException().getMessage());
+                    toastMessage("Failure login in..");
+                }
+            });
 
         });
 
@@ -127,12 +145,12 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if(sp.contains("pref_name")){
             String u  = sp.getString("pref_name","not found");
-            mUsername.setText(u.toString());
+            mUsername.setText(u);
         }
 
         if(sp.contains("pref_password")){
             String p = sp.getString("pref_password","not found");
-            mPassword.setText(p.toString());
+            mPassword.setText(p);
         }
         if(sp.contains("pref_check")){
             Boolean b = sp.getBoolean("pref_check",false);
@@ -140,9 +158,9 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /*private void about() {
+    private void about() {
 
-        if(swap == true) {
+        if(swap) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -155,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
         }
-    }*/
+    }
 
 
     private void toastMessage(String message){
