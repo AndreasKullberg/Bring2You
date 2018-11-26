@@ -1,4 +1,5 @@
-package com.example.ateam.bring2you;
+package se.iths.ateam.bring2you;
+
 
 public class MyUser {
     private boolean admin;
