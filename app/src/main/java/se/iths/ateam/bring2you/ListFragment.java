@@ -9,68 +9,101 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
+
+import javax.annotation.Nullable;
 
 public class ListFragment extends Fragment {
-    private final List<ListItemInfo> listItems = new ArrayList<>();
+    List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
+    private RecyclerView mRecyclerView;
     private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+    private String collection;
+    private MyUser myUser = new MyUser();
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_list, container, false);
-
-        //TODO: Kolla varför recuclerview används två gånger
-        RecyclerView mRecyclerView = view.findViewById(R.id.recyclerView);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
 
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        collection = firebaseUser.getEmail();
+
+        firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        String id = document.getId();
+                        myUser = document.toObject(MyUser.class);
+                        myUser.setId(id);
+                        if(myUser.isAdmin()){
+                            collection = "Delivered";
+                            Log.d("Collection", collection);
+                        }
+
+                    } else {
+
+                    }
+                } else {
+
+                }
+            }
+        });
 
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
 
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
-
-        firestore.collection("Deliveries").addSnapshotListener((queryDocumentSnapshots, e) -> {
-            Log.d("hej","Event?");
-            if (e != null) {
-                return;
-            }
-
-            for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
-                if (dc.getType() == DocumentChange.Type.ADDED) {
-                    Log.d("hej","added?");
-                    String id = dc.getDocument().getId();
-
-                    ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
-                    sending.setId(id);
-                    adapter.addItem(sending);
+        firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                Log.d("hej","Event?");
+                if (e != null) {
+                    return;
                 }
-                else if (dc.getType() == DocumentChange.Type.REMOVED) {
-                    String id = dc.getDocument().getId();
-                    adapter.removeItem(id);
+
+                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                    if (dc.getType() == DocumentChange.Type.ADDED) {
+                        Log.d("hej","added?");
+                        String id = dc.getDocument().getId();
+
+                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
+                        sending.setId(id);
+                        adapter.addItem(sending);
+                    }
+                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                        String id = dc.getDocument().getId();
+                        adapter.removeItem(id);
+                    }
                 }
             }
         });
-        //Floating action button, register onclick listener
+
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
-
-            ListItemInfo info = new ListItemInfo("Mellangården 55", "Andreas Kullberg", "414 82", "63978256");
-
-
-            firestore.collection("Deliveries")
-                    .add(info)
-                    .addOnSuccessListener(documentReference -> Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId()))
-                    .addOnFailureListener(e -> Log.w("firebase", "Error adding document", e));
-
+            Fragment createDeliveryFragment = new CreateDeliveryFragment();
+            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+                    .commit();
         });
         return view;
     }
