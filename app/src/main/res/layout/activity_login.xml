@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/mainColor"
+    android:background="?attr/backgroundcolor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/toolBarColor">
+        android:background="?attr/cardbackground">
 
     </android.support.v7.widget.Toolbar>
 
@@ -41,14 +41,13 @@
         android:id="@+id/passwordEditText"
         android:layout_width="306dp"
         android:layout_height="46dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
-        android:drawableLeft="@drawable/ic_lock_outline_black_24dp"
-        android:drawablePadding="5dp"
+        android:autofillHints=""
         android:drawableStart="@drawable/ic_lock_outline_black_24dp"
+        android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,11 +59,11 @@
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/mybutton"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -74,20 +73,20 @@
         android:id="@+id/usernameEditText"
         android:layout_width="308dp"
         android:layout_height="46dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:drawableLeft="@drawable/ic_person_black_24dp"
-        android:drawablePadding="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:drawableStart="@drawable/ic_person_black_24dp"
+        android:drawablePadding="5dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textPersonName"
         android:textColor="@android:color/black"
         app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:importantForAutofill="no" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -98,7 +97,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/delivery2" />
+        app:srcCompat="@drawable/delivery2"
+        android:contentDescription="TODO" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -131,7 +131,7 @@
         android:layout_marginTop="8dp"
         android:buttonTint="@android:color/black"
         android:checked="false"
-        android:text="Remember me"
+        android:text="@string/remember_me"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"

@@ -2,8 +2,10 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/backgroundcolor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:textColor="?attr/textcolor"
     tools:context=".MainActivity">
 
 
@@ -26,13 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/frameLayout">
-
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:title="Main page">
-
-        </android.support.v7.widget.Toolbar>
 
     </FrameLayout>
 
