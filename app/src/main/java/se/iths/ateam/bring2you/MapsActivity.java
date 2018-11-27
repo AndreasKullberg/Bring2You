@@ -102,9 +102,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         // Give me the first item off the list
-
         if(list.size() > 0) {
             Address add = list.get(0);
+
             String locality = add.getLocality();
             if(locality == null) {
                 Toast.makeText(this, "Destination: " + location, Toast.LENGTH_SHORT).show();
