@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         findViewById(R.id.about_btn).setOnClickListener(view -> about());
-        //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
 
