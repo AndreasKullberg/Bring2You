@@ -1,4 +1,5 @@
 package se.iths.ateam.bring2you;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;

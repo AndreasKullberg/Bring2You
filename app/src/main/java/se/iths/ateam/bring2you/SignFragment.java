@@ -39,6 +39,7 @@ public class SignFragment extends Fragment {
     private ImageView signature;
     private StorageReference storageReference;
     private StorageTask storageTask;
+    private String collection;
 
     public static void setScanResult(String myResult) {
 
