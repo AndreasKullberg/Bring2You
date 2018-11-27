@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,8 +14,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.List;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+import se.iths.ateam.bring2you.R;
 
 public class CreateDeliveryFragment extends Fragment {
     private FirebaseFirestore firestore;
@@ -59,7 +59,10 @@ public class CreateDeliveryFragment extends Fragment {
                             }
                         });
             }
+            getActivity().recreate();
         });
+
+
 
         return view;
     }

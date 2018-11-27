@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.location.Address;
@@ -30,6 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.io.IOException;
 import java.util.List;
+
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+import se.iths.ateam.bring2you.R;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
