@@ -2,6 +2,8 @@ package se.iths.ateam.bring2you.Activities;
 
 
 import android.content.Intent;
+import android.app.Activity;
+import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -127,5 +129,9 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
 }
+
+
+/* getSupportActionBar().setTitle("Name")
+ * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
+ */

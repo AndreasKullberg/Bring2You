@@ -17,6 +17,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
+import se.iths.ateam.bring2you.R;
+
 public class CreateDeliveryFragment extends Fragment {
     private FirebaseFirestore firestore;
     private EditText createAdress, createName, createPostal, createSender;
