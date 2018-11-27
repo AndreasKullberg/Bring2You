@@ -131,6 +131,3 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
-/* getSupportActionBar().setTitle("Name")
- * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
- */
