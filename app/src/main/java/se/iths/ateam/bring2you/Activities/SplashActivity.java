@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Activities;
 
 
 import android.content.Intent;
@@ -6,7 +6,9 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class SplashScreen extends AppCompatActivity {
+import se.iths.ateam.bring2you.R;
+
+public class SplashActivity extends AppCompatActivity {
 
 
     private static int time=2000;
@@ -19,7 +21,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent in = new Intent(SplashScreen.this, LoginActivity.class);
+                Intent in = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(in);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
