@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,6 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
+
+import se.iths.ateam.bring2you.Fragments.AboutFragment;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 public class LoginActivity extends AppCompatActivity {
 

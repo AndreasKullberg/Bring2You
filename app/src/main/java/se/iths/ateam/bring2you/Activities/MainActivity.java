@@ -1,30 +1,29 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Activities;
 
 
 import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
-import android.view.Menu;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
+
+import se.iths.ateam.bring2you.Fragments.ListFragment;
+import se.iths.ateam.bring2you.Fragments.MapFragment;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Fragments.SettingsFragment;
+import se.iths.ateam.bring2you.Fragments.SignFragment;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 
 public class MainActivity extends AppCompatActivity {

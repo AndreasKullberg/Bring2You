@@ -1,10 +1,10 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Utils;
 
 import android.media.Image;
 
 import java.io.Serializable;
 
-class ListItemInfo implements Serializable {
+public class ListItemInfo implements Serializable {
     private String adress;
     private String name;
     private String postalCode;
