@@ -59,68 +59,72 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
-        mUsername = findViewById(R.id.usernameEditText);
-        mPassword = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.loginButton);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
-        rememberMeCheckBox = findViewById(R.id.rememberMeChk);
+        if(user != null){
+            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
 
-
-        getPreferencesData();
-
-        loginButton.setOnClickListener(v -> {
-            loginButton.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
-
-            if(rememberMeCheckBox.isChecked()){
-                Boolean boolIsChecked = rememberMeCheckBox.isChecked();
-                SharedPreferences.Editor editor = mPrefs.edit();
-                editor.putString("pref_name",mUsername.getText().toString());
-                editor.putString("pref_password",mPassword.getText().toString());
-                editor.putBoolean("pref_check",boolIsChecked);
-                editor.apply();
-
-            }else {
-                mPrefs.edit().clear().apply();
-            }
-
-            if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
-                mUsername.setError("No blank fields");
-                mPassword.setError("No blank fields!");
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-            else if(mUsername.getText().toString().equals("")){
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-                mUsername.setError("No blank fields!");
-
-            }else if(mPassword.getText().toString().equals("")){
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-                mPassword.setError("No blank fields!");
-            }
+        else {
+            mUsername = findViewById(R.id.usernameEditText);
+            mPassword = findViewById(R.id.passwordEditText);
+            loginButton = findViewById(R.id.loginButton);
+            progressBar = findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.INVISIBLE);
+            rememberMeCheckBox = findViewById(R.id.rememberMeChk);
 
 
-            else
-            mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
-            .addOnCompleteListener(task -> {
-                FirebaseUser user = mAuth.getCurrentUser();
-                progressBar.setVisibility(View.INVISIBLE);
-                loginButton.setVisibility(View.VISIBLE);
+            getPreferencesData();
 
-                if (task.isSuccessful()) {
-                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            loginButton.setOnClickListener(v -> {
+                loginButton.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
+
+                if (rememberMeCheckBox.isChecked()) {
+                    Boolean boolIsChecked = rememberMeCheckBox.isChecked();
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString("pref_name", mUsername.getText().toString());
+                    editor.putString("pref_password", mPassword.getText().toString());
+                    editor.putBoolean("pref_check", boolIsChecked);
+                    editor.apply();
+
                 } else {
-                    // toastMessage(task.getException().getMessage());
-                    toastMessage("Failure login in..");
+                    mPrefs.edit().clear().apply();
                 }
-            });
 
-        });
+                if (mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")) {
+                    mUsername.setError("No blank fields");
+                    mPassword.setError("No blank fields!");
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                } else if (mUsername.getText().toString().equals("")) {
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mUsername.setError("No blank fields!");
+
+                } else if (mPassword.getText().toString().equals("")) {
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mPassword.setError("No blank fields!");
+                } else
+                    mAuth.signInWithEmailAndPassword(mUsername.getText().toString(), mPassword.getText().toString())
+                            .addOnCompleteListener(task -> {
+                                user = mAuth.getCurrentUser();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                loginButton.setVisibility(View.VISIBLE);
+
+                                if (task.isSuccessful()) {
+                                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                } else {
+                                    // toastMessage(task.getException().getMessage());
+                                    toastMessage("Failure login in..");
+                                }
+                            });
+
+            });
+        }
 
     }
 

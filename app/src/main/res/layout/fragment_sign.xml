@@ -2,12 +2,12 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/signName"
-    android:background="?attr/backgroundcolor"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
-    <com.example.ateam.bring2you.MyCanvas
+    <se.iths.ateam.bring2you.MyCanvas
         android:id="@+id/my_canvas"
         android:layout_width="match_parent"
         android:layout_height="147dp"
