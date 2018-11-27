@@ -60,9 +60,7 @@ public class CreateDeliveryFragment extends Fragment {
                             }
                         });
             }
-
-            Objects.requireNonNull(getActivity()).recreate();
-
+            getActivity().recreate();
         });
 
 
