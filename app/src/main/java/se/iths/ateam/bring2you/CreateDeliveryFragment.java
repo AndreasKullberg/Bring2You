@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import se.iths.ateam.bring2you.R;
 
@@ -61,7 +62,12 @@ public class CreateDeliveryFragment extends Fragment {
                             }
                         });
             }
+
+            Objects.requireNonNull(getActivity()).recreate();
+
         });
+
+
 
         return view;
     }
