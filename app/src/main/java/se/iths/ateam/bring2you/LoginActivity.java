@@ -34,9 +34,19 @@ public class LoginActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "PrefsFile";
     private boolean swap = true;
     private FirebaseUser user;
+    ThemeSharedPref themeSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        
+        //Sätter upp temat beroende på vad som är valt i settings menyn
+        themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
