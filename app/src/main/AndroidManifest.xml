@@ -39,6 +39,7 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name="se.iths.ateam.bring2you.Activities.MainActivity" />
+        <activity android:name=".Activities.SplashActivity" />
     </application>
 
 </manifest>
