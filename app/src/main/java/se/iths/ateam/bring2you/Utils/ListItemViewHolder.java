@@ -1,22 +1,23 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Utils;
 
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-class ListItemViewHolder extends RecyclerView.ViewHolder {
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+
+public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView adress;
     private final TextView name;
     private final TextView postalCode;
     private final TextView senderId;
-    final CardView constraintLayout;
+    public final CardView constraintLayout;
     private View itemview;
-    Button openMap;
+    public Button openMap;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
