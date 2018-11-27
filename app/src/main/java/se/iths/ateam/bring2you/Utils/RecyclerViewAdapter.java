@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,17 +7,22 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-import com.google.android.gms.internal.firebase_auth.zzai;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+
+import se.iths.ateam.bring2you.Activities.MapsActivity;
+import se.iths.ateam.bring2you.Fragments.InfoFragment;
+import se.iths.ateam.bring2you.Fragments.SignFragment;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+import se.iths.ateam.bring2you.Utils.ListItemViewHolder;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
     private final List<ListItemInfo> listItems;

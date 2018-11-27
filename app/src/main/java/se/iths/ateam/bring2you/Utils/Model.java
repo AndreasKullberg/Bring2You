@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Utils;
 
 import android.arch.lifecycle.ViewModel;
 
