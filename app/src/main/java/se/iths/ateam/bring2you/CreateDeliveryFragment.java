@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.R;
-
 public class CreateDeliveryFragment extends Fragment {
     private FirebaseFirestore firestore;
     private EditText createAdress, createName, createPostal, createSender;
