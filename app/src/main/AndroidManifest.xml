@@ -23,7 +23,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="se.iths.ateam.bring2you.LoginActivity">
+        <activity android:name="se.iths.ateam.bring2you.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -31,14 +31,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".ScannerActivity" />
+        <activity android:name=".Activities.MapsActivity" />
+        <activity android:name=".Activities.ScannerActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="se.iths.ateam.bring2you.MainActivity" />
+        <activity android:name="se.iths.ateam.bring2you.Activities.MainActivity" />
     </application>
 
 </manifest>

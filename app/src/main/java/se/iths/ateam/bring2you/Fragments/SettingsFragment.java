@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Fragments;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -13,6 +13,10 @@ import android.widget.Switch;
 
 import java.util.Locale;
 import java.util.Objects;
+
+import se.iths.ateam.bring2you.Activities.MainActivity;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 @SuppressWarnings( "deprecation" )
 public class SettingsFragment extends Fragment {
