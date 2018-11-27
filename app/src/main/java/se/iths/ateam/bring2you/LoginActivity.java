@@ -25,7 +25,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = "LoginActivity";
 
-    private  FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private EditText mUsername , mPassword;
     private Button loginButton;
     private ProgressBar progressBar;
@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        
+
         //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
@@ -139,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void about() {
-        if(swap == true) {
+        if(swap) {
             swap = false;
             AboutFragment aboutFragment = new AboutFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
@@ -147,7 +147,7 @@ public class LoginActivity extends AppCompatActivity {
             //fragmentTransaction.add(R.id.about_target, aboutFragment);
             fragmentTransaction.commit();
         }
-        else if(swap == false){
+        else{
             swap = true;
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
