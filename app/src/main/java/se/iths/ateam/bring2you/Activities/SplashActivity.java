@@ -1,3 +1,4 @@
+
 package se.iths.ateam.bring2you.Activities;
 
 
@@ -21,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent in = new Intent(SplashActivity.this, LoginActivity.class);
+                Intent in = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(in);
                 overridePendingTransition(R.anim.fadein, R.anim.fadeout);
 
@@ -30,3 +31,4 @@ public class SplashActivity extends AppCompatActivity {
         }, time);
     }
 }
+
