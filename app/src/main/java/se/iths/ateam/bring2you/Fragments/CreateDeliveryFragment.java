@@ -29,7 +29,6 @@ public class CreateDeliveryFragment extends Fragment {
     private EditText createAdress, createName, createPostal, createSender;
     private String adress, name, postalCode, senderId;
     private String collection = "test@hotmail.com";
-    private ConstraintLayout constraintLayout;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

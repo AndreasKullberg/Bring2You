@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     private FirebaseAuth mAuth;
-    private EditText mUsername , mPassword;
+    private EditText mUsername, mPassword;
     private Button loginButton;
     private ProgressBar progressBar;
     private CheckBox rememberMeCheckBox;
@@ -45,7 +45,7 @@ public class LoginActivity extends AppCompatActivity {
         //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
-        if(themeSharedPref.loadDarkModeState()) {
+        if (themeSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -55,17 +55,14 @@ public class LoginActivity extends AppCompatActivity {
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        if(user != null){
+        if (user != null) {
             toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
-
-        else {
+        } else {
             mUsername = findViewById(R.id.usernameEditText);
             mPassword = findViewById(R.id.passwordEditText);
             loginButton = findViewById(R.id.loginButton);
@@ -76,80 +73,74 @@ public class LoginActivity extends AppCompatActivity {
 
             getPreferencesData();
 
-        loginButton.setOnClickListener(v -> {
-            loginButton.setVisibility(View.INVISIBLE);
-            progressBar.setVisibility(View.VISIBLE);
+            loginButton.setOnClickListener(v -> {
+                loginButton.setVisibility(View.INVISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
 
-            if(rememberMeCheckBox.isChecked()){
-                Boolean boolIsChecked = rememberMeCheckBox.isChecked();
-                SharedPreferences.Editor editor = mPrefs.edit();
-                editor.putString("pref_name",mUsername.getText().toString());
-                editor.putString("pref_password",mPassword.getText().toString());
-                editor.putBoolean("pref_check",boolIsChecked);
-                editor.apply();
+                if (rememberMeCheckBox.isChecked()) {
+                    Boolean boolIsChecked = rememberMeCheckBox.isChecked();
+                    SharedPreferences.Editor editor = mPrefs.edit();
+                    editor.putString("pref_name", mUsername.getText().toString());
+                    editor.putString("pref_password", mPassword.getText().toString());
+                    editor.putBoolean("pref_check", boolIsChecked);
+                    editor.apply();
 
-            }else {
-                mPrefs.edit().clear().apply();
-            }
-
-            if(mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")){
-                mUsername.setError("No blank fields");
-                mPassword.setError("No blank fields!");
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-            }
-            else if(mUsername.getText().toString().equals("")){
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-                mUsername.setError("No blank fields!");
-
-            }else if(mPassword.getText().toString().equals("")){
-                loginButton.setVisibility(View.VISIBLE);
-                progressBar.setVisibility(View.INVISIBLE);
-                mPassword.setError("No blank fields!");
-            }
-
-
-            else
-            mAuth.signInWithEmailAndPassword(mUsername.getText().toString(),mPassword.getText().toString())
-            .addOnCompleteListener(task -> {
-                FirebaseUser user = mAuth.getCurrentUser();
-                progressBar.setVisibility(View.INVISIBLE);
-                loginButton.setVisibility(View.VISIBLE);
-
-                if (task.isSuccessful()) {
-                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-                    toastMessage("Failure login in..");
+                    mPrefs.edit().clear().apply();
                 }
+
+                if (mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")) {
+                    mUsername.setError("No blank fields");
+                    mPassword.setError("No blank fields!");
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                } else if (mUsername.getText().toString().equals("")) {
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mUsername.setError("No blank fields!");
+
+                } else if (mPassword.getText().toString().equals("")) {
+                    loginButton.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    mPassword.setError("No blank fields!");
+                } else
+                    mAuth.signInWithEmailAndPassword(mUsername.getText().toString(), mPassword.getText().toString())
+                            .addOnCompleteListener(task -> {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                progressBar.setVisibility(View.INVISIBLE);
+                                loginButton.setVisibility(View.VISIBLE);
+
+                                if (task.isSuccessful()) {
+                                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
+                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                } else {
+                                    toastMessage("Failure login in..");
+                                }
+                            });
+
             });
 
-        });
+        }
 
     }
-
-    private void getPreferencesData() {
+    private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        if(sp.contains("pref_name")){
-            String u  = sp.getString("pref_name","not found");
+        if (sp.contains("pref_name")) {
+            String u = sp.getString("pref_name", "not found");
             mUsername.setText(u);
         }
 
-        if(sp.contains("pref_password")){
-            String p = sp.getString("pref_password","not found");
+        if (sp.contains("pref_password")) {
+            String p = sp.getString("pref_password", "not found");
             mPassword.setText(p);
         }
-        if(sp.contains("pref_check")){
-            Boolean b = sp.getBoolean("pref_check",false);
+        if (sp.contains("pref_check")) {
+            Boolean b = sp.getBoolean("pref_check", false);
             rememberMeCheckBox.setChecked(b);
         }
     }
-
-
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
     }
-
 }
