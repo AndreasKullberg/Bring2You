@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.Fragments.AboutFragment;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -61,9 +60,21 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        findviews();
-        
-        getPreferencesData();
+        if(user != null){
+            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
+
+        else {
+            mUsername = findViewById(R.id.usernameEditText);
+            mPassword = findViewById(R.id.passwordEditText);
+            loginButton = findViewById(R.id.loginButton);
+            progressBar = findViewById(R.id.progressBar);
+            progressBar.setVisibility(View.INVISIBLE);
+            rememberMeCheckBox = findViewById(R.id.rememberMeChk);
+
+
+            getPreferencesData();
 
         loginButton.setOnClickListener(v -> {
             loginButton.setVisibility(View.INVISIBLE);
@@ -135,34 +146,10 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    private void about() {
-        if(swap) {
-            swap = false;
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.add(R.id.about_target, aboutFragment);
-            fragmentTransaction.commit();
-        }
-        else{
-            swap = true;
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
 
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
-    }
-    private void findviews(){
-        mUsername = findViewById(R.id.usernameEditText);
-        mPassword = findViewById(R.id.passwordEditText);
-        loginButton = findViewById(R.id.loginButton);
-        progressBar = findViewById(R.id.progressBar);
-        progressBar.setVisibility(View.INVISIBLE);
-        rememberMeCheckBox = findViewById(R.id.rememberMeChk);
     }
 
 }

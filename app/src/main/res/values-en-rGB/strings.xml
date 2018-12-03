@@ -30,6 +30,8 @@
     <string name="name" translatable="false">Name</string>
     <string name="postal_code" translatable="false">Postal code</string>
     <string name="sender_id" translatable="false">Sender id</string>
-    <string name="logout" translatable="false">logout</string>
+    <string name="logout" translatable="false">Log out</string>
     <string name="send" translatable="false">SEND</string>
+    <string name="quit">Quit</string>
+    <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
 </resources>
