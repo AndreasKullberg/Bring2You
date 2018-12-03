@@ -129,9 +129,5 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
+
 }
-
-
-/* getSupportActionBar().setTitle("Name")
- * getSupportActionBar().setDisplayHomeAsUpEnabled(true)
- */

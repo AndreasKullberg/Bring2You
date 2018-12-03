@@ -57,8 +57,10 @@ public class LoginActivity extends AppCompatActivity {
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
         findViewById(R.id.about_btn).setOnClickListener(view -> about());
+        //findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         mUsername = findViewById(R.id.usernameEditText);
         mPassword = findViewById(R.id.passwordEditText);
@@ -115,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-
+                    // toastMessage(task.getException().getMessage());
                     toastMessage("Failure login in..");
                 }
             });

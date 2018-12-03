@@ -101,7 +101,7 @@ public class SignFragment extends Fragment {
                 }
             });
         });
-
+        getActivity().recreate();
     }
 
     private void checkScan(Task<DocumentSnapshot> task) {

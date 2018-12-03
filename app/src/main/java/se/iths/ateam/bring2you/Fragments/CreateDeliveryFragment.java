@@ -61,7 +61,10 @@ public class CreateDeliveryFragment extends Fragment {
                             }
                         });
             }
+            getActivity().recreate();
         });
+
+
 
         return view;
     }
