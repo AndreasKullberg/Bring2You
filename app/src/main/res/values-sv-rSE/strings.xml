@@ -26,4 +26,12 @@
     <string name="swedish">Svenska</string>
     <string name="english">Engelska</string>
     <string name="remember_me">Kom ihåg mig</string>
+    <string name="send" translatable="false">SKICKA</string>
+    <string name="logout" translatable="false">Logga ut</string>
+    <string name="adress">Adress</string>
+    <string name="name">Namn</string>
+    <string name="sender_id">Avsändarid</string>
+    <string name="postal_code">Postnummer</string>
+    <string name="quit">Avsluta</string>
+    <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
 </resources>

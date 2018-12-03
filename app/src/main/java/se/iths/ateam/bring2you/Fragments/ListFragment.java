@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,13 +19,17 @@ import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
 import javax.annotation.Nullable;
+
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+import se.iths.ateam.bring2you.Utils.MyUser;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.RecyclerViewAdapter;
 
 public class ListFragment extends Fragment {
     List<ListItemInfo> listItems = new ArrayList<>();
@@ -61,41 +65,40 @@ public class ListFragment extends Fragment {
                         if(myUser.isAdmin()){
                             collection = "Delivered";
                             Log.d("Collection", collection);
+                            view.findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
                         }
+                        adapter = new RecyclerViewAdapter(listItems);
+                        mRecyclerView.setAdapter(adapter);
 
+                        firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                Log.d("hej","Event?");
+                                if (e != null) {
+                                    return;
+                                }
+
+                                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                                    if (dc.getType() == DocumentChange.Type.ADDED) {
+                                        Log.d("hej","added?");
+                                        String id = dc.getDocument().getId();
+
+                                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
+                                        sending.setId(id);
+                                        adapter.addItem(sending);
+                                    }
+                                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                                        String id = dc.getDocument().getId();
+                                        adapter.removeItem(id);
+                                    }
+                                }
+                            }
+                        });
                     } else {
 
                     }
                 } else {
 
-                }
-            }
-        });
-
-        adapter = new RecyclerViewAdapter(listItems);
-        mRecyclerView.setAdapter(adapter);
-
-        firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                Log.d("hej","Event?");
-                if (e != null) {
-                    return;
-                }
-
-                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
-                    if (dc.getType() == DocumentChange.Type.ADDED) {
-                        Log.d("hej","added?");
-                        String id = dc.getDocument().getId();
-
-                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
-                        sending.setId(id);
-                        adapter.addItem(sending);
-                    }
-                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
-                        String id = dc.getDocument().getId();
-                        adapter.removeItem(id);
-                    }
                 }
             }
         });

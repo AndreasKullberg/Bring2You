@@ -31,6 +31,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
 
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
+import se.iths.ateam.bring2you.R;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -102,9 +105,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         // Give me the first item off the list
-
         if(list.size() > 0) {
             Address add = list.get(0);
+
             String locality = add.getLocality();
             if(locality == null) {
                 Toast.makeText(this, "Destination: " + location, Toast.LENGTH_SHORT).show();

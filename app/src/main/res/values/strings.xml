@@ -34,12 +34,18 @@
     <string name="en" translatable="false">EN</string>
     <string name="sv" translatable="false">SV</string>
     <string name="signout">Signout</string>
-    <string name="send" translatable="false">SEND</string>
-    <string name="logout" translatable="false">logout</string>
+    <string name="send">SEND</string>
+    <string name="logout">logout</string>
     <string name="swedish">Swedish</string>
     <string name="english">English</string>
     <string name="remember_me">Remember me</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="adress">Adress</string>
+    <string name="name">Name</string>
+    <string name="postal_code">postal code</string>
+    <string name="sender_id">Sender id</string>
+    <string name="quit">Quit</string>
+    <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
 </resources>
