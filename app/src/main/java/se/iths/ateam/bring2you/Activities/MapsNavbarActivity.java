@@ -81,7 +81,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         EditText editText = findViewById(R.id.edit_address);
         location = editText.getText().toString();
 
-        // Removes soft keyboard after input 
+        // Removes soft keyboard after input
         view = this.getCurrentFocus();
         if (view != null) {
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -116,9 +116,6 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
-
-
-
 }
 
 
