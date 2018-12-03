@@ -7,27 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LoginActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/cardbackground">
-
-    </android.support.v7.widget.Toolbar>
-
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/about_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
         android:clickable="true"
         app:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:srcCompat="@drawable/aboutus" />
+        app:srcCompat="@drawable/aboutus"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="8dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

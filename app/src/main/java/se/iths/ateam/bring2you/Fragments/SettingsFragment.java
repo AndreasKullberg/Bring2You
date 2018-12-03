@@ -1,5 +1,7 @@
 package se.iths.ateam.bring2you.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -50,12 +53,45 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button about = getView().findViewById(R.id.about_btn);
         Button english = getView().findViewById(R.id.en_btn);
         Button swedish = getView().findViewById(R.id.se_btn);
+        Locale current = getResources().getConfiguration().locale;
 
-        english.setOnClickListener(v -> changeLanguage("en"));
+        english.setOnClickListener(v -> {
+            if (current.getLanguage().equals("sv")){
+                changeLanguage("en");
+            }else{
+                toastMessage("Language is already set to English!");
+            }
+        });
 
-        swedish.setOnClickListener(v -> changeLanguage("sv"));
+        swedish.setOnClickListener(v -> {
+            if (current.getLanguage().equals("en")){
+                changeLanguage("sv");
+            }else{
+                toastMessage("Språket är redan inställt på svenska!");
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                        getActivity());
+                builder.setTitle(R.string.about);
+                builder.setMessage(R.string.app_creation);
+                builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setCancelable(false);
+                AlertDialog alert = builder.create();
+                alert.show();
+            }
+        });
 
     }
 
@@ -72,7 +108,9 @@ public class SettingsFragment extends Fragment {
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }
-}
 
-//TODO: Fix sharedpreferences for when application is ended. Currently all settings that is stored are lost when user closes app
-//TODO: Fix if user chooses same language with if else (TOAST warning?)
+    private void toastMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+}
