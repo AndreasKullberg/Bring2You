@@ -1,6 +1,6 @@
 package se.iths.ateam.bring2you.Activities;
 
-
+import android.app.Activity;
 import android.content.Intent;
 import android.app.Activity;
 import android.content.Intent;
@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void Scan() {
-        Log.d("Bitch", "fuck");
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         startActivity(intent);
     }
@@ -107,10 +106,12 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     case R.id.nav_settings:
                             selectedFrag = new SettingsFragment();
-                               break;
-                    case R.id.nav_maps:
-                            selectedFrag = new MapFragment();
                             break;
+                    case R.id.nav_maps:
+                            startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
+                            //avoid null pointer exception
+                            return true;
+
                     case R.id.nav_signout:
                         FirebaseAuth.getInstance().signOut();
                         toastMessage("Signing out..");

@@ -39,6 +39,7 @@
 
         <activity android:name="se.iths.ateam.bring2you.Activities.MainActivity" />
         <activity android:name=".Activities.SplashActivity" />
+        <activity android:name=".Activities.MapsNavbarActivity"></activity>
     </application>
 
 </manifest>
