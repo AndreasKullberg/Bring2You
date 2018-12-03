@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.Fragments.AboutFragment;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -55,8 +54,6 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -142,22 +139,6 @@ public class LoginActivity extends AppCompatActivity {
         if(sp.contains("pref_check")){
             Boolean b = sp.getBoolean("pref_check",false);
             rememberMeCheckBox.setChecked(b);
-        }
-    }
-
-    private void about() {
-        if(swap) {
-            swap = false;
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.add(R.id.about_target, aboutFragment);
-            fragmentTransaction.commit();
-        }
-        else{
-            swap = true;
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
         }
     }
 

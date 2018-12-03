@@ -1,5 +1,7 @@
 package se.iths.ateam.bring2you.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -51,6 +53,7 @@ public class SettingsFragment extends Fragment {
             }
         });
 
+        Button about = getView().findViewById(R.id.about_btn);
         Button english = getView().findViewById(R.id.en_btn);
         Button swedish = getView().findViewById(R.id.se_btn);
         Locale current = getResources().getConfiguration().locale;
@@ -68,6 +71,25 @@ public class SettingsFragment extends Fragment {
                 changeLanguage("sv");
             }else{
                 toastMessage("Språket är redan inställt på svenska!");
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(
+                        getActivity());
+                builder.setTitle(R.string.about);
+                builder.setMessage(R.string.app_creation);
+                builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.setCancelable(false);
+                AlertDialog alert = builder.create();
+                alert.show();
             }
         });
 
@@ -90,4 +112,5 @@ public class SettingsFragment extends Fragment {
     private void toastMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
+
 }

@@ -46,4 +46,6 @@
     <string name="name">Name</string>
     <string name="postal_code">postal code</string>
     <string name="sender_id">Sender id</string>
+    <string name="quit">Quit</string>
+    <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
 </resources>
