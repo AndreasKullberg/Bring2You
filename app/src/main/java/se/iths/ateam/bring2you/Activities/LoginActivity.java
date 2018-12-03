@@ -18,7 +18,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.Fragments.AboutFragment;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -115,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                 } else {
-
+                    // toastMessage(task.getException().getMessage());
                     toastMessage("Failure login in..");
                 }
             });
@@ -138,22 +137,6 @@ public class LoginActivity extends AppCompatActivity {
         if(sp.contains("pref_check")){
             Boolean b = sp.getBoolean("pref_check",false);
             rememberMeCheckBox.setChecked(b);
-        }
-    }
-
-    private void about() {
-        if(swap) {
-            swap = false;
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.add(R.id.about_target, aboutFragment);
-            fragmentTransaction.commit();
-        }
-        else{
-            swap = true;
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
         }
     }
 
