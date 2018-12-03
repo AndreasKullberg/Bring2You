@@ -34,12 +34,13 @@ import java.util.List;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
+// GoogleMaps activity that zooms into delivery location
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
-    private float DEFAULT_ZOOM = 15;
+    private float DEFAULT_ZOOM = 17;
     private static final String TAG = "MapActivity";
     private FusedLocationProviderClient mFusedLocationClient;
     private Boolean mLocationPermissionGranted;
@@ -122,7 +123,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "The destination was not found.", Toast.LENGTH_SHORT).show();
         }
     }
-
+/*
     //TODO Om nu vi ska ha map ikonen
     public void geoLocate(View view) throws IOException {
 
@@ -141,12 +142,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
         }
         // Simple toast that displays the locality
-*/
+
         double latitude = add.getLatitude();
         double longitude = add.getLongitude();
 
         gotoLocation(latitude, longitude, DEFAULT_ZOOM);
     }
+    */
 
 
     //TODO Lägga till map typ meny

@@ -5,43 +5,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical">
-
-        <TextView
-            android:id="@+id/location_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Target:"
-            android:textSize="20sp"
-            />
-
-        <EditText
-            android:id="@+id/edit_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/location_text"
-            android:layout_toEndOf="@+id/location_text"
-            android:layout_toStartOf="@id/geo_button"
-            android:inputType="textCapWords"
-            android:ems="10">
-            <requestFocus />
-        </EditText>
-
-        <Button
-            android:id="@+id/geo_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignParentEnd="true"
-            android:layout_alignBaseline="@id/location_text"
-            android:onClick="geoLocate"
-            android:text="Find" />
-    </RelativeLayout>
-
     <fragment
     android:id="@+id/map"
     android:name="com.google.android.gms.maps.SupportMapFragment"
