@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -52,10 +53,23 @@ public class SettingsFragment extends Fragment {
 
         Button english = getView().findViewById(R.id.en_btn);
         Button swedish = getView().findViewById(R.id.se_btn);
+        Locale current = getResources().getConfiguration().locale;
 
-        english.setOnClickListener(v -> changeLanguage("en"));
+        english.setOnClickListener(v -> {
+            if (current.getLanguage().equals("sv")){
+                changeLanguage("en");
+            }else{
+                toastMessage("Language is already set to English!");
+            }
+        });
 
-        swedish.setOnClickListener(v -> changeLanguage("sv"));
+        swedish.setOnClickListener(v -> {
+            if (current.getLanguage().equals("en")){
+                changeLanguage("sv");
+            }else{
+                toastMessage("Språket är redan inställt på svenska!");
+            }
+        });
 
     }
 
@@ -72,7 +86,8 @@ public class SettingsFragment extends Fragment {
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }
-}
 
-//TODO: Fix sharedpreferences for when application is ended. Currently all settings that is stored are lost when user closes app
-//TODO: Fix if user chooses same language with if else (TOAST warning?)
+    private void toastMessage(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+    }
+}

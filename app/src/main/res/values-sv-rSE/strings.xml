@@ -30,6 +30,6 @@
     <string name="logout" translatable="false">Logga ut</string>
     <string name="adress">Adress</string>
     <string name="name">Namn</string>
-    <string name="sender_id">Avsändar id</string>
+    <string name="sender_id">Avsändarid</string>
     <string name="postal_code">Postnummer</string>
 </resources>
