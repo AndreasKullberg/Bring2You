@@ -1,6 +1,5 @@
 package se.iths.ateam.bring2you.Activities;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.support.design.widget.BottomNavigationView;
