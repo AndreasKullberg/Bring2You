@@ -1,13 +1,18 @@
 package se.iths.ateam.bring2you.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +29,7 @@ public class CreateDeliveryFragment extends Fragment {
     private EditText createAdress, createName, createPostal, createSender;
     private String adress, name, postalCode, senderId;
     private String collection = "test@hotmail.com";
+    private ConstraintLayout constraintLayout;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -41,10 +47,11 @@ public class CreateDeliveryFragment extends Fragment {
             senderId = createSender.getText().toString();
 
             if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")){
-                Log.d("nej", "works");
+                toastMessage("No blank fields!");
             }
             else {
                 ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
+                toastMessage("Successfully added new delivery!");
 
                 firestore.collection(collection)
                         .add(info)
@@ -60,12 +67,19 @@ public class CreateDeliveryFragment extends Fragment {
                                 Log.w("firebase", "Error adding document", e);
                             }
                         });
+                getActivity().recreate();
             }
-            getActivity().recreate();
+
         });
 
 
 
         return view;
+
     }
+    private void toastMessage(String Message){
+        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+    }
+
+
 }
