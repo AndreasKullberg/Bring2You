@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -82,7 +83,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         scannerView.stopCamera();
     }
 
-    public void onRequestPermissionsResult(final int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(final int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case requestCamera:
                 if (grantResults.length > 0) {
@@ -92,20 +93,16 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                         Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
                     }else {
                         Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                            if (shouldShowRequestPermissionRationale(CAMERA)) {
-                                showMessageOKCancel("You need to allow access to both the permissions",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                                    requestPermissions(new String[]{CAMERA},
-                                                            requestCamera);
-                                                }
-                                            }
-                                        });
-                                return;
-                            }
+                        if (shouldShowRequestPermissionRationale(CAMERA)) {
+                            showMessageOKCancel("You need to allow access to both the permissions",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            requestPermissions(new String[]{CAMERA},
+                                                    requestCamera);
+                                        }
+                                    });
+                            return;
                         }
                     }
                 }
