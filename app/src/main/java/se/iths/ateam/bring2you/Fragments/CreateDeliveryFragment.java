@@ -64,11 +64,10 @@ public class CreateDeliveryFragment extends Fragment {
                             ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
                             toastMessage("Successfully added new delivery!");
 
-                            firestore.collection(collection)
-                                    .add(info)
-                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            firestore.collection(collection).document().set(info)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
-                                        public void onSuccess(DocumentReference documentReference) {
+                                        public void onSuccess(Void avoid) {
 
                                         }
                                     })
