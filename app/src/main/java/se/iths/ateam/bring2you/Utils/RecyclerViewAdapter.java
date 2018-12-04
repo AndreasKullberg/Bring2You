@@ -16,11 +16,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
+import java.util.Objects;
 
 import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.Activities.MapsNavbarActivity;
 import se.iths.ateam.bring2you.Fragments.InfoFragment;
 import se.iths.ateam.bring2you.Fragments.SignFragment;
+import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.ListItemViewHolder;
@@ -51,7 +53,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     listItemViewHolder.constraintLayout.setOnClickListener(v ->{
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser.getEmail().equals("admin@hotmail.com")){
+        if(Objects.requireNonNull(Objects.requireNonNull(firebaseUser).getEmail()).equals("admin@hotmail.com")){
             transaction(item,infoFragment, v);
         }
         else {
