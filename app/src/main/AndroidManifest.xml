@@ -27,9 +27,19 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".Activities.SplashActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
 
         <activity android:name=".Activities.MapsActivity" />
         <activity android:name=".Activities.ScannerActivity" />
@@ -39,7 +49,6 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name="se.iths.ateam.bring2you.Activities.MainActivity" />
-        <activity android:name=".Activities.SplashActivity" />
         <activity android:name=".Activities.MapsNavbarActivity"></activity>
     </application>
 

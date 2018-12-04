@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                                 } else {
                                     toastMessage("Failure login in..");
                                 }
