@@ -12,6 +12,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
+
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
@@ -21,7 +24,7 @@ public class CreateDeliveryFragment extends Fragment {
     private String adress, name, postalCode, senderId;
     private String collection = "test@hotmail.com";
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
         createAdress = view.findViewById(R.id.createAdress);
@@ -45,27 +48,13 @@ public class CreateDeliveryFragment extends Fragment {
 
                 firestore.collection(collection)
                         .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("firebase", "Error adding document", e);
-                            }
-                        });
+                        .addOnSuccessListener(documentReference -> Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                        .addOnFailureListener(e -> Log.w("firebase", "Error adding document", e));
                 getActivity().recreate();
             }
 
         });
-
-
-
         return view;
-
     }
     private void toastMessage(String Message){
         Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();

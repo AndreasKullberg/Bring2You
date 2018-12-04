@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -18,6 +19,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+
+import java.util.Objects;
+
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
@@ -37,7 +41,7 @@ public class SignFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
         firestore = FirebaseFirestore.getInstance();
@@ -51,7 +55,7 @@ public class SignFragment extends Fragment {
 
         if (scanResult == null) {
             Bundle bundle = getArguments();
-            item = (ListItemInfo) bundle.getSerializable("Item");
+            item = (ListItemInfo) Objects.requireNonNull(bundle).getSerializable("Item");
         }
 
         return view;
@@ -60,7 +64,7 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        getActivity().findViewById(R.id.sendButton).setOnClickListener(v -> {
+        Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
 
             /*storageTask = storageReference.putFile().addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
@@ -105,13 +109,11 @@ public class SignFragment extends Fragment {
     private void checkScan(Task<DocumentSnapshot> task) {
         if (task.isSuccessful()) {
             DocumentSnapshot document = task.getResult();
-            if (document.exists()) {
+            if (Objects.requireNonNull(document).exists()) {
                 item = document.toObject(ListItemInfo.class);
-                item.setId(scanResult);
+                Objects.requireNonNull(item).setId(scanResult);
             }
-            else {}
         }
-        else {}
     }
 
 }

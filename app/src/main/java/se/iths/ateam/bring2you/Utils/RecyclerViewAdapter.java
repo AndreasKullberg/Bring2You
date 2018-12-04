@@ -47,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     listItemViewHolder.constraintLayout.setOnClickListener(v ->{
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(firebaseUser.getEmail().equals("admin@hotmail.com")){
+        if(Objects.requireNonNull(Objects.requireNonNull(firebaseUser).getEmail()).equals("admin@hotmail.com")){
             transaction(item,infoFragment, v);
         }
         else {
