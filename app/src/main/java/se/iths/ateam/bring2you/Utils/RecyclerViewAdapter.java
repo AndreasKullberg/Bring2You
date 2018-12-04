@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you.Activities;
+package se.iths.ateam.bring2you.Utils;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +18,11 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.List;
 import java.util.Objects;
 
+import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.Activities.MapsNavbarActivity;
 import se.iths.ateam.bring2you.Fragments.InfoFragment;
 import se.iths.ateam.bring2you.Fragments.SignFragment;
-import se.iths.ateam.bring2you.MapsActivity;
+import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.ListItemViewHolder;
