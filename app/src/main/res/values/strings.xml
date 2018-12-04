@@ -26,9 +26,6 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="theme">Theme</string>
     <string name="language">Language</string>
     <string name="en" translatable="false">EN</string>
@@ -39,25 +36,15 @@
     <string name="swedish">Swedish</string>
     <string name="english">English</string>
     <string name="remember_me">Remember me</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="adress" translatable="false">Adress</string>
-    <string name="name" translatable="false">Name</string>
-    <string name="postal_code" translatable="false">postal code</string>
-    <string name="sender_id" translatable="false">Sender id</string>
-    <string name="Adress">TextView</string>
-    <string name="Senderid">TextView</string>
-    <string name="Postalcode">TextView</string>
-    <string name="Name">TextView</string>
-    <string name="find">Find</string>
-    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="adress">Adress</string>
-    <string name="name">Name</string>
-    <string name="postal_code">postal code</string>
     <string name="sender_id">Sender id</string>
     <string name="quit">Quit</string>
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
-    <string name="search">Search</string>
-    <string name="find">Find:</string>
+    <string name="search">search</string>
+    <string name="Adress">adress</string>
+    <string name="Name">name</string>
+    <string name="Postalcode">postalcode</string>
+    <string name="Senderid">senderid</string>
+    <string name="Find">find</string>
+
+
 </resources>
