@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.Fragments.AboutFragment;
+
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -64,14 +64,8 @@ public class LoginActivity extends AppCompatActivity {
             toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
-            mUsername = findViewById(R.id.usernameEditText);
-            mPassword = findViewById(R.id.passwordEditText);
-            loginButton = findViewById(R.id.loginButton);
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.INVISIBLE);
-            rememberMeCheckBox = findViewById(R.id.rememberMeChk);
 
-
+          findViews();
             getPreferencesData();
 
             loginButton.setOnClickListener(v -> {
@@ -143,5 +137,13 @@ public class LoginActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
+    }
+    private void findViews(){
+        mUsername = findViewById(R.id.usernameEditText);
+        mPassword = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+        rememberMeCheckBox = findViewById(R.id.rememberMeChk);
     }
 }
