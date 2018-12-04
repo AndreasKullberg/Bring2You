@@ -24,7 +24,7 @@ public class InfoFragment extends Fragment {
     private StorageReference storageReference;
     private String imageUrl;
     private ListItemInfo item;
-    private TextView name, signedBy, adress, postalCode;
+    private TextView name, signedBy, adress, postalCode, time, date;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,12 +44,17 @@ public class InfoFragment extends Fragment {
         signedBy = getActivity().findViewById(R.id.infoSignedBy);
         adress = getActivity().findViewById(R.id.infoAdress);
         postalCode = getActivity().findViewById(R.id.infoPostalCode);
+        time = getActivity().findViewById(R.id.infoTime);
+        date = getActivity().findViewById(R.id.infoDate);
 
         postalCode.setText(item.getPostalCode());
         adress.setText(item.getAdress());
         signedBy.setText(item.getSignedBy());
         name.setText(item.getName());
+        date.setText(item.getDate());
+        time.setText(item.getTime());
         imageUrl = item.getSignImageUrl();
+
 
         signImage = getActivity().findViewById(R.id.signImage);
         storageReference = FirebaseStorage.getInstance()

@@ -12,6 +12,24 @@ public class ListItemInfo implements Serializable {
     private String signedBy;
     private String id;
     private String signImageUrl;
+    private String date;
+    private String time;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
 
     public String getSignImageUrl() {
         return signImageUrl;

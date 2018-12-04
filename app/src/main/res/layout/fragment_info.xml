@@ -52,8 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="69dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="257dp"
-        android:text="TextView"
+        android:layout_marginEnd="245dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,4 +70,27 @@
         app:layout_constraintStart_toEndOf="@+id/infoAdress"
         app:layout_constraintTop_toBottomOf="@+id/infoName"
         tools:text="Postal code" />
+
+    <TextView
+        android:id="@+id/infoDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="127dp"
+        app:layout_constraintEnd_toStartOf="@+id/infoTime"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoAdress"
+        tools:text="Date" />
+
+    <TextView
+        android:id="@+id/infoTime"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/infoPostalCode"
+        tools:text="Time" />
 </android.support.constraint.ConstraintLayout>
