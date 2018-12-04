@@ -1,7 +1,6 @@
 package se.iths.ateam.bring2you.Activities;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
@@ -14,8 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +26,6 @@ import java.io.IOException;
 import java.util.List;
 
 import se.iths.ateam.bring2you.R;
-import se.iths.ateam.bring2you.Utils.ListItemInfo;
 
 // GoogleMaps activity with a search function
 public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -37,9 +33,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         GoogleApiClient.OnConnectionFailedListener {
 
     private GoogleMap mMap;
-    private float DEFAULT_ZOOM = 15;
-    private static final String TAG = "MapActivity";
-    private FusedLocationProviderClient mFusedLocationClient;
+    private float zoom = 15;
     private String location;
 
 
@@ -47,10 +41,8 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar_maps);
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         initMap();
     }
-
 
     private void initMap() {
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
@@ -68,7 +60,6 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
     private void gotoLocation(double latitude, double longitude, float ZoomValue) {
         LatLng newLocation = new LatLng(latitude, longitude);
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(newLocation, ZoomValue);
-        //TODO Marker color for navbar Maps?
         //TODO Visa markörens information?
         //TODO Ta bort androids sökfält efter man har sökt
         mMap.addMarker(new MarkerOptions()
@@ -86,7 +77,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         // Removes soft keyboard after input
         view = this.getCurrentFocus();
         if (view != null) {
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
@@ -102,9 +93,8 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         double latitude = add.getLatitude();
         double longitude = add.getLongitude();
 
-        gotoLocation(latitude, longitude, DEFAULT_ZOOM);
+        gotoLocation(latitude, longitude, zoom);
     }
-
 
     @Override
     public void onConnected(Bundle bundle) {
