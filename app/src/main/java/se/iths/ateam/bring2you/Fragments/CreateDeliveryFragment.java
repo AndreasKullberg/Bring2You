@@ -32,6 +32,7 @@ public class CreateDeliveryFragment extends Fragment {
     private String user;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
+    private int i = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,13 +63,13 @@ public class CreateDeliveryFragment extends Fragment {
                             collection = user;
 
                             ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                            toastMessage("Successfully added new delivery!");
+                            //toastMessage("Successfully added new delivery!");
 
                             firestore.collection(collection).document().set(info)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-
+                                                i++;
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -77,6 +78,12 @@ public class CreateDeliveryFragment extends Fragment {
 
                                         }
                                     });
+                            if(i==1){
+                                toastMessage("Successfully added new delivery!");
+                            }
+                            else{
+                                toastMessage("Error adding new delivery..");
+                            }
                             getActivity().recreate();
                         }
                         else{
