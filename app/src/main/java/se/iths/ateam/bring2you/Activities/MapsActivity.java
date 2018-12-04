@@ -1,16 +1,13 @@
-package se.iths.ateam.bring2you;
+package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 
@@ -42,8 +39,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private float DEFAULT_ZOOM = 17;
     private static final String TAG = "MapActivity";
-    private FusedLocationProviderClient mFusedLocationClient;
-    private Boolean mLocationPermissionGranted;
     ListItemInfo listItemInfo;
 
 
@@ -51,20 +46,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
         Intent i = getIntent();
         listItemInfo = (ListItemInfo) i.getSerializableExtra("mapKey");
-
-        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         initMap();
     }
 
 
     private void initMap() {
-        Log.d(TAG, "@initMap::: initializing the map");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
     }
 
     @Override
@@ -106,11 +96,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         // Give me the first item off the list
-        if(list.size() > 0) {
+        if (list.size() > 0) {
             Address add = list.get(0);
 
             String locality = add.getLocality();
-            if(locality == null) {
+            if (locality == null) {
                 Toast.makeText(this, "Destination: " + location, Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
