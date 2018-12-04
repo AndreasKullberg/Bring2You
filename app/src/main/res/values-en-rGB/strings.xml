@@ -16,7 +16,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="order">Order</string>
     <string name="maps">Maps</string>
-    <string name="add">Add</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -34,4 +33,6 @@
     <string name="send" translatable="false">SEND</string>
     <string name="quit">Quit</string>
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
+    <string name="Find">Find</string>
+    <string name="search">Search</string>
 </resources>

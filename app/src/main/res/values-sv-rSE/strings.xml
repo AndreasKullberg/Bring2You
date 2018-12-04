@@ -16,7 +16,6 @@
     <string name="title_notifications">Notifikationer</string>
     <string name="order">Order</string>
     <string name="maps">Karta</string>
-    <string name="add">Lägg till</string>
     <string name="password">Lösenord</string>
     <string name="login">Logga in</string>
     <string name="email">Epost</string>
@@ -34,4 +33,6 @@
     <string name="postal_code">Postnummer</string>
     <string name="quit">Avsluta</string>
     <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
+    <string name="Find">Hitta</string>
+    <string name="search">Sök</string>
 </resources>
