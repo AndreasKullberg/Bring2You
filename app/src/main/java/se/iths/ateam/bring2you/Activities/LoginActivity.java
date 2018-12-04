@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox rememberMeCheckBox;
     private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
-    private boolean swap = true;
     private FirebaseUser user;
     ThemeSharedPref themeSharedPref;
 
@@ -56,8 +55,9 @@ public class LoginActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         if (user != null) {
+            finish();
             toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+           startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
 
             findViews();
@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                                 loginButton.setVisibility(View.VISIBLE);
 
                                 if (task.isSuccessful()) {
+                                    finish();
                                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
                                     startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                                 } else {
@@ -113,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
     private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if (sp.contains("pref_name")) {

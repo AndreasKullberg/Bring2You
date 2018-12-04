@@ -56,7 +56,10 @@ public class ListFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        collection = Objects.requireNonNull(firebaseUser).getEmail();
+
+         if(firebaseUser != null) {
+             collection = Objects.requireNonNull(firebaseUser).getEmail();
+         }
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
@@ -69,48 +72,50 @@ public class ListFragment extends Fragment {
 
     public void onResume() {
         super.onResume();
-        firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (Objects.requireNonNull(document).exists()) {
-                        String id = document.getId();
-                        myUser = document.toObject(MyUser.class);
-                        Objects.requireNonNull(myUser).setId(id);
-                        if(myUser.isAdmin()){
-                            collection = "Delivered";
-                            Log.d("Collection", collection);
-                            getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
-                        }
-                        registration = firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                            @Override
-                            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                                Log.d("hej","Event?");
-                                if (e != null) {
-                                    return;
-                                }
 
-                                for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
-                                    if (dc.getType() == DocumentChange.Type.ADDED) {
-                                        Log.d("hej","added?");
-                                        String id = dc.getDocument().getId();
-
-                                        ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
-                                        sending.setId(id);
-                                        adapter.addItem(sending);
-                                    }
-                                    else if (dc.getType() == DocumentChange.Type.REMOVED) {
-                                        String id = dc.getDocument().getId();
-                                        adapter.removeItem(id);
-                                    }
-                                }
+        if(firebaseUser != null) {
+            firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot document = task.getResult();
+                        if (Objects.requireNonNull(document).exists()) {
+                            String id = document.getId();
+                            myUser = document.toObject(MyUser.class);
+                            Objects.requireNonNull(myUser).setId(id);
+                            if (myUser.isAdmin()) {
+                                collection = "Delivered";
+                                Log.d("Collection", collection);
+                                getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
                             }
-                        });
+                            registration = firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                                @Override
+                                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                                    Log.d("hej", "Event?");
+                                    if (e != null) {
+                                        return;
+                                    }
+
+                                    for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
+                                        if (dc.getType() == DocumentChange.Type.ADDED) {
+                                            Log.d("hej", "added?");
+                                            String id = dc.getDocument().getId();
+
+                                            ListItemInfo sending = dc.getDocument().toObject(ListItemInfo.class);
+                                            sending.setId(id);
+                                            adapter.addItem(sending);
+                                        } else if (dc.getType() == DocumentChange.Type.REMOVED) {
+                                            String id = dc.getDocument().getId();
+                                            adapter.removeItem(id);
+                                        }
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
     public void onPause() {
         super.onPause();
