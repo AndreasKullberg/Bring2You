@@ -5,24 +5,28 @@
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    app:cardBackgroundColor="@color/cardview_light_background"
-    app:cardCornerRadius="5dp"
-    android:background="?attr/backgroundcolor"
-    app:cardElevation="3dp"
-    app:contentPadding="8dp">
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="8dp"
+    android:outlineAmbientShadowColor="@color/colorAccent"
+    android:outlineProvider="bounds"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="5dp"
+    app:cardMaxElevation="10dp">
+
 
     <android.support.constraint.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="434dp"
-        android:layout_height="118dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 
         <TextView
             android:id="@+id/textAdress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/Adress"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Adress" />
@@ -30,11 +34,11 @@
         <TextView
             android:id="@+id/textName"
             android:layout_width="wrap_content"
-            android:layout_height="20dp"
-            android:layout_marginEnd="300dp"
-            android:text="TextView"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/Name"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.046"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textAdress"
             tools:text="Name" />
@@ -43,10 +47,10 @@
             android:id="@+id/textPostalCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="324dp"
-            android:text="TextView"
+            android:layout_marginTop="8dp"
+            android:text="@string/Postalcode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.051"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textName"
             tools:text="Postal code" />
@@ -55,10 +59,10 @@
             android:id="@+id/textSenderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="340dp"
-            android:text="TextView"
+            android:layout_marginTop="8dp"
+            android:text="@string/Senderid"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.048"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPostalCode"
             tools:text="SenderId" />
@@ -67,8 +71,8 @@
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="80dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginEnd="16dp"
             android:onClick="openMapsButtonClicked"
             android:text="Maps"
             android:textAllCaps="false"
@@ -76,4 +80,5 @@
             app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
+
 </android.support.v7.widget.CardView>

@@ -17,7 +17,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/btn_plus" />
+        app:srcCompat="@mipmap/ic_launcher_round" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"

@@ -46,4 +46,9 @@
     <string name="name" translatable="false">Name</string>
     <string name="postal_code" translatable="false">postal code</string>
     <string name="sender_id" translatable="false">Sender id</string>
+    <string name="Adress">TextView</string>
+    <string name="Senderid">TextView</string>
+    <string name="Postalcode">TextView</string>
+    <string name="Name">TextView</string>
+    <string name="find">Find</string>
 </resources>

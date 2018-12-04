@@ -34,7 +34,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         scannerView = new ZXingScannerView(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(scannerView);
-        getWindow().setLayout(800,700);
+
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
