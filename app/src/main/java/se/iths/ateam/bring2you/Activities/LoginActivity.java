@@ -31,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox rememberMeCheckBox;
     private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
-    private boolean swap = true;
     private FirebaseUser user;
     ThemeSharedPref themeSharedPref;
 

@@ -72,6 +72,7 @@ public class ListFragment extends Fragment {
 
     public void onResume() {
         super.onResume();
+
         if(firebaseUser != null) {
             firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
