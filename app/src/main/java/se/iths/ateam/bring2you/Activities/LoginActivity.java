@@ -2,8 +2,6 @@ package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,12 +10,9 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.Objects;
-
 
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
@@ -36,7 +31,6 @@ public class LoginActivity extends AppCompatActivity {
     private CheckBox rememberMeCheckBox;
     private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
-    private boolean swap = true;
     private FirebaseUser user;
     ThemeSharedPref themeSharedPref;
 
@@ -61,17 +55,12 @@ public class LoginActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         if (user != null) {
+            finish();
             toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+           startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
-            mUsername = findViewById(R.id.usernameEditText);
-            mPassword = findViewById(R.id.passwordEditText);
-            loginButton = findViewById(R.id.loginButton);
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.INVISIBLE);
-            rememberMeCheckBox = findViewById(R.id.rememberMeChk);
 
-
+            findViews();
             getPreferencesData();
 
             loginButton.setOnClickListener(v -> {
@@ -112,8 +101,9 @@ public class LoginActivity extends AppCompatActivity {
                                 loginButton.setVisibility(View.VISIBLE);
 
                                 if (task.isSuccessful()) {
+                                    finish();
                                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                                 } else {
                                     toastMessage("Failure login in..");
                                 }
@@ -124,6 +114,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
     private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if (sp.contains("pref_name")) {
@@ -143,5 +134,13 @@ public class LoginActivity extends AppCompatActivity {
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
+    }
+    private void findViews(){
+        mUsername = findViewById(R.id.usernameEditText);
+        mPassword = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+        rememberMeCheckBox = findViewById(R.id.rememberMeChk);
     }
 }

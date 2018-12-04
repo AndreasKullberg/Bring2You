@@ -1,7 +1,5 @@
 package se.iths.ateam.bring2you.Fragments;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
@@ -16,19 +14,24 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
-import se.iths.ateam.bring2you.R;
-
 public class CreateDeliveryFragment extends Fragment {
     private FirebaseFirestore firestore;
-    private EditText createAdress, createName, createPostal, createSender;
+    private EditText createAdress, createName, createPostal, createSender, sendTo;
     private String adress, name, postalCode, senderId;
-    private String collection = "test@hotmail.com";
+    private String collection;
+    private String user;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,38 +40,60 @@ public class CreateDeliveryFragment extends Fragment {
         createName = view.findViewById(R.id.createName);
         createPostal = view.findViewById(R.id.createPostal);
         createSender = view.findViewById(R.id.createSender);
+        sendTo = view.findViewById(R.id.sendTo);
         firestore = FirebaseFirestore.getInstance();
 
         view.findViewById(R.id.createButton).setOnClickListener(v -> {
+            user = sendTo.getText().toString();
             adress = createAdress.getText().toString();
             name = createName.getText().toString();
             postalCode = createPostal.getText().toString();
             senderId = createSender.getText().toString();
 
-            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")){
+            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")||sendTo.equals("")){
                 toastMessage("No blank fields!");
             }
+
             else {
-                ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                toastMessage("Successfully added new delivery!");
+                firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            collection = user;
 
-                firestore.collection(collection)
-                        .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("firebase", "Error adding document", e);
-                            }
-                        });
-                getActivity().recreate();
+                            ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
+                            toastMessage("Successfully added new delivery!");
+
+                            firestore.collection(collection).document().set(info)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void avoid) {
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+                            getActivity().recreate();
+                        }
+                        else{
+                            toastMessage("User do not exist!");
+                        }
+                    }
+
+
+
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
             }
-
         });
 
 

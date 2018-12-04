@@ -34,4 +34,9 @@
     <string name="send" translatable="false">SEND</string>
     <string name="quit">Quit</string>
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
+    <string name="Adress">Adress</string>
+    <string name="Name">Name</string>
+    <string name="Postalcode">Postal code</string>
+    <string name="Find">Find</string>
+    <string name="search">Search</string>
 </resources>

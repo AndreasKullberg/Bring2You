@@ -20,15 +20,15 @@
 
 
     <!-- Night Theme. -->
-    <style name="darktheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="darktheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">#212121</item>
         <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#000000</item>
+        <item name="colorAccent">#FFC6C6C6</item>
         <item name="backgroundcolor">#303030</item>
         <item name="cardbackground">#424242</item>
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#ffffff</item>
-        <item name="buttoncolor">#2196F3</item>
+        <item name="buttoncolor">#aaa</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
 
