@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you.Activities;
+package se.iths.ateam.bring2you;
 
 import android.content.Intent;
 import android.location.Address;
@@ -27,8 +27,6 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
-
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;

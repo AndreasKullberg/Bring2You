@@ -1,11 +1,6 @@
 package se.iths.ateam.bring2you.Fragments;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,8 +16,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
-import se.iths.ateam.bring2you.R;
-
 import se.iths.ateam.bring2you.R;
 
 public class CreateDeliveryFragment extends Fragment {
@@ -56,27 +48,13 @@ public class CreateDeliveryFragment extends Fragment {
 
                 firestore.collection(collection)
                         .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("firebase", "Error adding document", e);
-                            }
-                        });
-                Objects.requireNonNull(getActivity()).recreate();
+                        .addOnSuccessListener(documentReference -> Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                        .addOnFailureListener(e -> Log.w("firebase", "Error adding document", e));
+                getActivity().recreate();
             }
 
         });
-
-
-
         return view;
-
     }
     private void toastMessage(String Message){
         Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
