@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Activities.MapsActivity" />
+        <activity android:name=".MapsActivity" />
         <activity android:name=".Activities.ScannerActivity" />
 
         <meta-data
@@ -38,6 +38,7 @@
 
         <activity android:name="se.iths.ateam.bring2you.Activities.MainActivity" />
         <activity android:name=".Activities.SplashActivity" />
+        <activity android:name=".Activities.MapsNavbarActivity"></activity>
     </application>
 
 </manifest>

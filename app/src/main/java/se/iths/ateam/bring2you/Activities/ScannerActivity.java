@@ -16,6 +16,7 @@ import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
+
 import static android.Manifest.permission.CAMERA;
 
 

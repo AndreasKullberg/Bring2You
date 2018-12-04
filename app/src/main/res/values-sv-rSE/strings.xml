@@ -15,7 +15,7 @@
     <string name="title_home">Hem</string>
     <string name="title_notifications">Notifikationer</string>
     <string name="order">Order</string>
-    <string name="maps">Maps</string>
+    <string name="maps">Karta</string>
     <string name="add">Lägg till</string>
     <string name="password">Lösenord</string>
     <string name="login">Logga in</string>
@@ -30,6 +30,8 @@
     <string name="logout" translatable="false">Logga ut</string>
     <string name="adress">Adress</string>
     <string name="name">Namn</string>
-    <string name="sender_id">Avsändar id</string>
+    <string name="sender_id">Avsändarid</string>
     <string name="postal_code">Postnummer</string>
+    <string name="quit">Avsluta</string>
+    <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
 </resources>

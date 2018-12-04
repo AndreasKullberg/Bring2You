@@ -2,8 +2,6 @@ package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,7 +16,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Objects;
 
-import se.iths.ateam.bring2you.Fragments.AboutFragment;
+
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -30,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
 
     private FirebaseAuth mAuth;
-    private EditText mUsername , mPassword;
+    private EditText mUsername, mPassword;
     private Button loginButton;
     private ProgressBar progressBar;
     private CheckBox rememberMeCheckBox;
@@ -46,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
-        if(themeSharedPref.loadDarkModeState()) {
+        if (themeSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -56,25 +54,16 @@ public class LoginActivity extends AppCompatActivity {
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        findViewById(R.id.about_btn).setOnClickListener(view -> about());
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
-        if(user != null){
+        if (user != null) {
             toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
-        }
+        } else {
 
-        else {
-            mUsername = findViewById(R.id.usernameEditText);
-            mPassword = findViewById(R.id.passwordEditText);
-            loginButton = findViewById(R.id.loginButton);
-            progressBar = findViewById(R.id.progressBar);
-            progressBar.setVisibility(View.INVISIBLE);
-            rememberMeCheckBox = findViewById(R.id.rememberMeChk);
-
-
+          findViews();
             getPreferencesData();
 
             loginButton.setOnClickListener(v -> {
@@ -110,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 } else
                     mAuth.signInWithEmailAndPassword(mUsername.getText().toString(), mPassword.getText().toString())
                             .addOnCompleteListener(task -> {
-                                user = mAuth.getCurrentUser();
+                                FirebaseUser user = mAuth.getCurrentUser();
                                 progressBar.setVisibility(View.INVISIBLE);
                                 loginButton.setVisibility(View.VISIBLE);
 
@@ -118,52 +107,40 @@ public class LoginActivity extends AppCompatActivity {
                                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
                                     startActivity(new Intent(LoginActivity.this, MainActivity.class));
                                 } else {
-                                    // toastMessage(task.getException().getMessage());
                                     toastMessage("Failure login in..");
                                 }
                             });
-
             });
+
         }
 
     }
-
-    private void getPreferencesData() {
+    private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        if(sp.contains("pref_name")){
-            String u  = sp.getString("pref_name","not found");
+        if (sp.contains("pref_name")) {
+            String u = sp.getString("pref_name", "not found");
             mUsername.setText(u);
         }
 
-        if(sp.contains("pref_password")){
-            String p = sp.getString("pref_password","not found");
+        if (sp.contains("pref_password")) {
+            String p = sp.getString("pref_password", "not found");
             mPassword.setText(p);
         }
-        if(sp.contains("pref_check")){
-            Boolean b = sp.getBoolean("pref_check",false);
+        if (sp.contains("pref_check")) {
+            Boolean b = sp.getBoolean("pref_check", false);
             rememberMeCheckBox.setChecked(b);
         }
     }
-
-    private void about() {
-        if(swap) {
-            swap = false;
-            AboutFragment aboutFragment = new AboutFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            //fragmentTransaction.add(R.id.about_target, aboutFragment);
-            fragmentTransaction.commit();
-        }
-        else{
-            swap = true;
-            Intent intent = new Intent(this,LoginActivity.class);
-            startActivity(intent);
-        }
-    }
-
-
     private void toastMessage(String message){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-    }
 
+    }
+    private void findViews(){
+        mUsername = findViewById(R.id.usernameEditText);
+        mPassword = findViewById(R.id.passwordEditText);
+        loginButton = findViewById(R.id.loginButton);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
+        rememberMeCheckBox = findViewById(R.id.rememberMeChk);
+    }
 }

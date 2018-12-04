@@ -1,6 +1,7 @@
 package se.iths.ateam.bring2you.Utils;
 
 
+
 public class MyUser {
     private boolean admin;
     private boolean loggedIn;
