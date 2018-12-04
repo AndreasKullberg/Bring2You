@@ -41,7 +41,7 @@ public class CreateDeliveryFragment extends Fragment {
             }
             else {
                 ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                toastMessage("Successfully added new delivery!");
+                toastMessage("Successfully added  new delivery!");
 
                 firestore.collection(collection)
                         .add(info)
@@ -56,6 +56,4 @@ public class CreateDeliveryFragment extends Fragment {
     private void toastMessage(String Message){
         Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
     }
-
-
 }
