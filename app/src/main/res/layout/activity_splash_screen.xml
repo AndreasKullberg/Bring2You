@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/delivery2" />
+        android:src="@drawable/logob2u_spalsh" />
 
     <!-- ProgressBar
         android:id="@+id/progressBar"

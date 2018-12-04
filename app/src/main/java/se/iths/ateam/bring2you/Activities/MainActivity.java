@@ -21,12 +21,10 @@ import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 public class MainActivity extends AppCompatActivity {
 
-
     String scanResult;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private ThemeSharedPref themeSharedPref;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

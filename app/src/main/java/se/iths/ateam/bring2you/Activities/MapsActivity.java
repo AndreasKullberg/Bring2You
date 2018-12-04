@@ -3,22 +3,19 @@ package se.iths.ateam.bring2you.Activities;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
-
 import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -27,12 +24,12 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.IOException;
 import java.util.List;
-import java.util.Objects;
 
-import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
 
 // GoogleMaps activity that zooms into delivery location
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -63,7 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private void initMap() {
         Log.d(TAG, "@initMap::: initializing the map");
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
-        Objects.requireNonNull(mapFragment).getMapAsync(this);
+        mapFragment.getMapAsync(this);
 
     }
 
@@ -106,7 +103,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             e.printStackTrace();
         }
         // Give me the first item off the list
-        if(Objects.requireNonNull(list).size() > 0) {
+        if(list.size() > 0) {
             Address add = list.get(0);
 
             String locality = add.getLocality();
