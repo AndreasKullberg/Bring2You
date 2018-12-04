@@ -114,7 +114,9 @@ public class ListFragment extends Fragment {
     }
     public void onPause() {
         super.onPause();
-        registration.remove();
+        if(registration != null) {
+            registration.remove();
+        }
     }
 
 }
