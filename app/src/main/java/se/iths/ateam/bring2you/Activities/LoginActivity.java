@@ -56,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         if (user != null) {
-            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+            toastMessage("logged in as: " + user.getEmail());
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
 
@@ -113,6 +113,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
     }
+
     private void getPreferencesData(){
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if (sp.contains("pref_name")) {

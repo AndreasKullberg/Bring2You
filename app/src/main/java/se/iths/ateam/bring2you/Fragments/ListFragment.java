@@ -56,7 +56,7 @@ public class ListFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        collection = Objects.requireNonNull(firebaseUser).getEmail();
+        collection = firebaseUser.getEmail();
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
