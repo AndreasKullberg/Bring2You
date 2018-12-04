@@ -6,5 +6,5 @@
     <color name="colorAccent">#ffffff</color>
     <color name="mainColor">#693250</color>
     <color name="toolBarColor">#7d00a6</color>
-
+    <color name="Secondary">#000000</color>
 </resources>
