@@ -50,46 +50,51 @@ public class CreateDeliveryFragment extends Fragment {
             postalCode = createPostal.getText().toString();
             senderId = createSender.getText().toString();
 
-            firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    collection = user;
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    collection = "";
-                }
-            });
-
-            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")){
+            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")||sendTo.equals("")){
                 toastMessage("No blank fields!");
-                Log.d("nej", "works");
             }
-            else if(collection.equals("")){
 
-            }
             else {
-                ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                toastMessage("Successfully added new delivery!");
+                firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        if (documentSnapshot.exists()) {
+                            collection = user;
 
-                firestore.collection(collection)
-                        .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("firebase", "Error adding document", e);
-                            }
-                        });
-                getActivity().recreate();
+                            ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
+                            toastMessage("Successfully added new delivery!");
+
+                            firestore.collection(collection)
+                                    .add(info)
+                                    .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                        @Override
+                                        public void onSuccess(DocumentReference documentReference) {
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+
+                                        }
+                                    });
+                            getActivity().recreate();
+                        }
+                        else{
+                            toastMessage("User do not exist!");
+                        }
+                    }
+
+
+
+
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
             }
-
         });
 
 
