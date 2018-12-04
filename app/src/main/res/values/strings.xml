@@ -22,7 +22,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="order">Order</string>
     <string name="maps">Maps</string>
-    <string name="add">Add</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -32,22 +31,18 @@
     <string name="sv" translatable="false">SV</string>
     <string name="signout">Signout</string>
     <string name="send">SEND</string>
-    <string name="logout">Log out</string>
+    <string name="logout">logout</string>
     <string name="swedish">Swedish</string>
     <string name="english">English</string>
     <string name="remember_me">Remember me</string>
     <string name="sender_id">Sender id</string>
     <string name="quit">Quit</string>
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
-    <string name="search" translatable="false">Search</string>
-    <string name="Adress" translatable="false">Adress</string>
-    <string name="Name" translatable="false">name</string>
-    <string name="Postalcode" translatable="false">postalcode</string>
-    <string name="Senderid" translatable="false">senderid</string>
     <string name="Find">Find</string>
-    <string name="postal_code">Postal code</string>
-    <string name="name">Name</string>
     <string name="adress">Adress</string>
+    <string name="name">Name</string>
+    <string name="postal_code">Postal code</string>
+    <string name="search">Search</string>
 
 
 </resources>
