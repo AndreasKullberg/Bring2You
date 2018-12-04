@@ -9,6 +9,19 @@
     tools:context=".Activities.MainActivity">
 
 
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+    </FrameLayout>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         style="@style/Widget.Design.BottomNavigationView"
@@ -16,6 +29,7 @@
         android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:background="?attr/BotBarBack"
+        app:elevation="3dp"
         app:itemBackground="@android:color/transparent"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -25,17 +39,6 @@
         app:menu="@menu/bottom_navigation">
 
     </android.support.design.widget.BottomNavigationView>
-
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </FrameLayout>
 
 
 </android.support.constraint.ConstraintLayout>
