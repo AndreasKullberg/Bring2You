@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
 
-import se.iths.ateam.bring2you.Activities.MapsActivity;
+import se.iths.ateam.bring2you.MapsActivity;
 import se.iths.ateam.bring2you.Activities.MapsNavbarActivity;
 import se.iths.ateam.bring2you.Fragments.InfoFragment;
 import se.iths.ateam.bring2you.Fragments.SignFragment;
