@@ -34,6 +34,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
@@ -63,7 +65,6 @@ public class SignFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
-        storageReference = FirebaseStorage.getInstance().getReference("SignImage");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         collection = firebaseUser.getEmail();
@@ -85,15 +86,16 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
-
-
 
             StorageReference fileRef = storageReference.child(item.getId() + ".png");
             storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {});
 
             item.setSignImageUrl("gs://" +fileRef.getBucket()+"/Signatures/" + item.getId() + ".png");
             item.setSignedBy(signedByView.getText().toString());
+            item.setDate(getDate());
+            item.setTime(getTime());
 
             firestore.collection("Delivered")
                     .document(item.getId())
@@ -154,6 +156,19 @@ public class SignFragment extends Fragment {
 //            e.printStackTrace();
 //            Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
 //        }
+    }
+
+    private String getDate(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = simpleDateFormat.format(new Date());
+
+        return currentDate;
+    }
+    private String getTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = simpleDateFormat.format(new Date());
+
+        return currentTime;
     }
 
     private void checkScan(Task<DocumentSnapshot> task) {
