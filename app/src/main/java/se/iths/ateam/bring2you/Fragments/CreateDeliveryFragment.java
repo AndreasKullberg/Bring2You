@@ -19,6 +19,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Objects;
+
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
 
@@ -30,7 +32,7 @@ public class CreateDeliveryFragment extends Fragment {
     private String adress, name, postalCode, senderId;
     private String collection = "test@hotmail.com";
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
         createAdress = view.findViewById(R.id.createAdress);
@@ -66,7 +68,7 @@ public class CreateDeliveryFragment extends Fragment {
                                 Log.w("firebase", "Error adding document", e);
                             }
                         });
-                getActivity().recreate();
+                Objects.requireNonNull(getActivity()).recreate();
             }
 
         });
