@@ -56,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
         user = mAuth.getCurrentUser();
 
         if (user != null) {
-            toastMessage("logged in as: " + user.getEmail());
-            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+           startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
 
             findViews();
