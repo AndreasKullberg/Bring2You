@@ -33,10 +33,7 @@
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="BotBarBack">@drawable/bot_blow_bar_black</item>
     </style>
-    <style name="light" parent="Widget.Design.BottomNavigationView">
-        <item name="android:background"></item>
 
-    </style>
 
     <style name="WindowAnimationTransition">
         <item name="android:windowEnterAnimation" >@android:anim/fade_in</item>
