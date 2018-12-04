@@ -1,11 +1,6 @@
 package se.iths.ateam.bring2you.Fragments;
-
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,15 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
-import se.iths.ateam.bring2you.R;
-
 import se.iths.ateam.bring2you.R;
 
 public class CreateDeliveryFragment extends Fragment {
