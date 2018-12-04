@@ -7,7 +7,7 @@
     android:layout_height="match_parent">
 
 
-    <se.iths.ateam.bring2you.MyCanvas
+    <se.iths.ateam.bring2you.Utils.MyCanvas
         android:id="@+id/my_canvas"
         android:layout_width="match_parent"
         android:layout_height="147dp"

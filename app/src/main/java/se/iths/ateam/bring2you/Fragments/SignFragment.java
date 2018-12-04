@@ -14,8 +14,11 @@ import android.widget.ImageView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
@@ -32,6 +35,9 @@ public class SignFragment extends Fragment {
     private StorageReference storageReference;
     private StorageTask storageTask;
     private String collection;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser firebaseUser;
+
 
     public static void setScanResult(String myResult) {
 
@@ -45,10 +51,12 @@ public class SignFragment extends Fragment {
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
         storageReference = FirebaseStorage.getInstance().getReference("SignImage");
-
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseUser = firebaseAuth.getCurrentUser();
+        collection = firebaseUser.getEmail();
 
         if (scanResult != null){
-        firestore.collection("Deliveries").document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
+        firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
         }
 
         if (scanResult == null) {
@@ -87,7 +95,7 @@ public class SignFragment extends Fragment {
                     Log.w("succsesSet", "Error deleting document", e);
                 }
             });
-            firestore.collection("Deliveries")
+            firestore.collection(collection)
                     .document(item.getId())
                     .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -100,8 +108,9 @@ public class SignFragment extends Fragment {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
             });
+            getActivity().recreate();
         });
-        getActivity().recreate();
+
     }
 
     private void checkScan(Task<DocumentSnapshot> task) {
@@ -111,7 +120,9 @@ public class SignFragment extends Fragment {
                 item = document.toObject(ListItemInfo.class);
                 item.setId(scanResult);
             }
-            else {}
+            else {
+
+            }
         }
         else {}
     }

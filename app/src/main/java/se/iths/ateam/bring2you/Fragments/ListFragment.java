@@ -18,6 +18,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class ListFragment extends Fragment {
     private FirebaseUser firebaseUser;
     private String collection;
     private MyUser myUser = new MyUser();
+    ListenerRegistration registration;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,11 +50,24 @@ public class ListFragment extends Fragment {
         mRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         firestore = FirebaseFirestore.getInstance();
         mRecyclerView.setHasFixedSize(true);
+        adapter = new RecyclerViewAdapter(listItems);
+        mRecyclerView.setAdapter(adapter);
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         collection = firebaseUser.getEmail();
 
+        view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
+            Fragment createDeliveryFragment = new CreateDeliveryFragment();
+            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+                    .commit();
+        });
+
+        return view;
+    }
+
+    public void onResume() {
+        super.onResume();
         firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -65,12 +80,9 @@ public class ListFragment extends Fragment {
                         if(myUser.isAdmin()){
                             collection = "Delivered";
                             Log.d("Collection", collection);
-                            view.findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+                            getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
                         }
-                        adapter = new RecyclerViewAdapter(listItems);
-                        mRecyclerView.setAdapter(adapter);
-
-                        firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                        registration = firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
                             @Override
                             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                                 Log.d("hej","Event?");
@@ -102,14 +114,12 @@ public class ListFragment extends Fragment {
                 }
             }
         });
-
-        view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
-            Fragment createDeliveryFragment = new CreateDeliveryFragment();
-            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
-                    .commit();
-        });
-        return view;
     }
+    public void onPause() {
+        super.onPause();
+        registration.remove();
+    }
+
 }
 
 
