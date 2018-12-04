@@ -45,27 +45,13 @@ public class CreateDeliveryFragment extends Fragment {
 
                 firestore.collection(collection)
                         .add(info)
-                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                            @Override
-                            public void onSuccess(DocumentReference documentReference) {
-                                Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId());
-                            }
-                        })
-                        .addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Log.w("firebase", "Error adding document", e);
-                            }
-                        });
+                        .addOnSuccessListener(documentReference -> Log.d("firebase", "DocumentSnapshot added with ID: " + documentReference.getId()))
+                        .addOnFailureListener(e -> Log.w("firebase", "Error adding document", e));
                 getActivity().recreate();
             }
 
         });
-
-
-
         return view;
-
     }
     private void toastMessage(String Message){
         Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
