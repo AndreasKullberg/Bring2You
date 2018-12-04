@@ -22,6 +22,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 import javax.annotation.Nullable;
@@ -51,17 +52,17 @@ public class ListFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        collection = firebaseUser.getEmail();
+        collection = Objects.requireNonNull(firebaseUser).getEmail();
 
-        firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        firestore.collection("Users").document(Objects.requireNonNull(firebaseUser.getEmail())).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
+                    if (Objects.requireNonNull(document).exists()) {
                         String id = document.getId();
                         myUser = document.toObject(MyUser.class);
-                        myUser.setId(id);
+                        Objects.requireNonNull(myUser).setId(id);
                         if(myUser.isAdmin()){
                             collection = "Delivered";
                             Log.d("Collection", collection);
@@ -78,7 +79,7 @@ public class ListFragment extends Fragment {
                                     return;
                                 }
 
-                                for (DocumentChange dc : queryDocumentSnapshots.getDocumentChanges()) {
+                                for (DocumentChange dc : Objects.requireNonNull(queryDocumentSnapshots).getDocumentChanges()) {
                                     if (dc.getType() == DocumentChange.Type.ADDED) {
                                         Log.d("hej","added?");
                                         String id = dc.getDocument().getId();
@@ -94,18 +95,14 @@ public class ListFragment extends Fragment {
                                 }
                             }
                         });
-                    } else {
-
                     }
-                } else {
-
                 }
             }
         });
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
-            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+            Objects.requireNonNull(getFragmentManager()).beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
                     .commit();
         });
         return view;

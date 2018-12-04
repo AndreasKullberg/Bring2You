@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
+
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
@@ -59,7 +60,7 @@ public class LoginActivity extends AppCompatActivity {
             startActivity(new Intent(LoginActivity.this, MainActivity.class));
         } else {
 
-          findViews();
+            findViews();
             getPreferencesData();
 
             loginButton.setOnClickListener(v -> {
@@ -101,11 +102,12 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                    startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                                 } else {
                                     toastMessage("Failure login in..");
                                 }
                             });
+
             });
 
         }
