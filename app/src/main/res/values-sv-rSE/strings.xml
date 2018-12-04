@@ -34,4 +34,9 @@
     <string name="postal_code">Postnummer</string>
     <string name="quit">Avsluta</string>
     <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
+    <string name="Adress">Adress</string>
+    <string name="Name">Namn</string>
+    <string name="Postalcode">Postnummer</string>
+    <string name="Find">Hitta</string>
+    <string name="search">Sök</string>
 </resources>
