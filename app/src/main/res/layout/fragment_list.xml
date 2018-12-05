@@ -7,30 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Fragments.ListFragment">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="58dp"
-        android:elevation="3dp"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="42dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="3dp"
-        android:elevation="3dp"
-        android:src="@drawable/logob2u"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.0" />
 
     <se.iths.ateam.bring2you.Utils.FloatingButton
         android:id="@+id/floatingActionButton"
@@ -46,7 +23,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="40dp"
         app:layoutManager="android.support.v7.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,15 +33,5 @@
         tools:listitem="@layout/list_item">
 
     </android.support.v7.widget.RecyclerView>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="125dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        android:elevation="3dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
