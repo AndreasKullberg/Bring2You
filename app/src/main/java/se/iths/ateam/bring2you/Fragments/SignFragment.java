@@ -60,11 +60,12 @@ public class SignFragment extends Fragment {
 
         SignFragment.scanResult = myResult;
     }
+    private View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign, container, false);
+        view = inflater.inflate(R.layout.fragment_sign, container, false);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -87,10 +88,10 @@ public class SignFragment extends Fragment {
     }
 
     /*private void drawCanvas() {
-        Canvas canvas =
+        Canvas canvas = view.findViewById();
         int canvasHeight  = canvas.getHeight();
         int canvasWidth  = canvas.getWidth();
-        Context context = canvas.getContext("2d");
+        Context context = canvas.getContext('2d');
 
         context.fillStyle = "black";
         context.font = "50px Arial";

@@ -8,6 +8,7 @@
         <attr name="buttoncolor" format="color" />
         <attr name="buttontextcolor" format="color"/>
         <attr name="BotBarBack" format="reference" />
+        <attr name="TopBarBack" format="reference" />
         <attr name="mybutton" format="reference"/>
     </declare-styleable>
 </resources>
