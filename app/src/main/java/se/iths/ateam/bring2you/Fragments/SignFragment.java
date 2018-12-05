@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,6 +69,7 @@ public class SignFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_sign, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSign);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -120,8 +122,9 @@ public class SignFragment extends Fragment {
             item.setSignedBy(signedByView.getText().toString());
             item.setDate(getDate());
             item.setTime(getTime());
+            item.setDelivered(true);
 
-            firestore.collection(collection).document(item.getId()).update("delivered", true)
+            firestore.collection(collection).document(item.getId()).set(item)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void aVoid) {

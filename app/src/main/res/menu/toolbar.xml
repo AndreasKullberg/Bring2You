@@ -3,8 +3,10 @@
 
     <item
         android:id="@+id/delivered"
-        android:title="Delivered" />
+        android:title="@string/delivered"
+        android:visible="false" />
     <item
         android:id="@+id/nonDelivered"
-        android:title="Non Delivered" />
+        android:title="@string/non_delivered"
+        android:visible="false" />
 </menu>

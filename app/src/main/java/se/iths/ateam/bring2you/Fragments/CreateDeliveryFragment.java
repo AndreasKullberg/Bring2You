@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,11 +34,11 @@ public class CreateDeliveryFragment extends Fragment {
     private String user;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private int i = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);
         createAdress = view.findViewById(R.id.createAdress);
         createName = view.findViewById(R.id.createName);
         createPostal = view.findViewById(R.id.createPostal);
