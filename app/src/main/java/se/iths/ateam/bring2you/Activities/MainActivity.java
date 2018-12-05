@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //(TextView)findViewById(R.id.toolbar_title).
         //currentUserSignedIn = findViewById(R.id.currentUserText);
         ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();

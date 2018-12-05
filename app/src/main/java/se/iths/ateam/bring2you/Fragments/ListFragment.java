@@ -41,6 +41,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
+
+import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.MyUser;
@@ -73,6 +75,11 @@ public class ListFragment extends Fragment {
         mRecyclerView.setAdapter(adapter);
         setHasOptionsMenu(true);
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
+
+
+        /*((MainActivity) getActivity())
+                .setActionBarTitle(getString(R.string.deliveries));
+        */
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();

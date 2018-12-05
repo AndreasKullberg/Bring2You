@@ -48,6 +48,8 @@ public class MyCanvas extends View {
     @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
+                Rect r = new Rect(0,0,this.getWidth(), this.getHeight());
+                canvas.drawRect(r, myPaint);
                 canvas.drawPath(path ,myPaint);
             }
 
@@ -75,6 +77,11 @@ public class MyCanvas extends View {
         }
         invalidate();
         return true;
+    }
+
+    public void clear(){
+        path.rewind();
+        invalidate();
     }
 
 }

@@ -11,7 +11,7 @@
     android:outlineAmbientShadowColor="@color/colorAccent"
     android:outlineProvider="bounds"
     app:cardCornerRadius="8dp"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
     app:cardMaxElevation="10dp">
 
 

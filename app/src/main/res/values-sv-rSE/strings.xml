@@ -49,4 +49,6 @@
     <string name="titleInfo">Information</string>
     <string name="non_delivered">Ej leverat</string>
     <string name="delivered">Levererat</string>
+    <string name="clear">RENSA</string>
+    <string name="deliveries">LEVERERAT</string>
 </resources>

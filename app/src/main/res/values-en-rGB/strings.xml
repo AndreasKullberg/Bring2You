@@ -49,4 +49,6 @@
     <string name="titleInfo">Info</string>
     <string name="non_delivered">Non Delivered</string>
     <string name="delivered">Delivered</string>
+    <string name="clear">CLEAR</string>
+    <string name="deliveries">DELIVERIES</string>
 </resources>
