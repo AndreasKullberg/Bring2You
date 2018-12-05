@@ -47,12 +47,12 @@ public class InfoFragment extends Fragment {
         time = getActivity().findViewById(R.id.infoTime);
         date = getActivity().findViewById(R.id.infoDate);
 
-        postalCode.setText(item.getPostalCode());
-        adress.setText(item.getAdress());
-        signedBy.setText(item.getSignedBy());
-        name.setText(item.getName());
-        date.setText(item.getDate());
-        time.setText(item.getTime());
+        postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+item.getPostalCode());
+        adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+item.getAdress());
+        signedBy.setText(getString(se.iths.ateam.bring2you.R.string.infoSignedBy)+item.getSignedBy());
+        name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+item.getName());
+        date.setText(getString(se.iths.ateam.bring2you.R.string.infoDate)+item.getDate());
+        time.setText(getString(se.iths.ateam.bring2you.R.string.infoTime)+item.getTime());
         imageUrl = item.getSignImageUrl();
 
 

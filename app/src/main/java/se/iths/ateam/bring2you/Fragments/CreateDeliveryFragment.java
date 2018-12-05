@@ -69,22 +69,16 @@ public class CreateDeliveryFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-                                                i++;
+                                            toastMessage("Successfully added new delivery!");
+                                            getActivity().recreate();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-
+                                            toastMessage("Error adding new delivery..");
                                         }
                                     });
-                            if(i==1){
-                                toastMessage("Successfully added new delivery!");
-                            }
-                            else{
-                                toastMessage("Error adding new delivery..");
-                            }
-                            getActivity().recreate();
                         }
                         else{
                             toastMessage("User do not exist!");
@@ -109,7 +103,7 @@ public class CreateDeliveryFragment extends Fragment {
 
     }
     private void toastMessage(String Message){
-        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 
