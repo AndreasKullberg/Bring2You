@@ -11,7 +11,7 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="58dp"
-        android:background="@drawable/topbartest"
+        android:background="@drawable/top_bar_light"
         android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -58,16 +58,5 @@
         tools:listitem="@layout/list_item">
 
     </android.support.v7.widget.RecyclerView>
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="125dp"
-        android:layout_height="41dp"
-        android:layout_marginStart="3dp"
-        android:layout_marginTop="2dp"
-        android:elevation="3dp"
-        android:src="@drawable/deliveries_text"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
