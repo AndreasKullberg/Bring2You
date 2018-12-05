@@ -26,7 +26,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private ThemeSharedPref themeSharedPref;
-    private String title;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         if(themeSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
-        } else {
+        }
+        else {
             setTheme(R.style.AppTheme);
         }
+
+
 
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //(TextView)findViewById(R.id.toolbar_title).
         //currentUserSignedIn = findViewById(R.id.currentUserText);
         ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
     }
+
+
 
 
     private void openList() {
@@ -98,13 +104,13 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_assignment:
-                            selectedFrag = new ListFragment();
+                        selectedFrag = new ListFragment();
                             break;
                     case R.id.nav_settings:
-                            selectedFrag = new SettingsFragment();
+                        selectedFrag = new SettingsFragment();
                             break;
                     case R.id.nav_maps:
-                            startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
+                        startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
                             //avoid null pointer exception
                             return true;
 
