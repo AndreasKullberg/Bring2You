@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
@@ -68,9 +70,35 @@ public class ListFragment extends Fragment {
         });
 
         return view;
+
+
+
     }
+    ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN, 0) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder dragged, @NonNull RecyclerView.ViewHolder target) {
+
+            int positionDragged = dragged.getAdapterPosition();
+            int positionTarget = target.getAdapterPosition();
+
+            Collections.swap(listItems,positionDragged,positionTarget);
+
+            adapter.notifyItemMoved(positionDragged,positionTarget);
+
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+
+        }
+
+    });
+
+
 
     public void onResume() {
+        touchHelper.attachToRecyclerView(mRecyclerView);
         super.onResume();
         listItems.clear();
         mRecyclerView.getRecycledViewPool().clear();
@@ -119,12 +147,14 @@ public class ListFragment extends Fragment {
             });
         }
     }
+
     public void onPause() {
         super.onPause();
         if(registration != null) {
             registration.remove();
         }
     }
+
 }
 
 
