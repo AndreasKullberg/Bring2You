@@ -35,4 +35,6 @@
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
     <string name="Find">Find</string>
     <string name="search">Search</string>
+    <string name="clear">CLEAR</string>
+    <string name="deliveries">DELIVERIES</string>
 </resources>

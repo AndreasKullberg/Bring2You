@@ -43,6 +43,8 @@
     <string name="name">Name</string>
     <string name="postal_code">Postal code</string>
     <string name="search">Search</string>
+    <string name="clear">CLEAR</string>
+    <string name="deliveries">DELIVERIES</string>
 
 
 </resources>

@@ -84,26 +84,7 @@ public class SignFragment extends Fragment {
         }
 
         return view;
-        //drawCanvas();
     }
-
-    /*private void drawCanvas() {
-        Canvas canvas = view.findViewById();
-        int canvasHeight  = canvas.getHeight();
-        int canvasWidth  = canvas.getWidth();
-        Context context = canvas.getContext('2d');
-
-        context.fillStyle = "black";
-        context.font = "50px Arial";
-        context.fillText('ASD', 0, 50);
-        context.globalCompositeOperation = "destination-over";
-        context.fillStyle = "#00FFFF";
-        context.fillRect(0,0,canvas.width,canvas.height);//for white background
-        context.globalCompositeOperation = "source-over";
-        context.lineWidth = 2;
-        context.strokeStyle="#FF0000";
-        context.strokeRect(0, 0, canvas.width, canvas.height);//for white background
-    }*/
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
