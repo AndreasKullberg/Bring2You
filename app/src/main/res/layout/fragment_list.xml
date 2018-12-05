@@ -11,7 +11,6 @@
         android:id="@+id/toolbar"
         android:layout_width="0dp"
         android:layout_height="58dp"
-        android:background="@drawable/topbartest"
         android:elevation="3dp"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -66,7 +65,6 @@
         android:layout_marginStart="3dp"
         android:layout_marginTop="2dp"
         android:elevation="3dp"
-        android:src="@drawable/deliveries_text"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
