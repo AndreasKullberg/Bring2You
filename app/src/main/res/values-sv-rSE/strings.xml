@@ -15,12 +15,26 @@
     <string name="title_home">Hem</string>
     <string name="title_notifications">Notifikationer</string>
     <string name="order">Order</string>
-    <string name="maps">Maps</string>
-    <string name="Find">Find</string>
+    <string name="maps">Karta</string>
     <string name="password">Lösenord</string>
     <string name="login">Logga in</string>
     <string name="email">Epost</string>
     <string name="theme">Tema</string>
     <string name="language">Språk</string>
     <string name="signout">Logga ut</string>
+    <string name="swedish">Svenska</string>
+    <string name="english">Engelska</string>
+    <string name="remember_me">Kom ihåg mig</string>
+    <string name="send" translatable="false">SKICKA</string>
+    <string name="logout" translatable="false">Logga ut</string>
+    <string name="adress">Adress</string>
+    <string name="name">Namn</string>
+    <string name="sender_id">Avsändarid</string>
+    <string name="postal_code">Postnummer</string>
+    <string name="quit">Avsluta</string>
+    <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
+    <string name="Find">Hitta</string>
+    <string name="search">Sök</string>
+    <string name="clear">RENSA</string>
+    <string name="deliveries">LEVERERAT</string>
 </resources>
