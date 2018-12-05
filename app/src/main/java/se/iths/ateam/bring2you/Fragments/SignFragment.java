@@ -34,8 +34,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
@@ -97,6 +100,19 @@ public class SignFragment extends Fragment {
             item.setDate(getDate());
             item.setTime(getTime());
 
+            firestore.collection(collection).document(item.getId()).update("delivered", true)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
             firestore.collection("Delivered")
                     .document(item.getId())
                     .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -110,7 +126,8 @@ public class SignFragment extends Fragment {
                     Log.w("succsesSet", "Error deleting document", e);
                 }
             });
-            firestore.collection(collection)
+
+            /*:firestore.collection(collection)
                     .document(item.getId())
                     .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -122,7 +139,7 @@ public class SignFragment extends Fragment {
                 public void onFailure(@NonNull Exception e) {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
-            });
+            });*/
         getActivity().recreate();
         });
     }
