@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,7 @@ public class CreateDeliveryFragment extends Fragment {
                                     });
                             if(i==1){
                                 toastMessage("Successfully added new delivery!");
+                                getActivity().recreate();
                             }
                             else{
                                 toastMessage("Error adding new delivery..");
@@ -90,9 +92,6 @@ public class CreateDeliveryFragment extends Fragment {
                             toastMessage("User do not exist!");
                         }
                     }
-
-
-
 
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -109,8 +108,9 @@ public class CreateDeliveryFragment extends Fragment {
 
     }
     private void toastMessage(String Message){
-        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 
 }
+

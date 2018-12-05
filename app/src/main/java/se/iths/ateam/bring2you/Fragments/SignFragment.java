@@ -42,7 +42,7 @@ import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
-
+@SuppressWarnings("deprecation")
 public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
     private EditText signedByView;
