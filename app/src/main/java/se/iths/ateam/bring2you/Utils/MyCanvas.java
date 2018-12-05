@@ -32,9 +32,6 @@ public class MyCanvas extends View {
     Paint myPaint = new Paint();
     Path path = new Path();
 
-
-
-
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         myPaint.setAntiAlias(true);
@@ -42,8 +39,9 @@ public class MyCanvas extends View {
         myPaint.setStrokeJoin(Paint.Join.ROUND);
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5f);
-
     }
+
+
 
     @Override
             protected void onDraw(Canvas canvas) {

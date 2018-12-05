@@ -1,6 +1,7 @@
 package se.iths.ateam.bring2you.Fragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
@@ -40,8 +41,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.MyCanvas;
+
 @SuppressWarnings("deprecation")
 public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
@@ -74,6 +78,7 @@ public class SignFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("Signatures");
 
 
+
         if (scanResult != null){
         firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
         }
@@ -83,7 +88,17 @@ public class SignFragment extends Fragment {
             item = (ListItemInfo) Objects.requireNonNull(bundle).getSerializable("Item");
         }
 
+
         return view;
+    }
+
+    private void clear() {
+        getActivity().findViewById(R.id.clear_btn).setOnClickListener(v ->{
+
+            MyCanvas mycanvas = getActivity().findViewById(R.id.my_canvas);
+            mycanvas.clear();
+
+        }  );
     }
 
     @Override
@@ -128,6 +143,7 @@ public class SignFragment extends Fragment {
             });
         getActivity().recreate();
         });
+        clear();
     }
 
     private byte[] makeSignature() {
@@ -145,20 +161,7 @@ public class SignFragment extends Fragment {
 
 
 
-//        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-//        File file = new File(path+"/signature.png");
-//        FileOutputStream oStream;
-//        try {
-//            file.createNewFile();
-//            oStream = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream);
-//            oStream.flush();
-//            oStream.close();
-//            Toast.makeText(getActivity().getApplicationContext(), "image saved", Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-//        }
+
     }
 
     private String getDate(){
