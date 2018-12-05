@@ -80,6 +80,7 @@ public class CreateDeliveryFragment extends Fragment {
                                     });
                             if(i==1){
                                 toastMessage("Successfully added new delivery!");
+                                getActivity().recreate();
                             }
                             else{
                                 toastMessage("Error adding new delivery..");
@@ -90,9 +91,6 @@ public class CreateDeliveryFragment extends Fragment {
                             toastMessage("User do not exist!");
                         }
                     }
-
-
-
 
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -109,7 +107,7 @@ public class CreateDeliveryFragment extends Fragment {
 
     }
     private void toastMessage(String Message){
-        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 

@@ -28,9 +28,9 @@ import java.util.Objects;
 
 import javax.annotation.Nullable;
 
+import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.MyUser;
-import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.RecyclerViewAdapter;
 
 public class ListFragment extends Fragment {
@@ -72,7 +72,9 @@ public class ListFragment extends Fragment {
 
     public void onResume() {
         super.onResume();
-        //listItems.clear();
+        listItems.clear();
+        mRecyclerView.getRecycledViewPool().clear();
+        adapter.notifyDataSetChanged();
         if(firebaseUser != null) {
             firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
@@ -118,15 +120,11 @@ public class ListFragment extends Fragment {
         }
     }
     public void onPause() {
-
         super.onPause();
         if(registration != null) {
             registration.remove();
         }
     }
-
-
-
 }
 
 
