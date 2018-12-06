@@ -11,7 +11,7 @@
     android:outlineAmbientShadowColor="@color/colorAccent"
     android:outlineProvider="bounds"
     app:cardCornerRadius="8dp"
-    app:cardElevation="5dp"
+    app:cardElevation="3dp"
     app:cardMaxElevation="10dp">
 
 
@@ -25,63 +25,72 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/Adress"
+            android:layout_marginTop="4dp"
+            android:text="@string/adress"
+            android:textAppearance="@style/TextAppearance.AppCompat"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="Adress" />
+            app:layout_constraintTop_toBottomOf="@+id/textName" />
 
         <TextView
             android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:text="@string/Name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.046"
+            android:text="@string/name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textAdress"
-            tools:text="Name" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textPostalCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/Postalcode"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.051"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/postal_code"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toTopOf="@+id/textSenderId"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName"
-            tools:text="Postal code" />
+            app:layout_constraintTop_toBottomOf="@+id/textAdress" />
 
         <TextView
             android:id="@+id/textSenderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/Senderid"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/sender_id"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintHorizontal_bias="0.025"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPostalCode"
-            tools:text="SenderId" />
+            app:layout_constraintVertical_bias="0.0" />
 
 
         <ImageButton
             android:id="@+id/imageButton_maps"
-            android:layout_width="32dp"
-            android:layout_height="35dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:layout_marginStart="64dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:background="#00000000"
+            android:backgroundTint="#FF4A148C"
+            android:elevation="10dp"
             android:onClick="openMapsTest"
+            android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.956"
             app:layout_constraintStart_toEndOf="@+id/textPostalCode"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/googlemaps_32px" />
+            app:layout_constraintVertical_bias="0.507"
+            app:srcCompat="@drawable/google_mapsicon" />
 
     </android.support.constraint.ConstraintLayout>
 

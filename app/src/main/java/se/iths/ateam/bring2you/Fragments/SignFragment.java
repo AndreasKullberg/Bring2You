@@ -1,11 +1,14 @@
 package se.iths.ateam.bring2you.Fragments;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,11 +37,16 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.security.Key;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
-
+@SuppressWarnings("deprecation")
 public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
     private EditText signedByView;
@@ -56,14 +64,15 @@ public class SignFragment extends Fragment {
 
         SignFragment.scanResult = myResult;
     }
+    private View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_sign, container, false);
+        view = inflater.inflate(R.layout.fragment_sign, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSign);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
-        storageReference = FirebaseStorage.getInstance().getReference("SignImage");
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         collection = firebaseUser.getEmail();
@@ -85,16 +94,31 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
-
-
 
             StorageReference fileRef = storageReference.child(item.getId() + ".png");
             storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {});
 
             item.setSignImageUrl("gs://" +fileRef.getBucket()+"/Signatures/" + item.getId() + ".png");
             item.setSignedBy(signedByView.getText().toString());
+            item.setDate(getDate());
+            item.setTime(getTime());
+            item.setDelivered(true);
 
+            firestore.collection(collection).document(item.getId()).set(item)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
             firestore.collection("Delivered")
                     .document(item.getId())
                     .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -108,7 +132,8 @@ public class SignFragment extends Fragment {
                     Log.w("succsesSet", "Error deleting document", e);
                 }
             });
-            firestore.collection(collection)
+
+            /*:firestore.collection(collection)
                     .document(item.getId())
                     .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -120,7 +145,7 @@ public class SignFragment extends Fragment {
                 public void onFailure(@NonNull Exception e) {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
-            });
+            });*/
         getActivity().recreate();
         });
     }
@@ -154,6 +179,19 @@ public class SignFragment extends Fragment {
 //            e.printStackTrace();
 //            Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
 //        }
+    }
+
+    private String getDate(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String currentDate = simpleDateFormat.format(new Date());
+
+        return currentDate;
+    }
+    private String getTime(){
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
+        String currentTime = simpleDateFormat.format(new Date());
+
+        return currentTime;
     }
 
     private void checkScan(Task<DocumentSnapshot> task) {

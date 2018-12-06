@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,11 +34,11 @@ public class CreateDeliveryFragment extends Fragment {
     private String user;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private int i = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);
         createAdress = view.findViewById(R.id.createAdress);
         createName = view.findViewById(R.id.createName);
         createPostal = view.findViewById(R.id.createPostal);
@@ -69,30 +71,21 @@ public class CreateDeliveryFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-                                                i++;
+                                            toastMessage("Successfully added new delivery!");
+                                            getActivity().recreate();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-
+                                            toastMessage("Error adding new delivery..");
                                         }
                                     });
-                            if(i==1){
-                                toastMessage("Successfully added new delivery!");
-                            }
-                            else{
-                                toastMessage("Error adding new delivery..");
-                            }
-                            getActivity().recreate();
                         }
                         else{
                             toastMessage("User do not exist!");
                         }
                     }
-
-
-
 
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -109,8 +102,9 @@ public class CreateDeliveryFragment extends Fragment {
 
     }
     private void toastMessage(String Message){
-        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 
 }
+
