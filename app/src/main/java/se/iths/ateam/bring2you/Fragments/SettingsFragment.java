@@ -26,6 +26,7 @@ import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 public class SettingsFragment extends Fragment {
 
     private ThemeSharedPref themeSharedPref;
+    private Fragment selectedFrag;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -47,11 +48,9 @@ public class SettingsFragment extends Fragment {
 
         themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
-                themeSharedPref.setDarkModeState(true);
-                getActivity().recreate();
+                changeTheme(true);
             }else{
-                themeSharedPref.setDarkModeState(false);
-                getActivity().recreate();
+                changeTheme(false);
             }
         });
 
@@ -94,11 +93,9 @@ public class SettingsFragment extends Fragment {
                 alert.show();
             }
         });
-
     }
 
     private void changeLanguage(String languageToLoad){
-
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -111,8 +108,18 @@ public class SettingsFragment extends Fragment {
         Objects.requireNonNull(getActivity()).recreate();
     }
 
+    private void changeTheme(Boolean darkTheme){
+        themeSharedPref.setDarkModeState(darkTheme);
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).recreate();
+    }
+
     private void toastMessage(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
 }
+
+//TODO Byta ikon efter man valt språk (Inställningar är förvalt även om man blir skickad tillbaka till Order listan)
