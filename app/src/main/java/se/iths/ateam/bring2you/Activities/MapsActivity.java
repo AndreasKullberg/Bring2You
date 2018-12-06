@@ -100,22 +100,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Address add = list.get(0);
             String locality = add.getLocality();
             if (locality == null) {
-                Toast.makeText(this, "Destination: " + location, Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.destination) + " " + location, Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
+                Toast.makeText(this, getString(R.string.destination) + " " + locality, Toast.LENGTH_LONG).show();
             }
             double latitude = add.getLatitude();
             double longitude = add.getLongitude();
 
             gotoLocation(latitude, longitude, zoom);
         } else {
-            Toast.makeText(this, "The destination was not found.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,getString(R.string.dest_not_found), Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "Ready to map!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.ready_to_map), Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
                     case R.id.nav_signout:
                         FirebaseAuth.getInstance().signOut();
-                        toastMessage("Signing out..");
+                        toastMessage(getString(R.string.signing_out));
                         finish();
                         startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         return true;

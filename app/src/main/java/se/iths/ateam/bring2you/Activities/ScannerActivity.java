@@ -100,11 +100,11 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted){
-                        Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.permission_granted_camera), Toast.LENGTH_LONG).show();
                     }else {
-                        Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.permission_denied_camera), Toast.LENGTH_LONG).show();
                         if (shouldShowRequestPermissionRationale(CAMERA)) {
-                            showMessageOKCancel("You need to allow access to both the permissions",
+                            showMessageOKCancel(getString(R.string.both_permissions),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -123,8 +123,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new android.support.v7.app.AlertDialog.Builder(ScannerActivity.this)
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
+                .setPositiveButton(getString(R.string.Ok), okListener)
+                .setNegativeButton(getString(R.string.cancel), null)
                 .create()
                 .show();
     }

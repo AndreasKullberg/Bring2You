@@ -52,4 +52,23 @@
     <string name="clear">RENSA</string>
     <string name="deliveries">LEVERERAT</string>
     <string name="enter_a_location">Skriv in en adress</string>
+    <string name="find">Hitta</string>
+    <string name="logged_in_as">Inloggad med:</string>
+    <string name="no_blank_fields">Inga tomma fält!</string>
+    <string name="login_success">Lyckad inloggad med:</string>
+    <string name="login_failed">Misslyckad inloggning</string>
+    <string name="signing_out">Loggar ut...</string>
+    <string name="dest_not_found">Destinationen kunde inte hittas</string>
+    <string name="ready_to_map">Nu kör vi!</string>
+    <string name="permission_granted_camera">Du kan nu använda kameran</string>
+    <string name="permission_denied_camera">Ditt medgivande krävs för att använda kameran</string>
+    <string name="both_permissions">Ditt medgivande krävs för båda funktioner</string>
+    <string name="cancel">Avbryt</string>
+    <string name="delivery_added">Ny order tillagd!</string>
+    <string name="delivery_error">Misslyckades med att lägga till order...</string>
+    <string name="user_doesnt_exist">Användaren finns inte!</string>
+    <string name="lang_set_EN">Språket är nu inställt på Engelska!</string>
+    <string name="lang_set_SV">Språket är nu inställt på Svenska!</string>
+    <string name="already_EN">Språket är redan inställt på Engelska!</string>
+    <string name="already_SV">Språket är redan inställt på Svenska!</string>
 </resources>

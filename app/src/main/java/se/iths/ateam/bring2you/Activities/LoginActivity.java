@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null) {
             finish();
-            toastMessage("Logged in as: " + Objects.requireNonNull(user).getEmail());
+            toastMessage(getString(R.string.logged_in_as) + " " + Objects.requireNonNull(user).getEmail());
            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
 
@@ -85,19 +85,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if (mUsername.getText().toString().equals("") && mPassword.getText().toString().equals("")) {
-                    mUsername.setError("No blank fields");
-                    mPassword.setError("No blank fields!");
+                    mUsername.setError(getText(R.string.no_blank_fields));
+                    mPassword.setError(getText(R.string.no_blank_fields));
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
                 } else if (mUsername.getText().toString().equals("")) {
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    mUsername.setError("No blank fields!");
+                    mUsername.setError(getText(R.string.no_blank_fields));
 
                 } else if (mPassword.getText().toString().equals("")) {
                     loginButton.setVisibility(View.VISIBLE);
                     progressBar.setVisibility(View.INVISIBLE);
-                    mPassword.setError("No blank fields!");
+                    mPassword.setError(getText(R.string.no_blank_fields));
                 } else
                     mAuth.signInWithEmailAndPassword(mUsername.getText().toString(), mPassword.getText().toString())
                             .addOnCompleteListener(task -> {
@@ -107,10 +107,10 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (task.isSuccessful()) {
                                     finish();
-                                    toastMessage("Successfully logged in as: " + Objects.requireNonNull(user).getEmail());
+                                    toastMessage(getString(R.string.login_success) + " " + Objects.requireNonNull(user).getEmail());
                                     startActivity(new Intent(LoginActivity.this, SplashActivity.class));
                                 } else {
-                                    toastMessage("Failure login in..");
+                                    toastMessage(getString(R.string.login_failed));
                                 }
                             });
 

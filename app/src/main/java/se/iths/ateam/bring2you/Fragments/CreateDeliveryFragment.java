@@ -54,7 +54,7 @@ public class CreateDeliveryFragment extends Fragment {
             senderId = createSender.getText().toString();
 
             if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")||sendTo.equals("")){
-                toastMessage("No blank fields!");
+                toastMessage(getString(R.string.no_blank_fields));
             }
 
             else {
@@ -71,19 +71,19 @@ public class CreateDeliveryFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-                                            toastMessage("Successfully added new delivery!");
+                                            toastMessage(getString(R.string.delivery_added));
                                             getActivity().recreate();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            toastMessage("Error adding new delivery..");
+                                            toastMessage(getString(R.string.delivery_error));
                                         }
                                     });
                         }
                         else{
-                            toastMessage("User do not exist!");
+                            toastMessage(getString(R.string.user_doesnt_exist));
                         }
                     }
 

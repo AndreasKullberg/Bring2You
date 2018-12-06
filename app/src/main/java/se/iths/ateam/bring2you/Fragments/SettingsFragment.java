@@ -64,9 +64,9 @@ public class SettingsFragment extends Fragment {
             if (current.getLanguage().equals("sv")){
                 settingsSharedPref.setLanguage("en");
                 changeLanguage("en");
-                toastMessage("Language is now set to English!");
+                toastMessage(getString(R.string.lang_set_EN));
             }else{
-                toastMessage("Language is already set to English!");
+                toastMessage(getString(R.string.already_EN));
             }
         });
 
@@ -74,9 +74,9 @@ public class SettingsFragment extends Fragment {
             if (current.getLanguage().equals("en")){
                 settingsSharedPref.setLanguage("sv");
                 changeLanguage("sv");
-                toastMessage("Språket är nu inställt på Svenska!");
+                toastMessage(getString(R.string.lang_set_SV));
             }else{
-                toastMessage("Språket är redan inställt på Svenska!");
+                toastMessage(getString(R.string.already_SV));
             }
         });
 

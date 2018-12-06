@@ -100,9 +100,9 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         Address add = list.get(0);
         String locality = add.getLocality();
         if (locality == null) {
-            Toast.makeText(this, "Destination: " + location, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.destination) + " " + location, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.destination) + " " + locality, Toast.LENGTH_LONG).show();
         }
         double latitude = add.getLatitude();
         double longitude = add.getLongitude();
@@ -112,7 +112,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "Ready to map!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.ready_to_map), Toast.LENGTH_SHORT).show();
     }
 
     @Override
