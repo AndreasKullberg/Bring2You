@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.google.zxing.Result;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
+import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 
 import static android.Manifest.permission.CAMERA;
@@ -28,6 +30,14 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeSharedPref themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);

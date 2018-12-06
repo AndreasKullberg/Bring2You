@@ -37,6 +37,7 @@ import java.util.List;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 // GoogleMaps activity that zooms into delivery location
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -49,6 +50,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeSharedPref themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         Intent i = getIntent();

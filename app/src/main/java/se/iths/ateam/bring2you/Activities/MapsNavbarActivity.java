@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 // GoogleMaps activity with a search function
 public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCallback,
@@ -39,6 +40,13 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ThemeSharedPref themeSharedPref = new ThemeSharedPref(this);
+
+        if(themeSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar_maps);
         initMap();
