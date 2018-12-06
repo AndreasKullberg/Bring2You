@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frameLayout, selectedFrag)
-                            .addToBackStack(null)
+                            .addToBackStack("selectedFrag")
                             .commit();
                 return true;
                 };
@@ -139,13 +139,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack("selectedFrag", 1);
         } else {
             super.onBackPressed();
         }
     }
-}
+
+    }
+
 
 
