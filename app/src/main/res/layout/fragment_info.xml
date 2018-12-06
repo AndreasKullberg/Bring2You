@@ -37,13 +37,10 @@
         android:id="@+id/infoName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="232dp"
         android:layout_marginTop="44dp"
-        android:layout_marginEnd="120dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.982"
-        app:layout_constraintStart_toEndOf="@+id/infoSignedBy"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Name" />
 
@@ -62,13 +59,10 @@
         android:id="@+id/infoPostalCode"
         android:layout_width="wrap_content"
         android:layout_height="18dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="232dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="83dp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.99"
-        app:layout_constraintStart_toEndOf="@+id/infoAdress"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoName"
         tools:text="Postal code" />
 
@@ -85,15 +79,15 @@
 
     <TextView
         android:id="@+id/infoTime"
-        android:layout_width="36dp"
-        android:layout_height="19dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="42dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="232dp"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="124dp"
+        android:layout_marginEnd="116dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/infoDate"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoPostalCode"
         tools:text="Time" />
 </android.support.constraint.ConstraintLayout>
