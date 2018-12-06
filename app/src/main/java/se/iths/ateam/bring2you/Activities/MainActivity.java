@@ -1,8 +1,13 @@
 package se.iths.ateam.bring2you.Activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -118,7 +123,10 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         return  true;
                 }
-                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.frameLayout, selectedFrag)
+                            .addToBackStack(null)
+                            .commit();
                 return true;
                 };
 
@@ -134,6 +142,15 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0){
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        } else {
+            super.onBackPressed();
+        }
+    }
 }
 
 
