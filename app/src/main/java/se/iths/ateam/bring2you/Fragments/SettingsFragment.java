@@ -27,6 +27,7 @@ import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 public class SettingsFragment extends Fragment {
 
     private ThemeSharedPref themeSharedPref;
+    private Fragment selectedFrag;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
@@ -93,11 +94,9 @@ public class SettingsFragment extends Fragment {
                 alert.show();
             }
         });
-
     }
 
     private void changeLanguage(String languageToLoad){
-
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
@@ -123,3 +122,5 @@ public class SettingsFragment extends Fragment {
     }
 
 }
+
+//TODO Byta ikon efter man valt språk (Inställningar är förvalt även om man blir skickad tillbaka till Order listan)

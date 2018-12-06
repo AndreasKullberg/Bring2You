@@ -36,8 +36,6 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-        //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
         if (themeSharedPref.loadDarkModeState()) {
@@ -56,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null) {
             finish();
-            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+            toastMessage("Logged in as: " + Objects.requireNonNull(user).getEmail());
            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
 

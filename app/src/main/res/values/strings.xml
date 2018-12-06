@@ -31,7 +31,7 @@
     <string name="sv" translatable="false">SV</string>
     <string name="signout">Signout</string>
     <string name="send">SEND</string>
-    <string name="logout">logout</string>
+    <string name="logout">Logout</string>
     <string name="swedish">Swedish</string>
     <string name="english">English</string>
     <string name="remember_me">Remember me</string>
@@ -60,5 +60,6 @@
     <string name="non_delivered">Non Delivered</string>
     <string name="delivered">Delivered</string>
 
-
+    <string name="find">Find:</string>
+    <string name="enter_a_location">Enter a location</string>
 </resources>

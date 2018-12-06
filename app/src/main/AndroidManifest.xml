@@ -3,7 +3,7 @@
     package="se.iths.ateam.bring2you">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA"/>
+
 
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->

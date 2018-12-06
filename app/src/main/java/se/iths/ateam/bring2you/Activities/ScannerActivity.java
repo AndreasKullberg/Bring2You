@@ -26,10 +26,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     private static final int requestCamera = 1;
     private ZXingScannerView scannerView;
 
-    {
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +37,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (checkPermission()){
-                Toast.makeText(ScannerActivity.this,"Permission is granted!",Toast.LENGTH_LONG).show();
             }
             else{
                 requestPermission();
@@ -129,32 +124,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
         startActivity(intent);
-/*
-        Fragment signfragment = new SignFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        SignFragment.setScanResult(myResult);
-        fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
-*/
 
-
-        /*AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Scan Result");
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                scannerView.resumeCameraPreview(ScannerActivity.this);
-            }
-        });
-        builder.setNeutralButton("Visit", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(myResult));
-                startActivity(browserIntent);
-            }
-        });
-        builder.setMessage(result.getText());
-        AlertDialog alert1 = builder.create();
-        alert1.show();*/
     }
 }
