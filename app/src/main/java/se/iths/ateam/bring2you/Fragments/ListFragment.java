@@ -139,7 +139,7 @@ public class ListFragment extends Fragment {
                                 Log.d("Collection", collection);
                                 getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
                             }
-                            registration = firestore.collection(collection).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            registration = firestore.collection(collection).whereEqualTo("delivered",status).addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override
                                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                                     Log.d("hej", "Event?");

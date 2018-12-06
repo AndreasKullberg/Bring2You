@@ -34,7 +34,6 @@ public class CreateDeliveryFragment extends Fragment {
     private String user;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private int i = 1;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -72,23 +71,16 @@ public class CreateDeliveryFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-                                                i++;
+                                            toastMessage("Successfully added new delivery!");
+                                            getActivity().recreate();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-
+                                            toastMessage("Error adding new delivery..");
                                         }
                                     });
-                            if(i==1){
-                                toastMessage("Successfully added new delivery!");
-                                getActivity().recreate();
-                            }
-                            else{
-                                toastMessage("Error adding new delivery..");
-                            }
-                            getActivity().recreate();
                         }
                         else{
                             toastMessage("User do not exist!");
