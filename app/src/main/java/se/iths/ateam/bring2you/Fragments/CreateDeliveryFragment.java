@@ -71,8 +71,10 @@ public class CreateDeliveryFragment extends Fragment {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
+
+                                            getFragmentManager().popBackStack();
                                             toastMessage(getString(R.string.delivery_added));
-                                            getActivity().recreate();
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
