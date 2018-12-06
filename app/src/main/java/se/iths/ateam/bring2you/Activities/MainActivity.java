@@ -16,7 +16,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 import se.iths.ateam.bring2you.Fragments.ListFragment;
-import se.iths.ateam.bring2you.Fragments.MapFragment;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Fragments.SettingsFragment;
 import se.iths.ateam.bring2you.Fragments.SignFragment;
@@ -33,7 +32,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
 
         if(themeSharedPref.loadDarkModeState()) {
@@ -48,15 +46,12 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        //(TextView)findViewById(R.id.toolbar_title).
-        //currentUserSignedIn = findViewById(R.id.currentUserText);
         ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
         openList();
 
-        // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
 
 
