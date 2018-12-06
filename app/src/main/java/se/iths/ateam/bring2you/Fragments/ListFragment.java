@@ -1,13 +1,18 @@
 package se.iths.ateam.bring2you.Fragments;
 
 
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -31,6 +36,7 @@ import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.MyUser;
 import se.iths.ateam.bring2you.Utils.RecyclerViewAdapter;
+import se.iths.ateam.bring2you.Utils.ViewModel;
 
 public class ListFragment extends Fragment {
 
@@ -41,8 +47,11 @@ public class ListFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String collection;
+    private String title;
+    private boolean status;
     private MyUser myUser = new MyUser();
     ListenerRegistration registration;
+    ViewModel model;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +62,8 @@ public class ListFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         adapter = new RecyclerViewAdapter(listItems);
         mRecyclerView.setAdapter(adapter);
+        setHasOptionsMenu(true);
+        model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
 
 
         /*((MainActivity) getActivity())
@@ -98,6 +109,16 @@ public class ListFragment extends Fragment {
 
 
     public void onResume() {
+        if(!model.isStart()){
+            title = getString(R.string.titleNonDelivered);
+
+        }
+        else {
+            title = model.getTitle();
+        }
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+        status = model.isStatus();
+
         touchHelper.attachToRecyclerView(mRecyclerView);
         super.onResume();
         listItems.clear();
@@ -150,11 +171,47 @@ public class ListFragment extends Fragment {
 
     public void onPause() {
         super.onPause();
+
         if(registration != null) {
             registration.remove();
         }
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Do something that differs the Activity's menu here
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.delivered:
+                model.setStatus(true);
+                model.setTitle(getString(R.string.titleDelivered));
+                model.setStart(true);
+                onResume();
+                return true;
+            case R.id.nonDelivered:
+                model.setStatus(false);
+                model.setTitle(getString(R.string.titleNonDelivered));
+                model.setStart(true);
+                onResume();
+                return true;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.delivered).setVisible(true);
+        menu.findItem(R.id.nonDelivered).setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
 }
 
 

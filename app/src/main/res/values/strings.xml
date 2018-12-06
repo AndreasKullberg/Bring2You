@@ -45,6 +45,20 @@
     <string name="search">Search</string>
     <string name="clear">CLEAR</string>
     <string name="deliveries">DELIVERIES</string>
+    <string name="infoPostalcode">Postal code: </string>
+    <string name="infoAddress">Address: </string>
+    <string name="infoSignedBy">Signed by: </string>
+    <string name="infoName">Name: </string>
+    <string name="infoDate">Date: </string>
+    <string name="infoTime">Time: </string>
+    <string name="titleDelivered">Delivered</string>
+    <string name="titleNonDelivered">Non delivered</string>
+    <string name="titleSettings">Settings</string>
+    <string name="titleCreateDelivery">Create delivery</string>
+    <string name="titleSign">Sign</string>
+    <string name="titleInfo">Info</string>
+    <string name="non_delivered">Non Delivered</string>
+    <string name="delivered">Delivered</string>
 
 
 </resources>
