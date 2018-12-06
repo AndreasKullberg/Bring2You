@@ -106,7 +106,7 @@ public class SignFragment extends Fragment {
                 @Override
                 public void onSuccess(List<Object> objects) {
                     toastMessage(getString(R.string.successDelivered));
-                    getActivity().recreate();
+                    getFragmentManager().popBackStack();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -114,21 +114,6 @@ public class SignFragment extends Fragment {
                     toastMessage(getString(R.string.deliveryFailed));
                 }
             });
-
-
-            /*:firestore.collection(collection)
-                    .document(item.getId())
-                    .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("succsesDelete", "DocumentSnapshot successfully deleted!");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w("succsesDelete", "Error deleting document", e);
-                }
-            });*/
 
         });
     }
@@ -170,7 +155,7 @@ public class SignFragment extends Fragment {
             }
             else {
                 toastMessage(getString(R.string.idNotExist));
-                getActivity().recreate();
+                getFragmentManager().popBackStack();
             }
         }
         else {}

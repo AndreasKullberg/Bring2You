@@ -72,7 +72,8 @@ public class CreateDeliveryFragment extends Fragment {
                                         @Override
                                         public void onSuccess(Void avoid) {
                                             toastMessage("Successfully added new delivery!");
-                                            getActivity().recreate();
+                                            getFragmentManager().popBackStack();
+
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
