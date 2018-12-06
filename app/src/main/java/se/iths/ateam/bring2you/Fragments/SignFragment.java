@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -41,6 +42,7 @@ import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -106,32 +108,23 @@ public class SignFragment extends Fragment {
             item.setTime(getTime());
             item.setDelivered(true);
 
-            firestore.collection(collection).document(item.getId()).set(item)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
+            Task task1 = firestore.collection(collection).document(item.getId()).set(item);
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+            Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
 
-                        }
-                    });
-            firestore.collection("Delivered")
-                    .document(item.getId())
-                    .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+            Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                 @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("succsesSet", "DocumentSnapshot successfully added!");
+                public void onSuccess(List<Object> objects) {
+                    toastMessage("Successfully delivered!");
+                    getActivity().recreate();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w("succsesSet", "Error deleting document", e);
+                    toastMessage("Failed to deliver!");
                 }
             });
+
 
             /*:firestore.collection(collection)
                     .document(item.getId())
@@ -146,7 +139,7 @@ public class SignFragment extends Fragment {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
             });*/
-        getActivity().recreate();
+
         });
     }
 
@@ -206,6 +199,9 @@ public class SignFragment extends Fragment {
             }
         }
         else {}
+    }
+    private void toastMessage(String Message){
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 }
