@@ -2,6 +2,7 @@ package se.iths.ateam.bring2you.Activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +13,14 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Locale;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.R;
-import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
+import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
+@SuppressWarnings("deprecation")
 public class LoginActivity extends AppCompatActivity {
 
     // TODO Ifall Man får fel om att API nyckeln är expired eller invalid,
@@ -32,17 +36,20 @@ public class LoginActivity extends AppCompatActivity {
     private SharedPreferences mPrefs;
     private static final String PREFS_NAME = "PrefsFile";
     private FirebaseUser user;
-    ThemeSharedPref themeSharedPref;
+    SettingsSharedPref settingsSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        themeSharedPref = new ThemeSharedPref(this);
+        settingsSharedPref = new SettingsSharedPref(this);
 
-        if (themeSharedPref.loadDarkModeState()) {
+        if (settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
         }
+
+        setLanguageForApp(settingsSharedPref.loadLanguage());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -133,6 +140,22 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
     }
+
+    private void setLanguageForApp(String languageToLoad){
+        Locale locale;
+        if(languageToLoad.equals("")){
+            locale = Locale.getDefault();
+        }
+        else {
+            locale = new Locale(languageToLoad);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
+
     private void findViews(){
         mUsername = findViewById(R.id.usernameEditText);
         mPassword = findViewById(R.id.passwordEditText);

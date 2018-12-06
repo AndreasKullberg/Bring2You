@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +21,12 @@ import java.util.Objects;
 
 import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
-import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
+import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 @SuppressWarnings( "deprecation" )
 public class SettingsFragment extends Fragment {
 
-    private ThemeSharedPref themeSharedPref;
+    private SettingsSharedPref settingsSharedPref;
     private Fragment selectedFrag;
 
     @Override
@@ -41,10 +40,10 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSettings);
-        themeSharedPref = new ThemeSharedPref(Objects.requireNonNull(getActivity()));
+        settingsSharedPref = new SettingsSharedPref(Objects.requireNonNull(getActivity()));
 
         Switch themeSwitch = Objects.requireNonNull(getView()).findViewById(R.id.theme_pref);
-        if (themeSharedPref.loadDarkModeState()){
+        if (settingsSharedPref.loadDarkModeState()){
             themeSwitch.setChecked(true);
         }
 
@@ -63,8 +62,9 @@ public class SettingsFragment extends Fragment {
 
         english.setOnClickListener(v -> {
             if (current.getLanguage().equals("sv")){
+                settingsSharedPref.setLanguage("en");
                 changeLanguage("en");
-                toastMessage("Language is now in English!");
+                toastMessage("Language is now set to English!");
             }else{
                 toastMessage("Language is already set to English!");
             }
@@ -72,8 +72,9 @@ public class SettingsFragment extends Fragment {
 
         swedish.setOnClickListener(v -> {
             if (current.getLanguage().equals("en")){
+                settingsSharedPref.setLanguage("sv");
                 changeLanguage("sv");
-                toastMessage("Språket är nu på Svenska!");
+                toastMessage("Språket är nu inställt på Svenska!");
             }else{
                 toastMessage("Språket är redan inställt på Svenska!");
             }
@@ -108,14 +109,16 @@ public class SettingsFragment extends Fragment {
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        getActivity().overridePendingTransition(0,0);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }
 
     private void changeTheme(Boolean darkTheme){
-        themeSharedPref.setDarkModeState(darkTheme);
+        settingsSharedPref.setDarkModeState(darkTheme);
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        getActivity().overridePendingTransition(0,0);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }

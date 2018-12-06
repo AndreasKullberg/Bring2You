@@ -3,6 +3,7 @@ package se.iths.ateam.bring2you.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -15,14 +16,16 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import java.util.Locale;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import se.iths.ateam.bring2you.R;
-import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
+import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 
 import static android.Manifest.permission.CAMERA;
 
-
+@SuppressWarnings("deprecation")
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int requestCamera = 1;
@@ -30,13 +33,15 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeSharedPref themeSharedPref = new ThemeSharedPref(this);
+        SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
 
-        if(themeSharedPref.loadDarkModeState()) {
+        if(settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
         }
+
+        setLanguageForApp(settingsSharedPref.loadLanguage());
 
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
@@ -136,4 +141,20 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         startActivity(intent);
 
     }
+
+    private void setLanguageForApp(String languageToLoad){
+        Locale locale;
+        if(languageToLoad.equals("")){
+            locale = Locale.getDefault();
+        }
+        else {
+            locale = new Locale(languageToLoad);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
+
 }
