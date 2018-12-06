@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ public class CreateDeliveryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);
         createAdress = view.findViewById(R.id.createAdress);
         createName = view.findViewById(R.id.createName);
         createPostal = view.findViewById(R.id.createPostal);
@@ -62,30 +65,27 @@ public class CreateDeliveryFragment extends Fragment {
                             collection = user;
 
                             ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                            toastMessage("Successfully added new delivery!");
+                            //toastMessage("Successfully added new delivery!");
 
                             firestore.collection(collection).document().set(info)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void avoid) {
-
+                                            toastMessage("Successfully added new delivery!");
+                                            getActivity().recreate();
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-
+                                            toastMessage("Error adding new delivery..");
                                         }
                                     });
-                            getActivity().recreate();
                         }
                         else{
                             toastMessage("User do not exist!");
                         }
                     }
-
-
-
 
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -102,8 +102,9 @@ public class CreateDeliveryFragment extends Fragment {
 
     }
     private void toastMessage(String Message){
-        Toast.makeText(getContext(), Message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
 
 }
+

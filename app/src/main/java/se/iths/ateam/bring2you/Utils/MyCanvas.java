@@ -20,6 +20,8 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 
+import se.iths.ateam.bring2you.R;
+
 
 /**
  * A canvas to sign recieved.
@@ -31,6 +33,8 @@ public class MyCanvas extends View {
     Path path = new Path();
 
 
+
+
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         myPaint.setAntiAlias(true);
@@ -38,11 +42,14 @@ public class MyCanvas extends View {
         myPaint.setStrokeJoin(Paint.Join.ROUND);
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5f);
+
     }
 
     @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
+                Rect r = new Rect(0,0,this.getWidth(), this.getHeight());
+                canvas.drawRect(r, myPaint);
                 canvas.drawPath(path ,myPaint);
             }
 
@@ -70,6 +77,11 @@ public class MyCanvas extends View {
         }
         invalidate();
         return true;
+    }
+
+    public void clear(){
+        path.rewind();
+        invalidate();
     }
 
 }
