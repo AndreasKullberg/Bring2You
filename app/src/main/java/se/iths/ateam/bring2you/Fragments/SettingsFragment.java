@@ -48,11 +48,9 @@ public class SettingsFragment extends Fragment {
 
         themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
-                themeSharedPref.setDarkModeState(true);
-                getActivity().recreate();
+                changeTheme(true);
             }else{
-                themeSharedPref.setDarkModeState(false);
-                getActivity().recreate();
+                changeTheme(false);
             }
         });
 
@@ -104,6 +102,14 @@ public class SettingsFragment extends Fragment {
         config.locale = locale;
         Objects.requireNonNull(getContext()).getResources().updateConfiguration(config,getContext().getResources().getDisplayMetrics());
 
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+        Objects.requireNonNull(getActivity()).recreate();
+    }
+
+    private void changeTheme(Boolean darkTheme){
+        themeSharedPref.setDarkModeState(darkTheme);
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
