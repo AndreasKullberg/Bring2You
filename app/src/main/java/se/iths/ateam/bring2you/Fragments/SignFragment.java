@@ -180,3 +180,6 @@ public class SignFragment extends Fragment {
     }
 
 }
+
+
+//TODO: Kolla dessa else statements? ska de finnas kvar?

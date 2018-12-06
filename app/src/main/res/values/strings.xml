@@ -63,6 +63,26 @@
     <string name="deliveryFailed">Delivery failed!</string>
     <string name="idNotExist">Id doesn\'t exist on this route</string>
 
-    <string name="find">Find:</string>
+    <string name="find">Find</string>
     <string name="enter_a_location">Enter a location</string>
+    <string name="logged_in_as">Logged in as:</string>
+    <string name="no_blank_fields">No blank fields!</string>
+    <string name="login_success">Successfully logged in as:</string>
+    <string name="login_failed">Failed to login</string>
+    <string name="signing_out">Signing out...</string>
+    <string name="destination" translatable="false">Destination</string>
+    <string name="dest_not_found">The destination was not found</string>
+    <string name="ready_to_map">Ready to map!</string>
+    <string name="permission_granted_camera">Permission granted, you can now access the camera</string>
+    <string name="permission_denied_camera">Permission denied, you can not access the camera</string>
+    <string name="both_permissions">You need to allow access to both permissions</string>
+    <string name="Ok" translatable="false">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="delivery_added">Successfully added new delivery!</string>
+    <string name="delivery_error">Error adding new delivery...</string>
+    <string name="user_doesnt_exist">User does not exist!</string>
+    <string name="lang_set_EN">Language is now set to English!</string>
+    <string name="lang_set_SV">Language is now set to Swedish!</string>
+    <string name="already_EN">Language is already set to English!</string>
+    <string name="already_SV">Language is already set to Swedish!</string>
 </resources>
