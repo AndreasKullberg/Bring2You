@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
-
                 switch (item.getItemId()){
                     case R.id.nav_assignment:
                             selectedFrag = new ListFragment();
@@ -120,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.frameLayout, selectedFrag)
-                            .addToBackStack("selectedFrag")
+                            .addToBackStack(null)
                             .commit();
+                item.setChecked(true);
                 return true;
                 };
 
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
-            getSupportFragmentManager().popBackStack("selectedFrag", 1);
+            getSupportFragmentManager().popBackStack(null, 1);
         } else {
             super.onBackPressed();
         }
