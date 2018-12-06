@@ -7,7 +7,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -43,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
             setTheme(R.style.AppTheme);
         }
 
-
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
+        //(TextView)findViewById(R.id.toolbar_title).
         //currentUserSignedIn = findViewById(R.id.currentUserText);
         ScannerFilter();
         firebaseAuth = FirebaseAuth.getInstance();
@@ -64,8 +67,6 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
 
     }
-
-
 
 
     private void openList() {
@@ -104,13 +105,13 @@ public class MainActivity extends AppCompatActivity {
 
                 switch (item.getItemId()){
                     case R.id.nav_assignment:
-                        selectedFrag = new ListFragment();
+                            selectedFrag = new ListFragment();
                             break;
                     case R.id.nav_settings:
-                        selectedFrag = new SettingsFragment();
+                            selectedFrag = new SettingsFragment();
                             break;
                     case R.id.nav_maps:
-                        startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
+                            startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
                             //avoid null pointer exception
                             return true;
 
@@ -130,6 +131,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
 }

@@ -14,6 +14,15 @@ public class ListItemInfo implements Serializable {
     private String signImageUrl;
     private String date;
     private String time;
+    private boolean delivered;
+
+    public boolean isDelivered() {
+        return delivered;
+    }
+
+    public void setDelivered(boolean delivered) {
+        this.delivered = delivered;
+    }
 
     public String getDate() {
         return date;

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleInfo);
 
         return view;
     }
@@ -47,12 +49,12 @@ public class InfoFragment extends Fragment {
         time = getActivity().findViewById(R.id.infoTime);
         date = getActivity().findViewById(R.id.infoDate);
 
-        postalCode.setText(item.getPostalCode());
-        adress.setText(item.getAdress());
-        signedBy.setText(item.getSignedBy());
-        name.setText(item.getName());
-        date.setText(item.getDate());
-        time.setText(item.getTime());
+        postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+item.getPostalCode());
+        adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+item.getAdress());
+        signedBy.setText(getString(se.iths.ateam.bring2you.R.string.infoSignedBy)+item.getSignedBy());
+        name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+item.getName());
+        date.setText(getString(se.iths.ateam.bring2you.R.string.infoDate)+item.getDate());
+        time.setText(getString(se.iths.ateam.bring2you.R.string.infoTime)+item.getTime());
         imageUrl = item.getSignImageUrl();
 
 

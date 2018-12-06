@@ -9,6 +9,7 @@ import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Activities.MainActivity;
@@ -70,6 +74,7 @@ public class SignFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sign, container, false);
+        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSign);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -114,7 +119,21 @@ public class SignFragment extends Fragment {
             item.setSignedBy(signedByView.getText().toString());
             item.setDate(getDate());
             item.setTime(getTime());
+            item.setDelivered(true);
 
+            firestore.collection(collection).document(item.getId()).set(item)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
             firestore.collection("Delivered")
                     .document(item.getId())
                     .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -128,7 +147,8 @@ public class SignFragment extends Fragment {
                     Log.w("succsesSet", "Error deleting document", e);
                 }
             });
-            firestore.collection(collection)
+
+            /*:firestore.collection(collection)
                     .document(item.getId())
                     .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
@@ -140,7 +160,7 @@ public class SignFragment extends Fragment {
                 public void onFailure(@NonNull Exception e) {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
-            });
+            });*/
         getActivity().recreate();
         });
         clear();
