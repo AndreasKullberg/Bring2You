@@ -3,6 +3,7 @@ package se.iths.ateam.bring2you.Activities;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -15,14 +16,16 @@ import android.widget.Toast;
 
 import com.google.zxing.Result;
 
+import java.util.Locale;
+
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import se.iths.ateam.bring2you.R;
-import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
+import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 
 import static android.Manifest.permission.CAMERA;
 
-
+@SuppressWarnings("deprecation")
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int requestCamera = 1;
@@ -30,13 +33,15 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ThemeSharedPref themeSharedPref = new ThemeSharedPref(this);
+        SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
 
-        if(themeSharedPref.loadDarkModeState()) {
+        if(settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
         }
+
+        setLanguageForApp(settingsSharedPref.loadLanguage());
 
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
@@ -95,11 +100,11 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
                     if (cameraAccepted){
-                        Toast.makeText(getApplicationContext(), "Permission Granted, Now you can access camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.permission_granted_camera), Toast.LENGTH_LONG).show();
                     }else {
-                        Toast.makeText(getApplicationContext(), "Permission Denied, You cannot access and camera", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), getString(R.string.permission_denied_camera), Toast.LENGTH_LONG).show();
                         if (shouldShowRequestPermissionRationale(CAMERA)) {
-                            showMessageOKCancel("You need to allow access to both the permissions",
+                            showMessageOKCancel(getString(R.string.both_permissions),
                                     new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -118,8 +123,8 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     private void showMessageOKCancel(String message, DialogInterface.OnClickListener okListener) {
         new android.support.v7.app.AlertDialog.Builder(ScannerActivity.this)
                 .setMessage(message)
-                .setPositiveButton("OK", okListener)
-                .setNegativeButton("Cancel", null)
+                .setPositiveButton(getString(R.string.Ok), okListener)
+                .setNegativeButton(getString(R.string.cancel), null)
                 .create()
                 .show();
     }
@@ -136,4 +141,20 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         startActivity(intent);
 
     }
+
+    private void setLanguageForApp(String languageToLoad){
+        Locale locale;
+        if(languageToLoad.equals("")){
+            locale = Locale.getDefault();
+        }
+        else {
+            locale = new Locale(languageToLoad);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
+    }
+
 }
