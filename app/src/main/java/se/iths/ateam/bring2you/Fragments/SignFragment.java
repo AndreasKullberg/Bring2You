@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,8 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -23,19 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PipedInputStream;
-import java.io.PipedOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
@@ -143,22 +131,6 @@ public class SignFragment extends Fragment {
 
         return stream.toByteArray();
 
-
-
-//        String path = Environment.getExternalStorageDirectory().getAbsolutePath();
-//        File file = new File(path+"/signature.png");
-//        FileOutputStream oStream;
-//        try {
-//            file.createNewFile();
-//            oStream = new FileOutputStream(file);
-//            bitmap.compress(Bitmap.CompressFormat.PNG, 100, oStream);
-//            oStream.flush();
-//            oStream.close();
-//            Toast.makeText(getActivity().getApplicationContext(), "image saved", Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
-//        }
     }
 
     private String getDate(){

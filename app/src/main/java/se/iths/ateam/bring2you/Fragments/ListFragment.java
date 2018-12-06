@@ -1,11 +1,6 @@
 package se.iths.ateam.bring2you.Fragments;
 
-import android.app.AlertDialog;
-import android.content.ClipData;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.graphics.Path;
+
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -17,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.common.reflect.TypeToken;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
@@ -27,15 +21,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
-
 import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;

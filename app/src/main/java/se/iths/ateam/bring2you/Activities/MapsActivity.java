@@ -31,7 +31,6 @@ import java.util.List;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 
-// GoogleMaps activity that zooms into delivery location
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -69,7 +68,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         googleMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 
-        //Swedens central point
         LatLng SwedenCenterPoint = new LatLng(62.3833318, 16.2824905);
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(SwedenCenterPoint, 4));
@@ -120,35 +118,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             Toast.makeText(this, "The destination was not found.", Toast.LENGTH_SHORT).show();
         }
     }
-/*
-    //TODO Om nu vi ska ha map ikonen
-    public void geoLocate(View view) throws IOException {
-
-        EditText editText = (EditText) findViewById(R.id.edit_address);
-        String location = editText.getText().toString();
-
-        Geocoder geocoder = new Geocoder(MapsActivity.this);
-        List<Address> list = geocoder.getFromLocationName(location, 1);
-        // Give me the first item off the list
-        Address add = list.get(0);
-        // Gives me googles locality of my input location
-/*        String locality = add.getLocality();
-          if(locality == null) {
-            Toast.makeText(this, "Destination: " + location, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
-        }
-        // Simple toast that displays the locality
-
-        double latitude = add.getLatitude();
-        double longitude = add.getLongitude();
-
-        gotoLocation(latitude, longitude, DEFAULT_ZOOM);
-    }
-    */
 
 
-    //TODO Lägga till map typ meny
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
