@@ -35,6 +35,20 @@
     <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
     <string name="Find">Find</string>
     <string name="search">Search</string>
+    <string name="titleSign">Sign</string>
+    <string name="titleCreateDelivery">Create delivery</string>
+    <string name="titleSettings">Settings</string>
+    <string name="titleNonDelivered">Non delivered</string>
+    <string name="titleDelivered">Delivered</string>
+    <string name="infoTime">Time:</string>
+    <string name="infoDate">Date:</string>
+    <string name="infoName">Name:</string>
+    <string name="infoSignedBy">Signed by:</string>
+    <string name="infoAddress">Address:</string>
+    <string name="infoPostalcode">Postal code:</string>
+    <string name="titleInfo">Info</string>
+    <string name="non_delivered">Non Delivered</string>
+    <string name="delivered">Delivered</string>
     <string name="clear">CLEAR</string>
     <string name="deliveries">DELIVERIES</string>
 </resources>

@@ -35,6 +35,20 @@
     <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
     <string name="Find">Hitta</string>
     <string name="search">Sök</string>
+    <string name="titleSign">Underskrift</string>
+    <string name="titleCreateDelivery">Skapa leverans</string>
+    <string name="titleSettings">Inställningar</string>
+    <string name="titleNonDelivered">Ej levererat</string>
+    <string name="titleDelivered">Levererat</string>
+    <string name="infoTime">Tid:</string>
+    <string name="infoDate">Datum:</string>
+    <string name="infoName">Namn:</string>
+    <string name="infoSignedBy">Undertecknad av:</string>
+    <string name="infoAddress">Adress:</string>
+    <string name="infoPostalcode">Postnr:</string>
+    <string name="titleInfo">Information</string>
+    <string name="non_delivered">Ej leverat</string>
+    <string name="delivered">Levererat</string>
     <string name="clear">RENSA</string>
     <string name="deliveries">LEVERERAT</string>
 </resources>
