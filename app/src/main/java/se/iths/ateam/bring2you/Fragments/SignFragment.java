@@ -115,13 +115,13 @@ public class SignFragment extends Fragment {
             Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                 @Override
                 public void onSuccess(List<Object> objects) {
-                    toastMessage("Successfully delivered!");
+                    toastMessage(getString(R.string.successDelivered));
                     getActivity().recreate();
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    toastMessage("Failed to deliver!");
+                    toastMessage(getString(R.string.deliveryFailed));
                 }
             });
 
@@ -195,7 +195,8 @@ public class SignFragment extends Fragment {
                 Objects.requireNonNull(item).setId(scanResult);
             }
             else {
-
+                toastMessage(getString(R.string.idNotExist));
+                getActivity().recreate();
             }
         }
         else {}
