@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
 
         if (user != null) {
             finish();
-            toastMessage("logged in as: " + Objects.requireNonNull(user).getEmail());
+            toastMessage("Logged in as: " + Objects.requireNonNull(user).getEmail());
            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
 

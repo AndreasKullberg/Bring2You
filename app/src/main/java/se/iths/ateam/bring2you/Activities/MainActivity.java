@@ -113,11 +113,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this,LoginActivity.class));
                         return  true;
                 }
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, Objects.requireNonNull(selectedFrag)).commit();
-
+                    getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFrag).addToBackStack(null).commit();
                 return true;
-
-            };
+                };
 
 
     public void toastMessage(String message) {

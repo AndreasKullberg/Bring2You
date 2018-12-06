@@ -26,10 +26,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     private static final int requestCamera = 1;
     private ZXingScannerView scannerView;
 
-    {
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +37,6 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             if (checkPermission()){
-                Toast.makeText(ScannerActivity.this,"Permission is granted!",Toast.LENGTH_LONG).show();
             }
             else{
                 requestPermission();
