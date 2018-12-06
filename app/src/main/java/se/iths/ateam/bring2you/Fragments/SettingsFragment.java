@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
@@ -56,13 +57,14 @@ public class SettingsFragment extends Fragment {
         });
 
         Button about = getView().findViewById(R.id.about_btn);
-        Button english = getView().findViewById(R.id.en_btn);
-        Button swedish = getView().findViewById(R.id.se_btn);
+        ImageButton english = getView().findViewById(R.id.en_btn);
+        ImageButton swedish = getView().findViewById(R.id.se_btn);
         Locale current = getResources().getConfiguration().locale;
 
         english.setOnClickListener(v -> {
             if (current.getLanguage().equals("sv")){
                 changeLanguage("en");
+                toastMessage("Language is now in English!");
             }else{
                 toastMessage("Language is already set to English!");
             }
@@ -71,8 +73,9 @@ public class SettingsFragment extends Fragment {
         swedish.setOnClickListener(v -> {
             if (current.getLanguage().equals("en")){
                 changeLanguage("sv");
+                toastMessage("Språket är nu på Svenska!");
             }else{
-                toastMessage("Språket är redan inställt på svenska!");
+                toastMessage("Språket är redan inställt på Svenska!");
             }
         });
 
