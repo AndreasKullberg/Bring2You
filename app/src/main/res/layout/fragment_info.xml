@@ -29,6 +29,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="32dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Signed" />
@@ -41,6 +42,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="120dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,6 +56,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="16dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoSignedBy"
         tools:text="Adress" />
@@ -66,6 +69,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="248dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,6 +83,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/infoAdress"
         tools:text="Date" />
@@ -91,6 +96,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="288dp"
         android:textStyle="bold"
+        android:textColor="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
