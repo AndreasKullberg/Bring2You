@@ -46,7 +46,7 @@
                 android:onClick="geoLocate"
                 android:text="@string/search"
                 android:textAllCaps="false"
-                android:textSize="17sp" />
+                android:textSize="18sp" />
         </RelativeLayout>
 
         <fragment
