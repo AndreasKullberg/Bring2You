@@ -59,6 +59,9 @@
     <string name="titleInfo">Info</string>
     <string name="non_delivered">Non Delivered</string>
     <string name="delivered">Delivered</string>
+    <string name="successDelivered">Successfully delivered!</string>
+    <string name="deliveryFailed">Delivery failed!</string>
+    <string name="idNotExist">Id doesn\'t exist on this route</string>
 
     <string name="find">Find:</string>
     <string name="enter_a_location">Enter a location</string>
