@@ -6,9 +6,9 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundcolor">#fcfcfc</item>
+        <item name="backgroundcolor">#fffcfc</item>
         <item name="cardbackground">#ffffff</item>
-        <item name="textcolor">#FFF</item>
+        <item name="textcolor">#ffffff</item>
         <item name="buttontextcolor">#ffffff</item>
         <item name="tintcolor">#000000</item>
         <item name="buttoncolor">#2196F3</item>
