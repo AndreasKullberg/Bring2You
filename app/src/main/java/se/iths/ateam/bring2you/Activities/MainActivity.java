@@ -98,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
-
                 switch (item.getItemId()){
                     case R.id.nav_assignment:
                             selectedFrag = new ListFragment();
@@ -139,13 +138,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 0){
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+        if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
+            getSupportFragmentManager().popBackStack(null, 1);
         } else {
             super.onBackPressed();
         }
     }
-}
+
+    }
+
 
 
