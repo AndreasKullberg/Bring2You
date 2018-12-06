@@ -121,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
                             .replace(R.id.frameLayout, selectedFrag)
                             .addToBackStack(null)
                             .commit();
-                item.setChecked(true);
                 return true;
                 };
 
