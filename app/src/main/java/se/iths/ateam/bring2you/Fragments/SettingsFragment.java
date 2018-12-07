@@ -128,5 +128,3 @@ public class SettingsFragment extends Fragment {
     }
 
 }
-
-//TODO Byta ikon efter man valt språk (Inställningar är förvalt även om man blir skickad tillbaka till Order listan)

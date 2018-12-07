@@ -57,8 +57,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         });
 
         listItemViewHolder.openMap.setOnClickListener(view -> {
-            // show marker google maps intent
-
 
             Intent i = new Intent(view.getContext(), MapsActivity.class);
             i.putExtra("mapKey", item);

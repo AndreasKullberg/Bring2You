@@ -17,7 +17,6 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView senderId;
     public final CardView constraintLayout;
     private View itemview;
-    //public Button openMap;
     public ImageButton openMap;
 
     public ListItemViewHolder(@NonNull View itemView) {
