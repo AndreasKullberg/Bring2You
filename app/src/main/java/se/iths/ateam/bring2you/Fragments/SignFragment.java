@@ -171,6 +171,10 @@ public class SignFragment extends Fragment {
             DocumentSnapshot document = task.getResult();
             if (Objects.requireNonNull(document).exists()) {
                 item = document.toObject(ListItemInfo.class);
+                if(item.isDelivered()){
+                    toastMessage(getString(R.string.alreadyDelivered));
+                    getFragmentManager().popBackStack();
+                }
                 Objects.requireNonNull(item).setId(scanResult);
             }
             else {

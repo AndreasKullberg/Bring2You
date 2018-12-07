@@ -32,7 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendTo" />
+        app:layout_constraintTop_toBottomOf="@+id/sendTo"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createName"
@@ -48,7 +49,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createAdress" />
+        app:layout_constraintTop_toBottomOf="@+id/createAdress"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createPostal"
@@ -64,7 +66,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createName" />
+        app:layout_constraintTop_toBottomOf="@+id/createName"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/createSender"
@@ -83,18 +86,20 @@
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/createPostal"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/sendTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="176dp"
+        android:backgroundTint="?attr/textcolor"
         android:ems="10"
-        android:hint="name@mail.com"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textColor="?attr/textcolor"
-        android:backgroundTint="?attr/textcolor"
         android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

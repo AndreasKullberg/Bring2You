@@ -87,4 +87,5 @@
     <string name="already_SV">Language is already set to Swedish!</string>
     <string name="printed_name">Printed name</string>
     <string name="address">Address</string>
+    <string name="alreadyDelivered">This delivery is already delivered!</string>
 </resources>
