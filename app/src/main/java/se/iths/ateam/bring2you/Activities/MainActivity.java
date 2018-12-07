@@ -86,8 +86,9 @@ public class MainActivity extends AppCompatActivity {
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
 
-        /* Den aktivitet som startas upp efter man har loggat in */
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signfragment
+
+        ).commit();
 
 
         }
@@ -166,8 +167,3 @@ public class MainActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 }
-
-
-
-//TODO: Varför är order listan dubbel?
-//TODO: Varför är inte "Find" med i switch casen?

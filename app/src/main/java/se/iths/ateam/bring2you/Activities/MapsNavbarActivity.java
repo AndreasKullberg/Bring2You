@@ -30,7 +30,7 @@ import java.util.Objects;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
-// GoogleMaps activity with a search function
+
 @SuppressWarnings("deprecation")
 public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,

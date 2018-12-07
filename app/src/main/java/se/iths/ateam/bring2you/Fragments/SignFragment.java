@@ -14,6 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -43,7 +45,7 @@ public class SignFragment extends Fragment {
     private String collection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-
+    private TextView name,  adress, postalCode;
 
     public static void setScanResult(String myResult) {
 
@@ -79,6 +81,14 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        name = getActivity().findViewById(R.id.infoName);
+        adress = getActivity().findViewById(R.id.infoAdress);
+        postalCode = getActivity().findViewById(R.id.infoPostalCode);
+
+        name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+ "  " + item.getName());
+        postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+ "  " + item.getPostalCode());
+        adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+ "  " + item.getAdress());
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
 
@@ -118,22 +128,10 @@ public class SignFragment extends Fragment {
                 }
             });
 
-            /*:firestore.collection(collection)
-                    .document(item.getId())
-                    .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("succsesDelete", "DocumentSnapshot successfully deleted!");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w("succsesDelete", "Error deleting document", e);
-                }
-            });*/
         getActivity().recreate();
         });
     }
+
 
     private byte[] makeSignature() {
         View content = getActivity().findViewById(R.id.my_canvas);
@@ -170,14 +168,10 @@ public class SignFragment extends Fragment {
                 item = document.toObject(ListItemInfo.class);
                 Objects.requireNonNull(item).setId(scanResult);
             }
-            else {
-
-            }
         }
-        else {}
+
     }
 
 }
 
 
-//TODO: Kolla dessa else statements? ska de finnas kvar?
