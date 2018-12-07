@@ -1,44 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.ramotion.foldingcell.FoldingCell xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="8dp"
-    android:outlineAmbientShadowColor="@color/colorAccent"
-    android:outlineProvider="bounds"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="10dp">
+    android:elevation="5dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    folding-cell:additionalFlipsCount="2"
+    folding-cell:animationDuration="2000"
+    folding-cell:backSideColor="?attr/cardBackColor"
+    folding-cell:cameraHeight="30">
+
+    <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->
 
 
-    <android.support.constraint.ConstraintLayout
+    <!-- TITLE (FOLDED) LAYOUT (MUST BE AT LEAST 2x times SMALLER than content layout above) -->
+    <!--<android.support.constraint.ConstraintLayout-->
+
+        <!--android:id="@+id/cell_content_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="#FFF"-->
+        <!--android:clipChildren="false"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:padding="10dp"-->
+        <!--android:visibility="gone">-->
+
+        <!--<FrameLayout-->
+            <!--android:id="@+id/celltarget"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="331dp"-->
+            <!--android:clipChildren="false"-->
+            <!--android:clipToPadding="false"-->
+            <!--folding-cell:layout_constraintBottom_toBottomOf="parent"-->
+            <!--folding-cell:layout_constraintEnd_toEndOf="parent"-->
+            <!--folding-cell:layout_constraintStart_toStartOf="parent"-->
+            <!--folding-cell:layout_constraintTop_toTopOf="parent">-->
+
+        <!--</FrameLayout>-->
+    <!--</android.support.constraint.ConstraintLayout>-->
+    <ViewFlipper xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/cell_content_view"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/cardbackground"
+        android:visibility="visible">
+
+        <include
+            android:id="@+id/signingD"
+            layout="@layout/fragment_sign" />
+
+        <include
+            android:id="@+id/viewingD"
+            layout="@layout/fragment_info" />
+    </ViewFlipper>
+
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cell_title_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="?attr/cardbackground"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:padding="10dp">
 
-
-        <TextView
-            android:id="@+id/textAdress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/adress"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
 
         <TextView
             android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="3dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
             android:text="@string/name"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintBottom_toTopOf="@+id/textAdress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textAdress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/adress"
+            android:textAppearance="@style/TextAppearance.AppCompat"
+            app:layout_constraintBottom_toTopOf="@+id/textPostalCode"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.36"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -46,12 +101,13 @@
             android:id="@+id/textPostalCode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginEnd="3dp"
             android:layout_marginBottom="4dp"
             android:text="@string/postal_code"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toTopOf="@+id/textSenderId"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textAdress" />
 
@@ -59,13 +115,13 @@
             android:id="@+id/textSenderId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="3dp"
+            android:layout_marginBottom="4dp"
             android:text="@string/sender_id"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintHorizontal_bias="0.38"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textPostalCode"
             app:layout_constraintVertical_bias="0.0" />
@@ -73,25 +129,31 @@
 
         <ImageButton
             android:id="@+id/imageButton_maps"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
             android:background="#00000000"
-            android:backgroundTint="#FF4A148C"
             android:elevation="10dp"
             android:onClick="openMapsTest"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.956"
-            app:layout_constraintStart_toEndOf="@+id/textPostalCode"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.507"
             app:srcCompat="@drawable/google_mapsicon" />
+
+        <ProgressBar
+            android:id="@+id/card_proggress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton_maps"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </android.support.constraint.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+</com.ramotion.foldingcell.FoldingCell>

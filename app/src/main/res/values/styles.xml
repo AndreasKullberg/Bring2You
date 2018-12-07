@@ -5,11 +5,13 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="mainBackground">@drawable/backdrop_day</item>
         <item name="backgroundcolor">#fcfcfc</item>
-        <item name="cardbackground">#ffffff</item>
+        <item name="cardbackground">#cfd8dc</item>
+        <item name="cardBackColor">#cfd8dc</item>
         <item name="textcolor">#FFF</item>
-        <item name="buttontextcolor">#ffffff</item>
+        <item name="buttontextcolor">#d3d3d3</item>
         <item name="tintcolor">#000000</item>
         <item name="buttoncolor">#2196F3</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -18,12 +20,15 @@
         <item name="TopBarBack">@drawable/top_bar_light</item>
         <item name="BotBarBack">@drawable/botglowbar3</item>
         <item name="mybutton">@drawable/mybutton</item>
+        <item name="android:textColorPrimary">@color/Secondary</item>
+        <item name="android:textColorSecondary">@color/Secondary</item>
 
     </style>
 
 
     <!-- Night Theme. -->
     <style name="darktheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="mainBackground">@drawable/backdrop_night</item>
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#FFF</item>

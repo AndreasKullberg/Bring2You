@@ -7,4 +7,5 @@
     <color name="mainColor">#693250</color>
     <color name="toolBarColor">#7d00a6</color>
     <color name="Secondary">#000000</color>
+    <color name="Backdrop">#5c00e5ff</color>
 </resources>

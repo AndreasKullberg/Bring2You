@@ -1,62 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/signName"
-
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:animationCache="true"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".Fragments.ListFragment">
 
-
-    <se.iths.ateam.bring2you.Utils.MyCanvas
-        android:id="@+id/my_canvas"
-        android:layout_width="match_parent"
-        android:layout_height="147dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="4dp"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:elevation="0dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendButton" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.158">
+
+        <TextView
+            android:id="@+id/textAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/adress"
+            android:textColor="?attr/textcolor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/textPostalCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textColor="?attr/textcolor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/cardcontentTimeDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="?attr/textcolor"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="0dp"
+        android:layout_height="41dp"
+        android:background="?attr/colorPrimary"
+        android:paddingLeft="12dp"
+        android:paddingTop="7dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textName"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:text="@string/name"
+            android:textColor="?attr/textcolor"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/cllogo"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:elevation="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/logob2u_spalsh" />
+
+        <ImageButton
+            android:id="@+id/clogo"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/transparent"
+            android:cropToPadding="true"
+            android:elevation="0dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <se.iths.ateam.bring2you.Utils.MyCanvas
+        android:id="@+id/my_canvas"
+        android:layout_width="0dp"
+        android:layout_height="130dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/sendButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="155dp"
-        android:text="@string/send"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="2dp"
         android:background="?attr/mybutton"
+        android:text="@string/send"
         android:textColor="?attr/textcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/signedBy"
+        app:layout_constraintEnd_toEndOf="@+id/my_canvas"
+        app:layout_constraintStart_toEndOf="@+id/signedBy" />
 
     <Button
         android:id="@+id/clear_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="155dp"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
         android:background="?attr/mybutton"
         android:text="@string/clear"
         android:textColor="?attr/textcolor"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/signedBy"
+        app:layout_constraintEnd_toStartOf="@+id/signedBy"
+        app:layout_constraintStart_toStartOf="@+id/my_canvas" />
 
 
     <EditText
         android:id="@+id/signedBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
+        android:layout_width="228dp"
+        android:layout_height="45dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/my_canvas"
+        app:layout_constraintEnd_toStartOf="@+id/sendButton"
+        app:layout_constraintStart_toEndOf="@+id/clear_btn"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.555" />
 
 </android.support.constraint.ConstraintLayout>

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -19,7 +20,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
+import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
 
 
@@ -29,8 +32,23 @@ import se.iths.ateam.bring2you.R;
 public class MyCanvas extends View {
 
     Canvas myCanvas;
+
+    public Canvas getMyCanvas() {
+        return myCanvas;
+    }
+
+    public Paint getMyPaint() {
+        return myPaint;
+    }
+
+    public Path getPath() {
+        return path;
+    }
+
     Paint myPaint = new Paint();
     Path path = new Path();
+    private RecyclerView mRecyclerView;
+
 
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,6 +57,7 @@ public class MyCanvas extends View {
         myPaint.setStrokeJoin(Paint.Join.ROUND);
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5f);
+
     }
 
 
@@ -53,6 +72,8 @@ public class MyCanvas extends View {
 
             @Override
             public boolean onTouchEvent(MotionEvent event) {
+                mRecyclerView = getRootView().findViewById(R.id.recyclerView);
+                mRecyclerView.requestDisallowInterceptTouchEvent(true);
                 float xPos = event.getX();
                 float yPos = event.getY();
 
@@ -67,6 +88,7 @@ public class MyCanvas extends View {
                 break;
 
             case MotionEvent.ACTION_UP:
+                mRecyclerView.requestDisallowInterceptTouchEvent(false);
                 break;
 
             default:

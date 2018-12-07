@@ -10,16 +10,18 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.widget.ScrollView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.Objects;
 import se.iths.ateam.bring2you.Fragments.ListFragment;
-import se.iths.ateam.bring2you.Fragments.MapFragment;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Fragments.SettingsFragment;
-import se.iths.ateam.bring2you.Fragments.SignFragment;
+import se.iths.ateam.bring2you.Utils.MyCanvas;
 import se.iths.ateam.bring2you.Utils.ThemeSharedPref;
 
 
@@ -29,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private ThemeSharedPref themeSharedPref;
+    ScrollView mScrollView;
 
 
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Sätter upp temat beroende på vad som är valt i settings menyn
         themeSharedPref = new ThemeSharedPref(this);
+
 
         if(themeSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
@@ -59,8 +63,13 @@ public class MainActivity extends AppCompatActivity {
 
         openList();
 
-        // on click listener for navbar button.
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
+
+
+
+
+
+
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
@@ -81,11 +90,11 @@ public class MainActivity extends AppCompatActivity {
     private void ScannerFilter() {
         if (getIntent().getStringExtra("scanResult") != null){
 
-            Fragment signfragment = new SignFragment();
+            Fragment listfragment = new ListFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
-            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
+            ListFragment.setScanResult(getIntent().getStringExtra("scanResult"));
+            fragmentTransaction.replace(R.id.frameLayout,listfragment).commit();
 
         /* Den aktivitet som startas upp efter man har loggat in */
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();

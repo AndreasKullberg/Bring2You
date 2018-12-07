@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/backgroundcolor"
+    android:background="?attr/mainBackground"
+    android:clipChildren="false"
+    android:clipToPadding="false"
     android:textColor="?attr/textcolor"
     tools:context=".Activities.MainActivity">
 
