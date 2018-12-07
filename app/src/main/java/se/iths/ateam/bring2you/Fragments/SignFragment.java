@@ -88,34 +88,42 @@ public class SignFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
-
-            StorageReference fileRef = storageReference.child(item.getId() + ".png");
-            storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {});
-
-            item.setSignImageUrl("gs://" +fileRef.getBucket()+"/Signatures/" + item.getId() + ".png");
             item.setSignedBy(signedByView.getText().toString());
             item.setDate(getDate());
             item.setTime(getTime());
             item.setDelivered(true);
 
-            Task task1 = firestore.collection(collection).document(item.getId()).set(item);
 
-            Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
+            if(item.getSignedBy().equals("")){
+                toastMessage(getString(R.string.no_blank_fields));
+            }
+            else {
+                StorageReference fileRef = storageReference.child(item.getId() + ".png");
+                storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
+                });
 
-            Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
-                @Override
-                public void onSuccess(List<Object> objects) {
-                    toastMessage(getString(R.string.successDelivered));
-                    getFragmentManager().popBackStack();
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    toastMessage(getString(R.string.deliveryFailed));
-                }
-            });
+                item.setSignImageUrl("gs://" + fileRef.getBucket() + "/Signatures/" + item.getId() + ".png");
 
+
+                Task task1 = firestore.collection(collection).document(item.getId()).set(item);
+
+                Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
+
+                Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+                    @Override
+                    public void onSuccess(List<Object> objects) {
+                        toastMessage(getString(R.string.successDelivered));
+                        getFragmentManager().popBackStack();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        toastMessage(getString(R.string.deliveryFailed));
+                    }
+                });
+            }
         });
+
     }
 
     private byte[] makeSignature() {

@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         openList();
 
         findViewById(R.id.nav_add).setOnClickListener(view -> Scan());
+        findViewById(R.id.nav_maps).setOnClickListener(v -> maps());
 
 
         bottomNav = findViewById(R.id.bottomNavigationView);
@@ -97,6 +98,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, ScannerActivity.class);
         startActivity(intent);
     }
+    private void maps(){
+        Intent intent = new Intent(MainActivity.this,MapsNavbarActivity.class );
+        startActivity(intent);
+    }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
@@ -108,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_settings:
                         selectedFrag = new SettingsFragment();
                         break;
-                    case R.id.nav_maps:
+                    /*case R.id.nav_maps:
                         startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
-                        return true;
+                        return true;*/
 
                     case R.id.nav_signout:
                         FirebaseAuth.getInstance().signOut();
