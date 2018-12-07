@@ -39,12 +39,10 @@
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         style="@style/Widget.Design.BottomNavigationView"
+        android:background="@color/white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/transparent"
-        app:elevation="5dp"
-        app:itemBackground="@drawable/transparent"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
