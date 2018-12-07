@@ -23,34 +23,34 @@ import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
-@SuppressWarnings( "deprecation" )
+@SuppressWarnings("deprecation")
 public class SettingsFragment extends Fragment {
 
     private SettingsSharedPref settingsSharedPref;
     private Fragment selectedFrag;
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState){
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSettings);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.titleSettings);
         settingsSharedPref = new SettingsSharedPref(Objects.requireNonNull(getActivity()));
 
         Switch themeSwitch = Objects.requireNonNull(getView()).findViewById(R.id.theme_pref);
-        if (settingsSharedPref.loadDarkModeState()){
+        if (settingsSharedPref.loadDarkModeState()) {
             themeSwitch.setChecked(true);
         }
 
         themeSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
+            if (isChecked) {
                 changeTheme(true);
-            }else{
+            } else {
                 changeTheme(false);
             }
         });
@@ -61,21 +61,21 @@ public class SettingsFragment extends Fragment {
         Locale current = getResources().getConfiguration().locale;
 
         english.setOnClickListener(v -> {
-            if (current.getLanguage().equals("sv")){
+            if (current.getLanguage().equals("sv")) {
                 settingsSharedPref.setLanguage("en");
                 changeLanguage("en");
                 toastMessage(getString(R.string.lang_set_EN));
-            }else{
+            } else {
                 toastMessage(getString(R.string.already_EN));
             }
         });
 
         swedish.setOnClickListener(v -> {
-            if (current.getLanguage().equals("en")){
+            if (current.getLanguage().equals("en")) {
                 settingsSharedPref.setLanguage("sv");
                 changeLanguage("sv");
                 toastMessage(getString(R.string.lang_set_SV));
-            }else{
+            } else {
                 toastMessage(getString(R.string.already_SV));
             }
         });
@@ -100,25 +100,25 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void changeLanguage(String languageToLoad){
+    private void changeLanguage(String languageToLoad) {
         Locale locale = new Locale(languageToLoad);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
         config.locale = locale;
-        Objects.requireNonNull(getContext()).getResources().updateConfiguration(config,getContext().getResources().getDisplayMetrics());
+        Objects.requireNonNull(getContext()).getResources().updateConfiguration(config, getContext().getResources().getDisplayMetrics());
 
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        getActivity().overridePendingTransition(0,0);
+        getActivity().overridePendingTransition(0, 0);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }
 
-    private void changeTheme(Boolean darkTheme){
+    private void changeTheme(Boolean darkTheme) {
         settingsSharedPref.setDarkModeState(darkTheme);
         Intent intent = new Intent(getActivity(), MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        getActivity().overridePendingTransition(0,0);
+        getActivity().overridePendingTransition(0, 0);
         startActivity(intent);
         Objects.requireNonNull(getActivity()).recreate();
     }

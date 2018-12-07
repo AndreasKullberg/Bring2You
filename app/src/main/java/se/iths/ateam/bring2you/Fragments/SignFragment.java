@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
+
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,6 +33,7 @@ import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
+
 @SuppressWarnings("deprecation")
 public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
@@ -49,13 +52,14 @@ public class SignFragment extends Fragment {
 
         SignFragment.scanResult = myResult;
     }
+
     private View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sign, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleSign);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.titleSign);
         firestore = FirebaseFirestore.getInstance();
         signedByView = view.findViewById(R.id.signedBy);
         firebaseAuth = FirebaseAuth.getInstance();
@@ -64,8 +68,8 @@ public class SignFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("Signatures");
 
 
-        if (scanResult != null){
-        firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
+        if (scanResult != null) {
+            firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
         }
 
         if (scanResult == null) {
@@ -83,9 +87,10 @@ public class SignFragment extends Fragment {
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
 
             StorageReference fileRef = storageReference.child(item.getId() + ".png");
-            storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {});
+            storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
+            });
 
-            item.setSignImageUrl("gs://" +fileRef.getBucket()+"/Signatures/" + item.getId() + ".png");
+            item.setSignImageUrl("gs://" + fileRef.getBucket() + "/Signatures/" + item.getId() + ".png");
             item.setSignedBy(signedByView.getText().toString());
             item.setDate(getDate());
             item.setTime(getTime());
@@ -131,7 +136,7 @@ public class SignFragment extends Fragment {
                     Log.w("succsesDelete", "Error deleting document", e);
                 }
             });*/
-        getActivity().recreate();
+            getActivity().recreate();
         });
     }
 
@@ -143,20 +148,21 @@ public class SignFragment extends Fragment {
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
 
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80,stream);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
 
 
         return stream.toByteArray();
 
     }
 
-    private String getDate(){
+    private String getDate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String currentDate = simpleDateFormat.format(new Date());
 
         return currentDate;
     }
-    private String getTime(){
+
+    private String getTime() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
         String currentTime = simpleDateFormat.format(new Date());
 
@@ -169,12 +175,11 @@ public class SignFragment extends Fragment {
             if (Objects.requireNonNull(document).exists()) {
                 item = document.toObject(ListItemInfo.class);
                 Objects.requireNonNull(item).setId(scanResult);
-            }
-            else {
+            } else {
 
             }
+        } else {
         }
-        else {}
     }
 
 }

@@ -13,7 +13,8 @@ import se.iths.ateam.bring2you.R;
 public class SplashActivity extends AppCompatActivity {
 
 
-    private static int time=2000;
+    private static int time = 2000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

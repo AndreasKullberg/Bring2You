@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         settingsSharedPref = new SettingsSharedPref(this);
 
-        if(settingsSharedPref.loadDarkModeState()) {
+        if (settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openList() {
-        if(getIntent().getStringExtra("scanResult") == null) {
+        if (getIntent().getStringExtra("scanResult") == null) {
             Fragment listFragment = new ListFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -78,16 +78,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ScannerFilter() {
-        if (getIntent().getStringExtra("scanResult") != null){
+        if (getIntent().getStringExtra("scanResult") != null) {
 
             Fragment signfragment = new SignFragment();
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
-            fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
+            fragmentTransaction.replace(R.id.frameLayout, signfragment).commit();
 
-        /* Den aktivitet som startas upp efter man har loggat in */
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+            /* Den aktivitet som startas upp efter man har loggat in */
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
 
 
         }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private final BottomNavigationView.OnNavigationItemSelectedListener navListener =
             item -> {
                 Fragment selectedFrag = null;
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_assignment:
                         selectedFrag = new ListFragment();
                         break;
@@ -109,22 +109,22 @@ public class MainActivity extends AppCompatActivity {
                         selectedFrag = new SettingsFragment();
                         break;
                     case R.id.nav_maps:
-                        startActivity(new Intent(MainActivity.this,MapsNavbarActivity.class));
+                        startActivity(new Intent(MainActivity.this, MapsNavbarActivity.class));
                         return true;
 
                     case R.id.nav_signout:
                         FirebaseAuth.getInstance().signOut();
                         toastMessage(getString(R.string.signing_out));
                         finish();
-                        startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                        startActivity(new Intent(MainActivity.this, LoginActivity.class));
                         return true;
                 }
-                    getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.frameLayout, selectedFrag)
-                            .addToBackStack(null)
-                            .commit();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.frameLayout, selectedFrag)
+                        .addToBackStack(null)
+                        .commit();
                 return true;
-                };
+            };
 
 
     public void toastMessage(String message) {
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack(null, 1);
-            if (bottomNav.getSelectedItemId() != R.id.nav_assignment){
+            if (bottomNav.getSelectedItemId() != R.id.nav_assignment) {
                 bottomNav.setSelectedItemId(R.id.nav_assignment);
             }
         } else {
@@ -151,12 +151,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setLanguageForApp(String languageToLoad){
+    private void setLanguageForApp(String languageToLoad) {
         Locale locale;
-        if(languageToLoad.equals("")){
+        if (languageToLoad.equals("")) {
             locale = Locale.getDefault();
-        }
-        else {
+        } else {
             locale = new Locale(languageToLoad);
         }
         Locale.setDefault(locale);
@@ -166,7 +165,6 @@ public class MainActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 }
-
 
 
 //TODO: Varför är order listan dubbel?

@@ -80,7 +80,7 @@ public class ListItemInfo implements Serializable {
         return senderId;
     }
 
-    public ListItemInfo(){
+    public ListItemInfo() {
     }
 
     public ListItemInfo(String adress, String name, String postalCode, String senderId) {

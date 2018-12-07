@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +27,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+
 import javax.annotation.Nullable;
 
 import se.iths.ateam.bring2you.Activities.MainActivity;
@@ -70,13 +73,13 @@ public class ListFragment extends Fragment {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
-         if(firebaseUser != null) {
-             collection = Objects.requireNonNull(firebaseUser).getEmail();
-         }
+        if (firebaseUser != null) {
+            collection = Objects.requireNonNull(firebaseUser).getEmail();
+        }
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
-            getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+            getFragmentManager().beginTransaction().replace(R.id.frameLayout, createDeliveryFragment)
                     .commit();
         });
 
@@ -90,9 +93,9 @@ public class ListFragment extends Fragment {
             int positionDragged = dragged.getAdapterPosition();
             int positionTarget = target.getAdapterPosition();
 
-            Collections.swap(listItems,positionDragged,positionTarget);
+            Collections.swap(listItems, positionDragged, positionTarget);
 
-            adapter.notifyItemMoved(positionDragged,positionTarget);
+            adapter.notifyItemMoved(positionDragged, positionTarget);
 
             return false;
         }
@@ -106,14 +109,13 @@ public class ListFragment extends Fragment {
 
 
     public void onResume() {
-        if(!model.isStart()){
+        if (!model.isStart()) {
             title = getString(R.string.titleNonDelivered);
 
-        }
-        else {
+        } else {
             title = model.getTitle();
         }
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(title);
         status = model.isStatus();
 
         touchHelper.attachToRecyclerView(mRecyclerView);
@@ -122,7 +124,7 @@ public class ListFragment extends Fragment {
         mRecyclerView.getRecycledViewPool().clear();
         adapter.notifyDataSetChanged();
 
-        if(firebaseUser != null) {
+        if (firebaseUser != null) {
             firestore.collection("Users").document(firebaseUser.getEmail()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -131,23 +133,22 @@ public class ListFragment extends Fragment {
                         if (Objects.requireNonNull(document).exists()) {
                             String id = document.getId();
                             myUser = document.toObject(MyUser.class);
-                           try {
-                               Objects.requireNonNull(myUser).setId(id);
-                           }
-                           catch (Exception e){
+                            try {
+                                Objects.requireNonNull(myUser).setId(id);
+                            } catch (Exception e) {
 
-                           }
+                            }
 
                             if (myUser.isAdmin()) {
                                 collection = "Delivered";
                                 Log.d("Collection", collection);
                                 try {
                                     getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
-                                }catch(Exception e){
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             }
-                            registration = firestore.collection(collection).whereEqualTo("delivered",status).addSnapshotListener(new EventListener<QuerySnapshot>() {
+                            registration = firestore.collection(collection).whereEqualTo("delivered", status).addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override
                                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                                     Log.d("hej", "Event?");
@@ -180,7 +181,7 @@ public class ListFragment extends Fragment {
     public void onPause() {
         super.onPause();
 
-        if(registration != null) {
+        if (registration != null) {
             registration.remove();
         }
     }

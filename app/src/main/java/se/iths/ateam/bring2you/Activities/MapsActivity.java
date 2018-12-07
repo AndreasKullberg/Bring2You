@@ -43,7 +43,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
 
-        if(settingsSharedPref.loadDarkModeState()) {
+        if (settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -109,7 +109,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
             gotoLocation(latitude, longitude, zoom);
         } else {
-            Toast.makeText(this,getString(R.string.dest_not_found), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.dest_not_found), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -126,12 +126,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
 
-    private void setLanguageForApp(String languageToLoad){
+    private void setLanguageForApp(String languageToLoad) {
         Locale locale;
-        if(languageToLoad.equals("")){
+        if (languageToLoad.equals("")) {
             locale = Locale.getDefault();
-        }
-        else {
+        } else {
             locale = new Locale(languageToLoad);
         }
         Locale.setDefault(locale);

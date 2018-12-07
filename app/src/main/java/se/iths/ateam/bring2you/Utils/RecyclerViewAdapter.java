@@ -33,27 +33,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     @NonNull
     @Override
+
     public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.list_item,viewGroup,false);
+                .inflate(R.layout.list_item, viewGroup, false);
         return new ListItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
-    ListItemInfo item = listItems.get(index);
-    listItemViewHolder.setData(item);
+        ListItemInfo item = listItems.get(index);
+        listItemViewHolder.setData(item);
         Fragment signFragment = new SignFragment();
         Fragment infoFragment = new InfoFragment();
-    listItemViewHolder.constraintLayout.setOnClickListener(v ->{
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-        if(item.isDelivered()){
-            transaction(item,infoFragment, v);
-        }
-        else {
-            transaction(item, signFragment, v);
-        }
+        listItemViewHolder.constraintLayout.setOnClickListener(v -> {
+            FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+            if (item.isDelivered()) {
+                transaction(item, infoFragment, v);
+            } else {
+                transaction(item, signFragment, v);
+            }
         });
 
         listItemViewHolder.openMap.setOnClickListener(view -> {
@@ -69,7 +69,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     private void transaction(ListItemInfo item, Fragment fragment, View v) {
         AppCompatActivity activity = (AppCompatActivity) v.getContext();
         Bundle bundle = new Bundle();
-        bundle.putSerializable("Item",item);
+        bundle.putSerializable("Item", item);
         fragment.setArguments(bundle);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment)
                 .addToBackStack(null).commit();
@@ -80,13 +80,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         return listItems.size();
     }
 
-    public void addItem(ListItemInfo info){
+    public void addItem(ListItemInfo info) {
         listItems.add(info);
-        this.notifyItemInserted(listItems.size()-1);
+        this.notifyItemInserted(listItems.size() - 1);
     }
 
-    public void removeItem(int index){
-        if( index >= 0 && index < listItems.size()) {
+    public void removeItem(int index) {
+        if (index >= 0 && index < listItems.size()) {
             listItems.remove(index);
             this.notifyItemRemoved(index);
         }
@@ -94,7 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     public void removeItem(String id) {
         for (int i = 0; i < listItems.size(); i++) {
-            if( listItems.get(i).getId().equals(id) ) {
+            if (listItems.get(i).getId().equals(id)) {
                 removeItem(i);
                 return;
             }

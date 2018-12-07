@@ -1,7 +1,6 @@
 package se.iths.ateam.bring2you.Utils;
 
 
-
 public class MyUser {
     private boolean admin;
     private boolean loggedIn;
@@ -11,9 +10,10 @@ public class MyUser {
         this.id = id;
     }
 
-    public MyUser(){
+    public MyUser() {
 
     }
+
     public boolean isAdmin() {
         return admin;
     }

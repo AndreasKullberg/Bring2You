@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -62,7 +63,7 @@ public class LoginActivity extends AppCompatActivity {
         if (user != null) {
             finish();
             toastMessage(getString(R.string.logged_in_as) + " " + Objects.requireNonNull(user).getEmail());
-           startActivity(new Intent(LoginActivity.this, SplashActivity.class));
+            startActivity(new Intent(LoginActivity.this, SplashActivity.class));
         } else {
 
             findViews();
@@ -120,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void getPreferencesData(){
+    private void getPreferencesData() {
         SharedPreferences sp = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
         if (sp.contains("pref_name")) {
             String u = sp.getString("pref_name", "not found");
@@ -136,17 +137,17 @@ public class LoginActivity extends AppCompatActivity {
             rememberMeCheckBox.setChecked(b);
         }
     }
-    private void toastMessage(String message){
+
+    private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();
 
     }
 
-    private void setLanguageForApp(String languageToLoad){
+    private void setLanguageForApp(String languageToLoad) {
         Locale locale;
-        if(languageToLoad.equals("")){
+        if (languageToLoad.equals("")) {
             locale = Locale.getDefault();
-        }
-        else {
+        } else {
             locale = new Locale(languageToLoad);
         }
         Locale.setDefault(locale);
@@ -156,7 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                 getBaseContext().getResources().getDisplayMetrics());
     }
 
-    private void findViews(){
+    private void findViews() {
         mUsername = findViewById(R.id.usernameEditText);
         mPassword = findViewById(R.id.passwordEditText);
         loginButton = findViewById(R.id.loginButton);

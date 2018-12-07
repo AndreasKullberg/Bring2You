@@ -24,8 +24,6 @@ public class MyCanvas extends View {
     Path path = new Path();
 
 
-
-
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         myPaint.setAntiAlias(true);
@@ -37,40 +35,40 @@ public class MyCanvas extends View {
     }
 
     @Override
-            protected void onDraw(Canvas canvas) {
-                super.onDraw(canvas);
-                Rect r = new Rect(0,0,this.getWidth(), this.getHeight());
-                canvas.drawRect(r, myPaint);
-                canvas.drawPath(path ,myPaint);
-            }
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Rect r = new Rect(0, 0, this.getWidth(), this.getHeight());
+        canvas.drawRect(r, myPaint);
+        canvas.drawPath(path, myPaint);
+    }
 
-            @Override
-            public boolean onTouchEvent(MotionEvent event) {
-                float xPos = event.getX();
-                float yPos = event.getY();
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        float xPos = event.getX();
+        float yPos = event.getY();
 
-                switch (event.getAction()){
+        switch (event.getAction()) {
 
-                    case MotionEvent.ACTION_DOWN:
-                        path.moveTo(xPos,yPos);
-                        return true;
+            case MotionEvent.ACTION_DOWN:
+                path.moveTo(xPos, yPos);
+                return true;
 
             case MotionEvent.ACTION_MOVE:
-                path.lineTo(xPos,yPos);
+                path.lineTo(xPos, yPos);
                 break;
 
             case MotionEvent.ACTION_UP:
                 break;
 
             default:
-                    return false;
+                return false;
 
         }
         invalidate();
         return true;
     }
 
-    public void clear(){
+    public void clear() {
         path.rewind();
         invalidate();
     }

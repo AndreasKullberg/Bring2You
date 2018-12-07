@@ -35,7 +35,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     protected void onCreate(Bundle savedInstanceState) {
         SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
 
-        if(settingsSharedPref.loadDarkModeState()) {
+        if (settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -49,11 +49,9 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         setContentView(scannerView);
 
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-            if (checkPermission()){
-            }
-            else{
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkPermission()) {
+            } else {
                 requestPermission();
 
             }
@@ -62,8 +60,9 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
     }
 
     private boolean checkPermission() {
-        return (ContextCompat.checkSelfPermission(ScannerActivity.this, CAMERA)== PackageManager.PERMISSION_GRANTED);
+        return (ContextCompat.checkSelfPermission(ScannerActivity.this, CAMERA) == PackageManager.PERMISSION_GRANTED);
     }
+
     private void requestPermission() {
         ActivityCompat.requestPermissions(this, new String[]{CAMERA}, requestCamera);
     }
@@ -75,7 +74,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         int currentapiVersion = android.os.Build.VERSION.SDK_INT;
         if (currentapiVersion >= android.os.Build.VERSION_CODES.M) {
             if (checkPermission()) {
-                if(scannerView == null) {
+                if (scannerView == null) {
                     scannerView = new ZXingScannerView(this);
                     setContentView(scannerView);
                 }
@@ -99,9 +98,9 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
                 if (grantResults.length > 0) {
 
                     boolean cameraAccepted = grantResults[0] == PackageManager.PERMISSION_GRANTED;
-                    if (cameraAccepted){
+                    if (cameraAccepted) {
                         Toast.makeText(getApplicationContext(), getString(R.string.permission_granted_camera), Toast.LENGTH_LONG).show();
-                    }else {
+                    } else {
                         Toast.makeText(getApplicationContext(), getString(R.string.permission_denied_camera), Toast.LENGTH_LONG).show();
                         if (shouldShowRequestPermissionRationale(CAMERA)) {
                             showMessageOKCancel(getString(R.string.both_permissions),
@@ -137,17 +136,16 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
         Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("scanResult",myResult);
+        intent.putExtra("scanResult", myResult);
         startActivity(intent);
 
     }
 
-    private void setLanguageForApp(String languageToLoad){
+    private void setLanguageForApp(String languageToLoad) {
         Locale locale;
-        if(languageToLoad.equals("")){
+        if (languageToLoad.equals("")) {
             locale = Locale.getDefault();
-        }
-        else {
+        } else {
             locale = new Locale(languageToLoad);
         }
         Locale.setDefault(locale);

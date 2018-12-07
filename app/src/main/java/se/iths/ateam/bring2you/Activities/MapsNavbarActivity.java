@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
@@ -22,6 +23,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -45,7 +47,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
     protected void onCreate(Bundle savedInstanceState) {
         SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
 
-        if(settingsSharedPref.loadDarkModeState()) {
+        if (settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
         } else {
             setTheme(R.style.AppTheme);
@@ -123,12 +125,11 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
     }
 
-    private void setLanguageForApp(String languageToLoad){
+    private void setLanguageForApp(String languageToLoad) {
         Locale locale;
-        if(languageToLoad.equals("")){
+        if (languageToLoad.equals("")) {
             locale = Locale.getDefault();
-        }
-        else {
+        } else {
             locale = new Locale(languageToLoad);
         }
         Locale.setDefault(locale);

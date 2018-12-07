@@ -38,7 +38,7 @@ public class CreateDeliveryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
-        ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);
         createAdress = view.findViewById(R.id.createAdress);
         createName = view.findViewById(R.id.createName);
         createPostal = view.findViewById(R.id.createPostal);
@@ -53,11 +53,9 @@ public class CreateDeliveryFragment extends Fragment {
             postalCode = createPostal.getText().toString();
             senderId = createSender.getText().toString();
 
-            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")||sendTo.equals("")){
+            if (adress.equals("") || name.equals("") || postalCode.equals("") || senderId.equals("") || sendTo.equals("")) {
                 toastMessage(getString(R.string.no_blank_fields));
-            }
-
-            else {
+            } else {
                 firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -81,8 +79,7 @@ public class CreateDeliveryFragment extends Fragment {
                                             toastMessage(getString(R.string.delivery_error));
                                         }
                                     });
-                        }
-                        else{
+                        } else {
                             toastMessage(getString(R.string.user_doesnt_exist));
                         }
                     }
@@ -97,11 +94,11 @@ public class CreateDeliveryFragment extends Fragment {
         });
 
 
-
         return view;
 
     }
-    private void toastMessage(String Message){
+
+    private void toastMessage(String Message) {
         Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }
 
