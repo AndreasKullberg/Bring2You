@@ -71,4 +71,5 @@
     <string name="lang_set_SV">Språket är nu inställt på Svenska!</string>
     <string name="already_EN">Språket är redan inställt på Engelska!</string>
     <string name="already_SV">Språket är redan inställt på Svenska!</string>
+    <string name="printed_name">Namnförtydligande</string>
 </resources>
