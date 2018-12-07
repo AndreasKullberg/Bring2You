@@ -16,6 +16,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +52,7 @@ public class SignFragment extends Fragment {
     private String collection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-
+    private TextView name,  adress, postalCode;
 
     public static void setScanResult(String myResult) {
 
@@ -86,6 +88,14 @@ public class SignFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        name = getActivity().findViewById(R.id.infoName);
+        adress = getActivity().findViewById(R.id.infoAdress);
+        postalCode = getActivity().findViewById(R.id.infoPostalCode);
+
+        name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+ "  " + item.getName());
+        postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+ "  " + item.getPostalCode());
+        adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+ "  " + item.getAdress());
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
             item.setSignedBy(signedByView.getText().toString());
@@ -125,6 +135,7 @@ public class SignFragment extends Fragment {
         });
 
     }
+
 
     private byte[] makeSignature() {
         View content = getActivity().findViewById(R.id.my_canvas);
@@ -175,4 +186,3 @@ public class SignFragment extends Fragment {
 }
 
 
-//TODO: Kolla dessa else statements? ska de finnas kvar?

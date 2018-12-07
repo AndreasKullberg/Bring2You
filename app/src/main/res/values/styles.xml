@@ -11,7 +11,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#fffcfc</item>
         <item name="cardbackground">#ffffff</item>
-        <item name="textcolor">#ffffff</item>
+        <item name="textcolor">#000000</item>
         <item name="buttontextcolor">#ffffff</item>
         <item name="tintcolor">#000000</item>
         <item name="buttoncolor">#2196F3</item>
@@ -22,6 +22,8 @@
         <item name="BotBarBack">@drawable/botglowbar3</item>
         <item name="mybutton">@drawable/mybutton</item>
         <item name="settingsTextColor">#6200ee</item>
+        <item name="canvasbackground">#ffffff</item>
+
 
     </style>
 
@@ -31,7 +33,7 @@
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#FFF</item>
-        <item name="backgroundcolor">#303030</item>
+        <item name="backgroundcolor">#000000</item>
         <item name="cardbackground">#424242</item>
         <item name="textcolor">#ffffff</item>
         <item name="tintcolor">#ffffff</item>
@@ -42,6 +44,7 @@
         <item name="BotBarBack">@drawable/bot_glow_bar_black3</item>
         <item name="mybutton">@drawable/mybutton_night</item>
         <item name="settingsTextColor">#ffffff</item>
+        <item name="canvasbackground">#ffffff</item>
     </style>
 
 

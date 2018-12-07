@@ -96,6 +96,7 @@ public class SettingsFragment extends Fragment {
                 builder.setCancelable(false);
                 AlertDialog alert = builder.create();
                 alert.show();
+                alert.getButton(alert.BUTTON_NEUTRAL).setTextColor(R.attr.textcolor);
             }
         });
     }
@@ -128,5 +129,3 @@ public class SettingsFragment extends Fragment {
     }
 
 }
-
-//TODO Byta ikon efter man valt språk (Inställningar är förvalt även om man blir skickad tillbaka till Order listan)

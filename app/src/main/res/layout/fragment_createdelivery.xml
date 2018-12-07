@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="?attr/backgroundcolor"
     android:layout_height="match_parent">
 
     <Button
@@ -12,21 +13,26 @@
         android:layout_marginEnd="36dp"
         android:layout_marginBottom="64dp"
         android:text="@string/send"
+        android:textColor="?attr/textcolor"
+        android:background="?attr/buttoncolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/createAdress"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/adress"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sendTo" />
 
     <EditText
         android:id="@+id/createName"
@@ -36,6 +42,9 @@
         android:ems="10"
         android:hint="@string/name"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,6 +58,9 @@
         android:ems="10"
         android:hint="@string/postal_code"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +75,9 @@
         android:ems="10"
         android:hint="@string/sender_id"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -74,14 +89,15 @@
         android:id="@+id/sendTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="176dp"
         android:ems="10"
         android:hint="name@mail.com"
         android:inputType="textPersonName"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>
