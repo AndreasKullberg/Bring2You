@@ -135,11 +135,19 @@ public class ListFragment extends Fragment {
                         if (Objects.requireNonNull(document).exists()) {
                             String id = document.getId();
                             myUser = document.toObject(MyUser.class);
-                            Objects.requireNonNull(myUser).setId(id);
+                           try {
+                               Objects.requireNonNull(myUser).setId(id);
+                           }
+                           catch (Exception e){
+
+                           }
+
                             if (myUser.isAdmin()) {
                                 collection = "Delivered";
                                 Log.d("Collection", collection);
+
                                 getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+
                             }
                             registration = firestore.collection(collection).whereEqualTo("delivered",status).addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override

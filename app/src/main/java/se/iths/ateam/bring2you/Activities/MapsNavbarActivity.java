@@ -2,6 +2,7 @@ package se.iths.ateam.bring2you.Activities;
 
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
@@ -23,11 +24,14 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import java.io.IOException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 // GoogleMaps activity with a search function
+@SuppressWarnings("deprecation")
 public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -39,6 +43,16 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
+
+        if(settingsSharedPref.loadDarkModeState()) {
+            setTheme(R.style.darktheme);
+        } else {
+            setTheme(R.style.AppTheme);
+        }
+
+        setLanguageForApp(settingsSharedPref.loadLanguage());
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navbar_maps);
         initMap();
@@ -86,9 +100,9 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
         Address add = list.get(0);
         String locality = add.getLocality();
         if (locality == null) {
-            Toast.makeText(this, "Destination: " + location, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.destination) + " " + location, Toast.LENGTH_LONG).show();
         } else {
-            Toast.makeText(this, "Destination: " + locality, Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.destination) + " " + locality, Toast.LENGTH_LONG).show();
         }
         double latitude = add.getLatitude();
         double longitude = add.getLongitude();
@@ -98,7 +112,7 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     public void onConnected(Bundle bundle) {
-        Toast.makeText(this, "Ready to map!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.ready_to_map), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -107,6 +121,21 @@ public class MapsNavbarActivity extends FragmentActivity implements OnMapReadyCa
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+    }
+
+    private void setLanguageForApp(String languageToLoad){
+        Locale locale;
+        if(languageToLoad.equals("")){
+            locale = Locale.getDefault();
+        }
+        else {
+            locale = new Locale(languageToLoad);
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config,
+                getBaseContext().getResources().getDisplayMetrics());
     }
 }
 
