@@ -1,5 +1,6 @@
 package se.iths.ateam.bring2you.Utils;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.ViewFlipper;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,6 +46,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String collection;
+    private List<ListItemInfo> listItemscopy;
+    private ListItemInfo item;
 
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
@@ -61,15 +65,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
-       ListItemInfo item = listItems.get(index);
+
+        listItemscopy = listItems;
+       item = listItems.get(index);
        listItemViewHolder.setData(item);
        Fragment listFragment = new ListFragment();
        ViewFlipper viewFlipper = listItemViewHolder.viewFlipper;
-        storageReference = FirebaseStorage.getInstance().getReference("Signatures");
-        firestore = FirebaseFirestore.getInstance();
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseUser = firebaseAuth.getCurrentUser();
-        collection = firebaseUser.getEmail();
+       storageReference = FirebaseStorage.getInstance().getReference("Signatures");
+       firestore = FirebaseFirestore.getInstance();
+       firebaseAuth = FirebaseAuth.getInstance();
+       firebaseUser = firebaseAuth.getCurrentUser();
+       collection = firebaseUser.getEmail();
 
 
         listItemViewHolder.sendButton.setOnClickListener(v -> {
@@ -136,6 +142,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         });
 
 
+
+
+
+
         listItemViewHolder.clearBtn.setOnClickListener(v -> {listItemViewHolder.canvas.clear();});
         myCanvas = listItemViewHolder.canvas;
 
@@ -161,6 +171,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
             i.putExtra("mapKey", item);
             view.getContext().startActivity(i);
         });
+
+    }
+
+
+
+    public void filter(String text) {
+        listItems.clear();
+        if(text.isEmpty()){
+            listItems.addAll(listItemscopy);
+        } else{
+            text = text.toLowerCase();
+            for(ListItemInfo item: listItemscopy){
+                if(item.getName().toLowerCase().contains(text) || item.getId().toLowerCase().contains(text)){
+                    listItems.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
     }
 
 

@@ -18,7 +18,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ScrollView;
+import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,6 +48,8 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.Nullable;
 
+import se.iths.ateam.bring2you.Activities.MainActivity;
+import se.iths.ateam.bring2you.Activities.ScannerActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.MyCanvas;
@@ -53,7 +57,7 @@ import se.iths.ateam.bring2you.Utils.MyUser;
 import se.iths.ateam.bring2you.Utils.RecyclerViewAdapter;
 import se.iths.ateam.bring2you.Utils.ViewModel;
 @SuppressWarnings("deprecation")
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment  {
 
     private static ListItemInfo item;
     private static int flipper;
@@ -99,6 +103,7 @@ public class ListFragment extends Fragment {
         }
 
     });
+    private SearchView searchView;
 
 
     public static void setScanResult(String myResult) {
@@ -140,7 +145,19 @@ public class ListFragment extends Fragment {
 
 
 
+        getView().findViewById(R.id.action_search).setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                adapter.filter(query);
+                return true;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                adapter.filter(newText);
+                return true;
+            }
+        });
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
@@ -149,6 +166,8 @@ public class ListFragment extends Fragment {
         });
 
         return view;
+
+
 
     }
 
@@ -161,6 +180,7 @@ public class ListFragment extends Fragment {
     @Override
     public void onActivityCreated(@android.support.annotation.Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
 
 
         if (item!=null);
@@ -243,41 +263,6 @@ public class ListFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // Do something that differs the Activity's menu here
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-            case R.id.delivered:
-                model.setStatus(true);
-                model.setTitle(getString(R.string.titleDelivered));
-                model.setStart(true);
-                onResume();
-                return true;
-            case R.id.nonDelivered:
-                model.setStatus(false);
-                model.setTitle(getString(R.string.titleNonDelivered));
-                model.setStart(true);
-                onResume();
-                return true;
-            default:
-                break;
-        }
-
-        return false;
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        menu.findItem(R.id.delivered).setVisible(true);
-        menu.findItem(R.id.nonDelivered).setVisible(true);
-        super.onPrepareOptionsMenu(menu);
-    }
 
     private void checkScan(Task<DocumentSnapshot> task) {
         if (task.isSuccessful()) {
@@ -285,10 +270,11 @@ public class ListFragment extends Fragment {
             if (Objects.requireNonNull(document).exists()) {
                 item = document.toObject(ListItemInfo.class);
                 Objects.requireNonNull(item).setId(scanResult);
-            } else {
+            }
+            else {
+                Toast.makeText(getActivity(),"Package not found",Toast.LENGTH_LONG).show();
 
             }
-        } else {
         }
     }
 
@@ -321,5 +307,47 @@ public class ListFragment extends Fragment {
 
 
     }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // Do something that differs the Activity's menu here
+        super.onCreateOptionsMenu(menu, inflater);
+        final MenuItem searchItem = menu.findItem(R.id.action_search);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.delivered:
+                model.setStatus(true);
+                model.setTitle(getString(R.string.titleDelivered));
+                model.setStart(true);
+                onResume();
+                return true;
+            case R.id.nonDelivered:
+                model.setStatus(false);
+                model.setTitle(getString(R.string.titleNonDelivered));
+                model.setStart(true);
+                onResume();
+                return true;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.delivered).setVisible(true);
+        menu.findItem(R.id.nonDelivered).setVisible(true);
+        super.onPrepareOptionsMenu(menu);
+    }
+
+
+
+
+
 }
 
