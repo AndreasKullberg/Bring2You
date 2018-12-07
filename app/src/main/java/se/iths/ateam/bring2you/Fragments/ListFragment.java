@@ -145,19 +145,19 @@ public class ListFragment extends Fragment  {
 
 
 
-        getView().findViewById(R.id.action_search).setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                adapter.filter(query);
-                return true;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                adapter.filter(newText);
-                return true;
-            }
-        });
+//        getView().findViewById(R.id.action_search).setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                adapter.filter(query);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                adapter.filter(newText);
+//                return true;
+//            }
+//        });
 
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
