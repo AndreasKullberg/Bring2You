@@ -72,6 +72,7 @@
     <string name="already_EN">Språket är redan inställt på Engelska!</string>
     <string name="already_SV">Språket är redan inställt på Svenska!</string>
     <string name="printed_name">Namnförtydligande</string>
+    <string name="address">Address</string>
     <string name="alreadyDelivered">Leveransen är redan levererad!</string>
     <string name="successDelivered">Levererad!</string>
     <string name="deliveryFailed">Leverans misslycka</string>
