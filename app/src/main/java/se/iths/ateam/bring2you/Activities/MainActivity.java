@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signfragment).commit();
 
 
         }
