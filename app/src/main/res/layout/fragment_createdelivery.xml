@@ -25,7 +25,7 @@
         android:layout_marginTop="8dp"
         android:backgroundTint="?attr/textcolor"
         android:ems="10"
-        android:hint="Address"
+        android:hint="@string/address"
         android:inputType="textPersonName"
         android:textColor="?attr/textcolor"
         android:textColorHint="?attr/textcolor"

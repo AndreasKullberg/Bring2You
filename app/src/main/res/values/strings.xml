@@ -86,4 +86,5 @@
     <string name="already_EN">Language is already set to English!</string>
     <string name="already_SV">Language is already set to Swedish!</string>
     <string name="printed_name">Printed name</string>
+    <string name="address">Address</string>
 </resources>
