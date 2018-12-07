@@ -36,7 +36,7 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     public final View infoSignedBy;
     public final View signimage;
     public final ProgressBar cardProgress;
-    public final SearchView searchview;
+
     public EditText signedByView;
     public View itemview;
     public MyCanvas canvas;
@@ -69,7 +69,7 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
         this.infoPostalCode = itemView.findViewById(R.id.infoPostalCode);
         this.canvas = itemView.findViewById(R.id.my_canvas);
         this.cardProgress = itemView.findViewById(R.id.card_proggress);
-        this.searchview = itemView.findViewById(R.id.action_search);
+
 
 
     }

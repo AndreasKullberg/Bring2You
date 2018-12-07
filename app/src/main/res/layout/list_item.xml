@@ -7,11 +7,9 @@
     android:layout_height="wrap_content"
     android:elevation="5dp"
     android:paddingTop="8dp"
-    android:paddingBottom="8dp"
-    folding-cell:additionalFlipsCount="2"
-    folding-cell:animationDuration="2000"
+    android:paddingBottom="8dp" folding-cell:additionalFlipsCount="2"
     folding-cell:backSideColor="?attr/cardBackColor"
-    folding-cell:cameraHeight="30">
+    folding-cell:cameraHeight="36">
 
     <!-- CONTENT (UNFOLDED) LAYOUT (MUST BE AT LEAST 2x times BIGGER than content layout bellow)-->
 
@@ -46,7 +44,9 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="?attr/cardbackground"
-        android:visibility="visible">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:visibility="gone">
 
         <include
             android:id="@+id/signingD"

@@ -12,8 +12,5 @@
         android:title="@string/non_delivered"
         android:visible="false" />
 
-    <item android:id="@+id/action_search"
-        android:title="@string/action_search"
-        app:actionViewClass="android.widget.SearchView"
-        app:showAsAction="always"/>
+
 </menu>

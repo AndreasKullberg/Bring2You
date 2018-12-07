@@ -103,7 +103,7 @@ public class ListFragment extends Fragment  {
         }
 
     });
-    private SearchView searchView;
+
 
 
     public static void setScanResult(String myResult) {
@@ -278,40 +278,14 @@ public class ListFragment extends Fragment  {
         }
     }
 
-    private String getDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDate = simpleDateFormat.format(new Date());
-
-        return currentDate;
-    }
-
-    private String getTime() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm:ss");
-        String currentTime = simpleDateFormat.format(new Date());
-
-        return currentTime;
-    }
-
-    private byte[] makeSignature() {
-        View content = getActivity().findViewById(R.id.my_canvas);
-        content.setDrawingCacheEnabled(true);
-        content.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
-        Bitmap bitmap = content.getDrawingCache();
-
-        ByteArrayOutputStream stream = new ByteArrayOutputStream();
-
-        bitmap.compress(Bitmap.CompressFormat.PNG, 80, stream);
 
 
-        return stream.toByteArray();
 
-
-    }
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // Do something that differs the Activity's menu here
         super.onCreateOptionsMenu(menu, inflater);
-        final MenuItem searchItem = menu.findItem(R.id.action_search);
+
 
     }
 

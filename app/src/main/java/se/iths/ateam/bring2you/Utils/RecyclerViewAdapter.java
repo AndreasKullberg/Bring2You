@@ -14,10 +14,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,7 +33,9 @@ import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
+import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.Activities.MapsActivity;
 //import se.iths.ateam.bring2you.Fragments.InfoFragment;
 import se.iths.ateam.bring2you.Fragments.ListFragment;
@@ -78,58 +83,37 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
        collection = firebaseUser.getEmail();
 
 
-        listItemViewHolder.sendButton.setOnClickListener(v -> {
-            StorageReference fileRef = storageReference.child(item.getId() + ".png");
-            storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
-            });
+        Objects.requireNonNull(listItemViewHolder.sendButton).setOnClickListener(v -> {
 
-            item.setSignImageUrl("gs://" + fileRef.getBucket() + "/Signatures/" + item.getId() + ".png");
-            item.setSignedBy(listItemViewHolder.signedByView.getText().toString());
+            StorageReference fileRef = storageReference.child(item.getId() + ".png");
+            storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {});
+
+            item.setSignImageUrl("gs://" +fileRef.getBucket()+"/Signatures/" + item.getId() + ".png");
+            item.setSignedBy(listItemViewHolder.signedByView.toString());
             item.setDate(getDate());
             item.setTime(getTime());
             item.setDelivered(true);
 
-            firestore.collection(collection).document(item.getId()).set(item)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
+            Task task1 = firestore.collection(collection).document(item.getId()).set(item);
 
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
+            Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
 
-                        }
-                    });
-            firestore.collection("Delivered")
-                    .document(item.getId())
-                    .set(item).addOnSuccessListener(new OnSuccessListener<Void>() {
+            Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
                 @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("succsesSet", "DocumentSnapshot successfully added!");
+                public void onSuccess(List<Object> objects) {
+
+//                    Toast.makeText(new MainActivity(),getString(R.string.successDelivered, Toast.LENGTH_SHORT).show();
+
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Log.w("succsesSet", "Error deleting document", e);
+//                    Toast.makeText(new MainActivity(),getString(R.string.), Toast.LENGTH_SHORT).show();
                 }
             });
 
-            /*:firestore.collection(collection)
-                    .document(item.getId())
-                    .delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("succsesDelete", "DocumentSnapshot successfully deleted!");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.w("succsesDelete", "Error deleting document", e);
-                }
-            });*/
-            //getActivity().recreate();
+        //getActivity().recreate();
             listItemViewHolder.constraintLayout.toggle(true);
             listItemViewHolder.cardProgress.setVisibility(View.VISIBLE);
             try {
@@ -139,12 +123,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
             }
             listItemViewHolder.cardProgress.setVisibility(View.INVISIBLE);
             ((ListFragment) listFragment).send();
+
         });
-
-
-
-
-
 
         listItemViewHolder.clearBtn.setOnClickListener(v -> {listItemViewHolder.canvas.clear();});
         myCanvas = listItemViewHolder.canvas;
@@ -161,7 +141,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
                 viewFlipper.setDisplayedChild(0);
 
             }
-            listItemViewHolder.constraintLayout.unfold(true);
+            listItemViewHolder.constraintLayout.toggle(false);
         });
         listItemViewHolder.openMap.setOnClickListener(view -> {
             // show marker google maps intent
@@ -175,21 +155,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     }
 
 
-
-    public void filter(String text) {
-        listItems.clear();
-        if(text.isEmpty()){
-            listItems.addAll(listItemscopy);
-        } else{
-            text = text.toLowerCase();
-            for(ListItemInfo item: listItemscopy){
-                if(item.getName().toLowerCase().contains(text) || item.getId().toLowerCase().contains(text)){
-                    listItems.add(item);
-                }
-            }
-        }
-        notifyDataSetChanged();
-    }
 
 
 
