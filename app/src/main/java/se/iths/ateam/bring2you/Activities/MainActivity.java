@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
 
         /* Den aktivitet som startas upp efter man har loggat in */
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, new ListFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signfragment).commit();
 
 
         }
