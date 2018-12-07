@@ -4,17 +4,15 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">#6200ee</item>
-
-
-
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="backgroundcolor">#fffcfc</item>
         <item name="cardbackground">#ffffff</item>
         <item name="textcolor">#000000</item>
         <item name="buttontextcolor">#ffffff</item>
         <item name="tintcolor">#000000</item>
-        <item name="buttoncolor">#2196F3</item>
+        <item name="buttoncolor">#4a148c</item>
+
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
@@ -27,6 +25,7 @@
 
     </style>
 
+    <!-- <item name="buttoncolor">#2196F3</item> -->
 
     <!-- Night Theme. -->
     <style name="darktheme" parent="Theme.AppCompat.Light.NoActionBar">

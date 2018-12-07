@@ -17,21 +17,24 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    android:windowSoftInputMode="adjustPan"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
         <activity android:name=".Activities.SplashActivity"/>
-        <activity android:name=".Activities.MapsActivity" />
+        <activity android:name=".Activities.MapsActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activities.ScannerActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name=".Activities.MainActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activities.MapsNavbarActivity"></activity>
     </application>
 
