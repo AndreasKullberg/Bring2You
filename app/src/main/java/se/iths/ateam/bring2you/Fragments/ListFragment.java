@@ -67,10 +67,6 @@ public class ListFragment extends Fragment {
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
 
 
-        /*((MainActivity) getActivity())
-                .setActionBarTitle(getString(R.string.deliveries));
-        */
-
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -139,7 +135,11 @@ public class ListFragment extends Fragment {
                             if (myUser.isAdmin()) {
                                 collection = "Delivered";
                                 Log.d("Collection", collection);
-                                getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+                                try {
+                                    getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
+                                }catch(Exception e){
+                                    e.printStackTrace();
+                                }
                             }
                             registration = firestore.collection(collection).whereEqualTo("delivered",status).addSnapshotListener(new EventListener<QuerySnapshot>() {
                                 @Override
