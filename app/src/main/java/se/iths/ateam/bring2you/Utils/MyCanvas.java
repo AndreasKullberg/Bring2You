@@ -29,12 +29,10 @@ public class MyCanvas extends View {
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         myPaint.setAntiAlias(true);
-        myPaint.setColor(Color.BLACK);
         myPaint.setStrokeJoin(Paint.Join.ROUND);
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5f);
-
-    }
+        }
 
     @Override
             protected void onDraw(Canvas canvas) {

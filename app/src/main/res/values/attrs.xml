@@ -11,5 +11,6 @@
         <attr name="TopBarBack" format="color" />
         <attr name="mybutton" format="color" />
         <attr name="settingsTextColor" format="color"/>
+        <attr name="canvasbackground" format="color"/>
     </declare-styleable>
 </resources>

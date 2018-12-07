@@ -96,6 +96,7 @@ public class SettingsFragment extends Fragment {
                 builder.setCancelable(false);
                 AlertDialog alert = builder.create();
                 alert.show();
+                alert.getButton(alert.BUTTON_NEUTRAL).setTextColor(R.attr.textcolor);
             }
         });
     }
