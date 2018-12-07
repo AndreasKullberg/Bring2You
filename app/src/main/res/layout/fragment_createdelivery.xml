@@ -18,15 +18,15 @@
     <EditText
         android:id="@+id/createAdress"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/adress"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sendTo" />
 
     <EditText
         android:id="@+id/createName"
@@ -74,14 +74,12 @@
         android:id="@+id/sendTo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="85dp"
-        android:layout_marginTop="192dp"
-        android:layout_marginEnd="84dp"
+        android:layout_marginTop="176dp"
         android:ems="10"
         android:hint="name@mail.com"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

@@ -170,14 +170,10 @@ public class SignFragment extends Fragment {
                 item = document.toObject(ListItemInfo.class);
                 Objects.requireNonNull(item).setId(scanResult);
             }
-            else {
-
-            }
         }
-        else {}
+
     }
 
 }
 
 
-//TODO: Kolla dessa else statements? ska de finnas kvar?

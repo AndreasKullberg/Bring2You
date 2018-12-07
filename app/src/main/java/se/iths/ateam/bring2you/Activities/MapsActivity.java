@@ -29,7 +29,7 @@ import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
-// GoogleMaps activity that zooms into delivery location
+
 @SuppressWarnings("deprecation")
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
