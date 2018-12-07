@@ -17,23 +17,23 @@
     <EditText
 
         android:id="@+id/passwordEditText"
-        android:layout_width="306dp"
+        android:layout_width="308dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
         android:autofillHints=""
+        android:backgroundTint="?attr/textcolor"
         android:drawableStart="@drawable/ic_lock_outline_black_24dp"
         android:drawablePadding="5dp"
         android:ems="10"
         android:hint="@string/password"
-        android:textColorHint="?attr/textcolor"
         android:inputType="textPassword"
         android:textColor="?attr/textcolor"
-        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"/>
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <Button
         android:id="@+id/loginButton"
@@ -56,19 +56,18 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:backgroundTint="?attr/textcolor"
         android:drawableStart="@drawable/ic_person_black_24dp"
         android:drawablePadding="5dp"
         android:ems="10"
         android:hint="@string/email"
-        android:textColorHint="?attr/textcolor"
+        android:importantForAutofill="no"
         android:inputType="textPersonName"
         android:textColor="?attr/textcolor"
-        android:backgroundTint="?attr/textcolor"
+        android:textColorHint="?attr/textcolor"
         app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        android:importantForAutofill="no" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -80,7 +79,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logob2u" />
+        app:srcCompat="@drawable/logob2u_spalsh" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -100,7 +99,8 @@
         android:layout_height="209dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp">
 
     </FrameLayout>
 
