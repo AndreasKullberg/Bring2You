@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="56dp"
         android:ems="10"
-        android:hint="Name"
+        android:hint="@string/printed_name"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/my_canvas"
         app:layout_constraintEnd_toEndOf="parent"
