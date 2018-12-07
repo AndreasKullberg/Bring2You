@@ -46,4 +46,6 @@
     <string name="name" translatable="false">Name</string>
     <string name="postal_code" translatable="false">postal code</string>
     <string name="sender_id" translatable="false">Sender id</string>
+    <string name="loading">Loading</string>
+    <string name="_0">0 %</string>
 </resources>
