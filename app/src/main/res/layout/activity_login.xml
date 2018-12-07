@@ -99,8 +99,9 @@
         android:layout_height="209dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/usernameEditText"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
