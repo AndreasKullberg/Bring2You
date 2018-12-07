@@ -55,8 +55,8 @@
     <string name="find">Hitta</string>
     <string name="logged_in_as">Inloggad med:</string>
     <string name="no_blank_fields">Inga tomma fält!</string>
-    <string name="login_success">Lyckad inloggad med:</string>
-    <string name="login_failed">Misslyckad inloggning</string>
+    <string name="login_success">Inloggad med:</string>
+    <string name="login_failed">Inloggning misslyckades</string>
     <string name="signing_out">Loggar ut...</string>
     <string name="dest_not_found">Destinationen kunde inte hittas</string>
     <string name="ready_to_map">Nu kör vi!</string>

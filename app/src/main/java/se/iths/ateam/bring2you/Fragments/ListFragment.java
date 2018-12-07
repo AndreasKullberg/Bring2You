@@ -77,6 +77,7 @@ public class ListFragment extends Fragment {
         view.findViewById(R.id.floatingActionButton).setOnClickListener(v -> {
             Fragment createDeliveryFragment = new CreateDeliveryFragment();
             getFragmentManager().beginTransaction().replace(R.id.frameLayout,createDeliveryFragment)
+                    .addToBackStack(null)
                     .commit();
         });
 
