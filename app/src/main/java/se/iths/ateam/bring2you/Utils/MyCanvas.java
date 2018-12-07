@@ -2,23 +2,16 @@ package se.iths.ateam.bring2you.Utils;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.ImageView;
+
+import se.iths.ateam.bring2you.R;
 
 
 /**
@@ -31,6 +24,8 @@ public class MyCanvas extends View {
     Path path = new Path();
 
 
+
+
     public MyCanvas(Context context, AttributeSet attrs) {
         super(context, attrs);
         myPaint.setAntiAlias(true);
@@ -38,11 +33,14 @@ public class MyCanvas extends View {
         myPaint.setStrokeJoin(Paint.Join.ROUND);
         myPaint.setStyle(Paint.Style.STROKE);
         myPaint.setStrokeWidth(5f);
+
     }
 
     @Override
             protected void onDraw(Canvas canvas) {
                 super.onDraw(canvas);
+                Rect r = new Rect(0,0,this.getWidth(), this.getHeight());
+                canvas.drawRect(r, myPaint);
                 canvas.drawPath(path ,myPaint);
             }
 
@@ -70,6 +68,11 @@ public class MyCanvas extends View {
         }
         invalidate();
         return true;
+    }
+
+    public void clear(){
+        path.rewind();
+        invalidate();
     }
 
 }

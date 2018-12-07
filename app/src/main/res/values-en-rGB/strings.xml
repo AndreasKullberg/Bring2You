@@ -16,7 +16,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="order">Order</string>
     <string name="maps">Maps</string>
-    <string name="add">Add</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
@@ -30,6 +29,46 @@
     <string name="name" translatable="false">Name</string>
     <string name="postal_code" translatable="false">Postal code</string>
     <string name="sender_id" translatable="false">Sender id</string>
-    <string name="logout" translatable="false">logout</string>
+    <string name="logout" translatable="false">Log out</string>
     <string name="send" translatable="false">SEND</string>
+    <string name="quit">Quit</string>
+    <string name="app_creation">This app was created in 2018 by the A-Team @ ITHS</string>
+    <string name="Find">Find</string>
+    <string name="search">Search</string>
+    <string name="titleSign">Sign</string>
+    <string name="titleCreateDelivery">Create delivery</string>
+    <string name="titleSettings">Settings</string>
+    <string name="titleNonDelivered">Non delivered</string>
+    <string name="titleDelivered">Delivered</string>
+    <string name="infoTime">Time:</string>
+    <string name="infoDate">Date:</string>
+    <string name="infoName">Name:</string>
+    <string name="infoSignedBy">Signed by:</string>
+    <string name="infoAddress">Address:</string>
+    <string name="infoPostalcode">Postal code:</string>
+    <string name="titleInfo">Info</string>
+    <string name="non_delivered">Non Delivered</string>
+    <string name="delivered">Delivered</string>
+    <string name="clear">CLEAR</string>
+    <string name="deliveries">DELIVERIES</string>
+    <string name="find">Find</string>
+    <string name="enter_a_location">Enter a location</string>
+    <string name="logged_in_as">Logged in as:</string>
+    <string name="no_blank_fields">No blank fields!</string>
+    <string name="login_success">Successfully logged in as:</string>
+    <string name="login_failed">Failed to login</string>
+    <string name="signing_out">Signing out...</string>
+    <string name="dest_not_found">The destination was not found.</string>
+    <string name="ready_to_map">Ready to map!</string>
+    <string name="permission_granted_camera">Permission granted, you can now access the camera</string>
+    <string name="permission_denied_camera">Permission denied, you can not access the camera</string>
+    <string name="both_permissions">You need to allow access to both the permissions</string>
+    <string name="cancel">Cancel</string>
+    <string name="delivery_added">Successfully added new delivery!</string>
+    <string name="delivery_error">Error adding new delivery...</string>
+    <string name="user_doesnt_exist">User does not exist!</string>
+    <string name="lang_set_EN">Language is now set to English!</string>
+    <string name="lang_set_SV">Language is now set to Swedish!</string>
+    <string name="already_EN">Language is already set to English!</string>
+    <string name="already_SV">Language is already set to Swedish!</string>
 </resources>

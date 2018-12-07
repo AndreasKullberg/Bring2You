@@ -7,28 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LoginActivity">
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/cardbackground">
-
-    </android.support.v7.widget.Toolbar>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/about_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        app:backgroundTint="@android:color/transparent"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintStart_toStartOf="@+id/toolbar"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:srcCompat="@drawable/aboutus" />
-
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -49,11 +27,12 @@
         android:ems="10"
         android:hint="@string/password"
         android:inputType="textPassword"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline" />
+        app:layout_constraintTop_toTopOf="@+id/guideline"/>
 
     <Button
         android:id="@+id/loginButton"
@@ -81,7 +60,8 @@
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textPersonName"
-        android:textColor="@android:color/black"
+        android:textColor="?attr/textcolor"
+        android:backgroundTint="?attr/textcolor"
         app:layout_constraintBottom_toTopOf="@+id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
@@ -132,7 +112,9 @@
         android:buttonTint="@android:color/black"
         android:checked="false"
         android:text="@string/remember_me"
+        android:textColor="?attr/textcolor"
         android:visibility="visible"
+        app:buttonTint="?attr/textcolor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.56"
         app:layout_constraintStart_toStartOf="parent"

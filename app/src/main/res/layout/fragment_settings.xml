@@ -10,39 +10,82 @@
         android:id="@+id/theme_pref"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/theme"
-        android:textColor="?attr/textcolor" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="?attr/textcolor"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/en_btn"
+        android:id="@+id/about_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="8dp"
+        android:background="?attr/mybutton"
+        android:text="@string/about"
+        android:textColor="?attr/buttontextcolor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/se_btn" />
+
+    <TextView
+        android:id="@+id/languageTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/language"
+        android:textColor="?attr/settingsTextColor"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_pref" />
+
+    <TextView
+        android:id="@+id/themeTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="@string/english"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/theme_pref"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/se_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:text="@string/swedish"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.664"
+        android:layout_marginBottom="8dp"
+        android:text="@string/theme"
+        android:textColor="?attr/settingsTextColor"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/languageTextView"
+        app:layout_constraintEnd_toStartOf="@+id/theme_pref"
+        app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/en_btn"
-        tools:ignore="HardcodedText" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571" />
 
-    <FrameLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ImageButton
+        android:id="@+id/se_btn"
+        android:layout_width="66dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
 
-    </FrameLayout>
+
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/en_btn"
+        app:layout_constraintTop_toBottomOf="@+id/theme_pref"
+        app:srcCompat="@drawable/sweden64px" />
+
+    <ImageButton
+        android:id="@+id/en_btn"
+        android:layout_width="67dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/theme_pref"
+        app:srcCompat="@drawable/english64px" />
+
 
 </android.support.constraint.ConstraintLayout>

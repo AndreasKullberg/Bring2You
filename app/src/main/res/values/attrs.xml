@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="fuck" >
+    <declare-styleable name="attributes" >
         <attr name="backgroundcolor" format="color" />
         <attr name="cardbackground" format="color" />
         <attr name="textcolor" format="color" />
         <attr name="tintcolor" format="color" />
         <attr name="buttoncolor" format="color" />
+        <attr name="buttontextcolor" format="color" />
+        <attr name="BotBarBack" format="color" />
+        <attr name="TopBarBack" format="color" />
+        <attr name="mybutton" format="color" />
+        <attr name="settingsTextColor" format="color"/>
     </declare-styleable>
 </resources>
