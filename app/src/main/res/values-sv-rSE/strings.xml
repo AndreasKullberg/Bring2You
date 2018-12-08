@@ -75,5 +75,5 @@
     <string name="alreadyDelivered">Leveransen är redan levererad!</string>
     <string name="successDelivered">Levererad!</string>
     <string name="deliveryFailed">Leverans misslycka</string>
-    <string name="idNotExist">Id existerar inte på denna rutt!</string>
+    <string name="IdNotExist">Detta ID existerar inte på denna rutt!</string>
 </resources>

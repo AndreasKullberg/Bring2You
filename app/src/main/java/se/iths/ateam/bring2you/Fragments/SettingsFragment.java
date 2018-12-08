@@ -27,7 +27,6 @@ import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 public class SettingsFragment extends Fragment {
 
     private SettingsSharedPref settingsSharedPref;
-    private Fragment selectedFrag;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
