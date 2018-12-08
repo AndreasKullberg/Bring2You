@@ -51,7 +51,7 @@ public class SignFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private TextView name,  adress, postalCode;
-    Tasks tasks;
+
 
     public static void setScanResult(String myResult) {
 
