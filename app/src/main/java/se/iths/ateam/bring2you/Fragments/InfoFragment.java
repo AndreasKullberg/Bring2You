@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
     private TextView name, signedBy, adress, postalCode, time, date;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_info, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleInfo);

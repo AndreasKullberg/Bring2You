@@ -27,7 +27,7 @@ public class CreateDeliveryFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_createdelivery, container, false);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(R.string.titleCreateDelivery);

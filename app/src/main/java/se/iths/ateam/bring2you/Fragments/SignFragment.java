@@ -192,7 +192,6 @@ public class SignFragment extends Fragment {
                 getFragmentManager().popBackStack();
             }
         }
-        else {}
     }
     private void toastMessage(String Message){
         Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
