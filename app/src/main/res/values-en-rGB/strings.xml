@@ -76,4 +76,6 @@
     <string name="successDelivered">Successfully delivered!</string>
     <string name="deliveryFailed">Delivery failed!</string>
     <string name="idNotExist">Id does´nt exist on this route!</string>
+    <string name="printed_name">Printed name</string>
+    <string name="IdNotExist">This ID does not exist on this route!</string>
 </resources>

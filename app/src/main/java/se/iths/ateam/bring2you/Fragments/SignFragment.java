@@ -188,11 +188,10 @@ public class SignFragment extends Fragment {
                 Objects.requireNonNull(item).setId(scanResult);
             }
             else {
-                toastMessage(getString(R.string.idNotExist));
+                toastMessage(getString(R.string.IdNotExist));
                 getFragmentManager().popBackStack();
             }
         }
-        else {}
     }
     private void toastMessage(String Message){
         Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
