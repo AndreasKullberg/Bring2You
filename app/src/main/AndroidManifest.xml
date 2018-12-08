@@ -3,14 +3,7 @@
     package="se.iths.ateam.bring2you">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <!-- uses-permission android:name="android.permission.GET_ACCOUNTS" / -->
-    <!--<uses-permission android:name="android.permission.READ_PROFILE" />-->
-    <!-- uses-permission android:name="android.permission.READ_CONTACTS" / -->
-
-    <!--<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
-
+    <uses-permission android:name="android.permission.CAMERA" />
 
 
     <application
@@ -20,22 +13,27 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="se.iths.ateam.bring2you.MainActivity">
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    android:windowSoftInputMode="adjustPan"/>
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".ScannerActivity" />
+        <activity android:name=".Activities.SplashActivity"/>
+        <activity android:name=".Activities.MapsActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Activities.ScannerActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-        <activity android:name="se.iths.ateam.bring2you.LoginActivity" />
+        <activity android:name=".Activities.MainActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Activities.MapsNavbarActivity"></activity>
     </application>
 
 </manifest>
