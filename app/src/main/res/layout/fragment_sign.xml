@@ -31,7 +31,7 @@
         android:layout_marginBottom="155dp"
         android:text="@string/send"
         android:background="?attr/buttoncolor"
-        android:textColor="?attr/textcolor"
+        android:textColor="?attr/buttontextcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -43,7 +43,7 @@
         android:layout_marginBottom="155dp"
         android:background="?attr/buttoncolor"
         android:text="@string/clear"
-        android:textColor="?attr/textcolor"
+        android:textColor="?attr/buttontextcolor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

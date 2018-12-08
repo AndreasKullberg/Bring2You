@@ -1,14 +1,12 @@
 package se.iths.ateam.bring2you.Fragments;
 
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +16,6 @@ import android.widget.TextView;
 
 import android.widget.Toast;
 
-import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,20 +24,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.ListenerRegistration;
+
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import java.io.ByteArrayOutputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.MyCanvas;
+
 @SuppressWarnings("deprecation")
 public class SignFragment extends Fragment {
     private FirebaseFirestore firestore;
@@ -55,6 +51,7 @@ public class SignFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private TextView name,  adress, postalCode;
+    Tasks tasks;
 
     public static void setScanResult(String myResult) {
 
@@ -98,6 +95,7 @@ public class SignFragment extends Fragment {
         name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+ "  " + item.getName());
         postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+ "  " + item.getPostalCode());
         adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+ "  " + item.getAdress());
+        clear();
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
             item.setSignedBy(signedByView.getText().toString());
@@ -110,31 +108,43 @@ public class SignFragment extends Fragment {
                 toastMessage(getString(R.string.no_blank_fields));
             }
             else {
-                StorageReference fileRef = storageReference.child(item.getId() + ".png");
-                storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
-                });
-
-                item.setSignImageUrl("gs://" + fileRef.getBucket() + "/Signatures/" + item.getId() + ".png");
-
-
-                Task task1 = firestore.collection(collection).document(item.getId()).set(item);
-
-                Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
-
-                Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
-                    @Override
-                    public void onSuccess(List<Object> objects) {
-                        toastMessage(getString(R.string.successDelivered));
-                        getFragmentManager().popBackStack();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        toastMessage(getString(R.string.deliveryFailed));
-                    }
-                });
+                upload();
             }
         });
+    }
+
+    private void upload() {
+        StorageReference fileRef = storageReference.child(item.getId() + ".png");
+        storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
+        });
+
+        item.setSignImageUrl("gs://" + fileRef.getBucket() + "/Signatures/" + item.getId() + ".png");
+
+        Task task1 = firestore.collection(collection).document(item.getId()).set(item);
+
+        Task task2 = firestore.collection("Delivered").document(item.getId()).set(item);
+
+        Tasks.whenAllSuccess(task1, task2, storageTask).addOnSuccessListener(new OnSuccessListener<List<Object>>() {
+            @Override
+            public void onSuccess(List<Object> objects) {
+                toastMessage(getString(R.string.successDelivered));
+                getFragmentManager().popBackStack();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                toastMessage(getString(R.string.deliveryFailed));
+            }
+        });
+    }
+
+    private void clear() {
+        getActivity().findViewById(R.id.clear_btn).setOnClickListener(v ->{
+
+            MyCanvas mycanvas = getActivity().findViewById(R.id.my_canvas);
+            mycanvas.clear();
+
+        }  );
     }
 
 

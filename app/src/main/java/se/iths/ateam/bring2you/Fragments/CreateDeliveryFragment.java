@@ -50,51 +50,58 @@ public class CreateDeliveryFragment extends Fragment {
             }
 
             else {
-                firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                    @Override
-                    public void onSuccess(DocumentSnapshot documentSnapshot) {
-                        if (documentSnapshot.exists()) {
-                            collection = user;
-
-                            ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
-                            //toastMessage("Successfully added new delivery!");
-
-                            firestore.collection(collection).document().set(info)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void avoid) {
-
-                                            getFragmentManager().popBackStack();
-                                            toastMessage(getString(R.string.delivery_added));
-
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            toastMessage(getString(R.string.delivery_error));
-                                        }
-                                    });
-                        }
-                        else{
-                            toastMessage(getString(R.string.user_doesnt_exist));
-                        }
-                    }
-
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
-                    }
-                });
+                userExist();
             }
         });
-
-
 
         return view;
 
     }
+
+    private void userExist() {
+        firestore.collection("Users").document(user).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    collection = user;
+
+                    ListItemInfo info = new ListItemInfo(adress, name, postalCode, senderId);
+                    //toastMessage("Successfully added new delivery!");
+
+                    addDelivery(info);
+                }
+                else{
+                    toastMessage(getString(R.string.user_doesnt_exist));
+                }
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
+    }
+
+    private void addDelivery(ListItemInfo info) {
+        firestore.collection(collection).document().set(info)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void avoid) {
+
+                        getFragmentManager().popBackStack();
+                        toastMessage(getString(R.string.delivery_added));
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        toastMessage(getString(R.string.delivery_error));
+                    }
+                });
+    }
+
     private void toastMessage(String Message){
         Toast.makeText(getActivity(), Message, Toast.LENGTH_LONG).show();
     }

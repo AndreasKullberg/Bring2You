@@ -15,7 +15,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 import java.util.List;
-import java.util.Objects;
 
 import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.Fragments.InfoFragment;

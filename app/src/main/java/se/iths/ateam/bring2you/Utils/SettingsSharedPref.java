@@ -2,6 +2,7 @@ package se.iths.ateam.bring2you.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 
 public class SettingsSharedPref {
 
