@@ -45,12 +45,13 @@ public class CreateDeliveryFragment extends Fragment {
             postalCode = createPostal.getText().toString();
             senderId = createSender.getText().toString();
 
-            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("")||sendTo.equals("")){
+            if(adress.equals("")||name.equals("")||postalCode.equals("")||senderId.equals("") ||sendTo.equals("")){
                 toastMessage(getString(R.string.no_blank_fields));
             }
 
             else {
                 userExist();
+
             }
         });
 

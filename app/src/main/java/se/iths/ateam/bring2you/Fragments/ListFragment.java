@@ -45,7 +45,7 @@ import se.iths.ateam.bring2you.Utils.ViewModel;
 
 public class ListFragment extends Fragment {
 
-    List<ListItemInfo> listItems = new ArrayList<>();
+    private List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
     private FirebaseFirestore firestore;
@@ -55,7 +55,7 @@ public class ListFragment extends Fragment {
     private String title;
     private boolean status;
     private MyUser myUser = new MyUser();
-    ListenerRegistration registration;
+    private ListenerRegistration registration;
     ViewModel model;
     private ImageView signImage;
     private StorageReference storageReference;
@@ -73,7 +73,6 @@ public class ListFragment extends Fragment {
         mRecyclerView.setAdapter(adapter);
         setHasOptionsMenu(true);
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
-
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -115,8 +114,8 @@ public class ListFragment extends Fragment {
 
     });
 
-
     public void onResume() {
+        super.onResume();
         if(!model.isStart()){
             title = getString(R.string.titleNonDelivered);
 

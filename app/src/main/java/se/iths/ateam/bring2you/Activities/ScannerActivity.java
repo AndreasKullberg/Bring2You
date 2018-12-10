@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 
@@ -31,11 +32,13 @@ import static android.Manifest.permission.CAMERA;
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int requestCamera = 1;
-    public ZXingScannerView scannerView;
+    private ZXingScannerView scannerView;
+    private ListItemInfo item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
+
 
         if(settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
@@ -143,6 +146,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         MainActivity.startLoading(findViewById(R.id.main_proggress_bar));
         slideDown(scannerView);
         startActivity(intent);
+        finish();
 
 
     }
