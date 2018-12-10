@@ -12,6 +12,9 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
+import android.view.animation.TranslateAnimation;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,11 +37,15 @@ public class MainActivity extends AppCompatActivity {
     private SettingsSharedPref settingsSharedPref;
     SharedPreferences sharedPreferences;
     BottomNavigationView bottomNav;
+    private View v;
+    private ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         settingsSharedPref = new SettingsSharedPref(this);
+        progressBar = findViewById(R.id.main_proggress_bar);
 
         if(settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
@@ -69,6 +76,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public static void startLoading(ProgressBar progressBar) {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+    public static void stopLoading(ProgressBar progressBar) {
+        progressBar.setVisibility(View.GONE);
+    }
+
+
     private void openList() {
         if(getIntent().getStringExtra("scanResult") == null) {
             Fragment listFragment = new ListFragment();
@@ -86,13 +101,34 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
-
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, signfragment
-
-        ).commit();
+            stopLoading(progressBar);
+            v = findViewById(R.id.frameLayout);
+            v.setVisibility(View.INVISIBLE);
+            slideUp(v);
 
 
         }
+    }
+    public void slideUp(View view){
+        view.setVisibility(View.VISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                view.getHeight(),  // fromYDelta
+                0);                // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+    }
+    public void slideDown(View view){
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                view.getHeight()); // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
     }
 
     private void Scan() {

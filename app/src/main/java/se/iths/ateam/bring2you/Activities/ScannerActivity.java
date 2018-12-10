@@ -11,7 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
 
 import com.google.zxing.Result;
@@ -29,7 +31,7 @@ import static android.Manifest.permission.CAMERA;
 public class ScannerActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
 
     private static final int requestCamera = 1;
-    private ZXingScannerView scannerView;
+    public ZXingScannerView scannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,8 +140,21 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
+        MainActivity.startLoading(findViewById(R.id.main_proggress_bar));
+        slideDown(scannerView);
         startActivity(intent);
 
+
+    }
+    public void slideDown(View view){
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                view.getHeight()); // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
     }
 
     private void setLanguageForApp(String languageToLoad){

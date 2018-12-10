@@ -3,14 +3,16 @@
     <declare-styleable name="attributes" >
         <attr name="backgroundcolor" format="color" />
         <attr name="cardbackground" format="color" />
+        <attr name="cardBackColor" format="color"/>
+        <attr name="cardBackDrop" format="color"/>
         <attr name="textcolor" format="color" />
+        <attr name="textAccentcolor" format="color" />
         <attr name="tintcolor" format="color" />
         <attr name="buttoncolor" format="color" />
         <attr name="buttontextcolor" format="color" />
-        <attr name="BotBarBack" format="color" />
-        <attr name="TopBarBack" format="color" />
-        <attr name="mybutton" format="color" />
-        <attr name="settingsTextColor" format="color"/>
-        <attr name="canvasbackground" format="color"/>
+        <attr name="BotBarBack" format="reference" />
+        <attr name="TopBarBack" format="reference" />
+        <attr name="mybutton" format="reference"/>
+        <attr name="mainBackground" format="reference"/>
     </declare-styleable>
 </resources>

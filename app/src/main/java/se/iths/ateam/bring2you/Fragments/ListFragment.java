@@ -15,6 +15,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,6 +57,10 @@ public class ListFragment extends Fragment {
     private MyUser myUser = new MyUser();
     ListenerRegistration registration;
     ViewModel model;
+    private ImageView signImage;
+    private StorageReference storageReference;
+    private String imageUrl;
+    private TextView name, signedBy, adress, postalCode, time, date;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +73,7 @@ public class ListFragment extends Fragment {
         mRecyclerView.setAdapter(adapter);
         setHasOptionsMenu(true);
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -79,6 +89,7 @@ public class ListFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+
 
         return view;
     }

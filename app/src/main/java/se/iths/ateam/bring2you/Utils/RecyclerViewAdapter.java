@@ -3,6 +3,8 @@ package se.iths.ateam.bring2you.Utils;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.AnimatorRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -10,20 +12,27 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.TranslateAnimation;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
 import se.iths.ateam.bring2you.Activities.MapsActivity;
-import se.iths.ateam.bring2you.Fragments.InfoFragment;
+
 import se.iths.ateam.bring2you.Fragments.SignFragment;
 import se.iths.ateam.bring2you.R;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder> {
     private final List<ListItemInfo> listItems;
     private Context context;
+    private StorageReference storageReference;
+    ListItemInfo item;
+    private Handler handler;
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
         this.listItems = listItems;
@@ -34,28 +43,52 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     @Override
     public ListItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.list_item,viewGroup,false);
+                    .inflate(R.layout.list_item, viewGroup, false);
         return new ListItemViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
-    ListItemInfo item = listItems.get(index);
-    listItemViewHolder.setData(item);
+
+        item = listItems.get(index);
+        listItemViewHolder.setData(item);
         Fragment signFragment = new SignFragment();
-        Fragment infoFragment = new InfoFragment();
-    listItemViewHolder.constraintLayout.setOnClickListener(v ->{
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+
+
+
+
+
         if(item.isDelivered()){
-            transaction(item,infoFragment, v);
+            listItemViewHolder.foldingCell.setOnClickListener(v -> {
+                storageReference = FirebaseStorage.getInstance()
+                        .getReferenceFromUrl(listItemViewHolder.imageUrl);
+                Glide.with(listItemViewHolder.itemView).load(storageReference).into(listItemViewHolder.signImage);
+                listItemViewHolder.foldingCell.toggle(false);
+
+            });
+
         }
+
         else {
-            transaction(item, signFragment, v);
-        }
+
+            listItemViewHolder.foldingCell.setOnClickListener(v ->{
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                transaction(item, signFragment,v);
+
         });
 
-        listItemViewHolder.openMap.setOnClickListener(view -> {
+
+        }
+
+
+
+
+
+
+
+    listItemViewHolder.openMap.setOnClickListener(view -> {
 
             Intent i = new Intent(view.getContext(), MapsActivity.class);
             i.putExtra("mapKey", item);
@@ -68,9 +101,40 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         Bundle bundle = new Bundle();
         bundle.putSerializable("Item",item);
         fragment.setArguments(bundle);
+        v = activity.findViewById(R.id.frameLayout);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment)
                 .addToBackStack(null).commit();
+        v.setVisibility(View.INVISIBLE);
+        slideUp(v);
+
+
+
     }
+    // slide the view from below itself to the current position
+    public void slideUp(View view){
+        view.setVisibility(View.VISIBLE);
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                view.getHeight(),  // fromYDelta
+                0);                // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+    }
+
+    // slide the view from its current position to below itself
+    public void slideDown(View view){
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                view.getHeight()); // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
+    }
+
 
     @Override
     public int getItemCount() {

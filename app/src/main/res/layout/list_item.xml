@@ -1,94 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ramotion.foldingcell.FoldingCell xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardview"
+    xmlns:folding-cell="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cell"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="4dp"
-    android:layout_marginRight="4dp"
-    android:layout_marginBottom="8dp"
-    android:outlineAmbientShadowColor="@color/colorAccent"
-    android:outlineProvider="bounds"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="3dp"
-    app:cardMaxElevation="10dp">
 
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    android:layout_marginBottom="0dp"
+    android:background="?attr/colorPrimary"
+    android:outlineAmbientShadowColor="?attr/colorPrimary"
+    android:outlineProvider="bounds"
+    android:padding="1dp"
+    folding-cell:additionalFlipsCount="2"
+    folding-cell:animationDuration="1000"
+    folding-cell:backSideColor="?attr/cardBackColor"
+    folding-cell:cameraHeight="30">
+
+    <include
+        android:id="@+id/cell_content_view"
+        layout="@layout/fragment_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"></include>
 
     <android.support.constraint.ConstraintLayout
+        android:id="@+id/cell_title_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:elevation="3dp">
 
 
-        <TextView
-            android:id="@+id/textAdress"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:text="@string/adress"
-            android:textAppearance="@style/TextAppearance.AppCompat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textName" />
-
-        <TextView
-            android:id="@+id/textName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textPostalCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/postal_code"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            app:layout_constraintBottom_toTopOf="@+id/textSenderId"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textAdress" />
-
-        <TextView
-            android:id="@+id/textSenderId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/sender_id"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_marginEnd="16dp"
+            android:background="@color/mainColor"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton_maps"
+            app:layout_constraintHorizontal_bias="0.51"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPostalCode"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textColor="?attr/textcolor"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textAdress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/adress"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textColor="?attr/textcolor" />
+
+            <TextView
+                android:id="@+id/textPostalCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginBottom="0dp"
+                android:text="@string/postal_code_Placer"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/textcolor" />
+
+            <TextView
+                android:id="@+id/textSenderId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/sender_id"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:textColor="?attr/textcolor" />
+        </LinearLayout>
 
         <ImageButton
             android:id="@+id/imageButton_maps"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="32dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="12dp"
             android:background="#00000000"
             android:backgroundTint="#FF4A148C"
-            android:elevation="10dp"
+            android:contentDescription="TODO"
+            android:elevation="4dp"
             android:onClick="openMapsTest"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout4"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.507"
             app:srcCompat="@drawable/google_mapsicon" />
 
     </android.support.constraint.ConstraintLayout>
 
-</android.support.v7.widget.CardView>
+
+</com.ramotion.foldingcell.FoldingCell>

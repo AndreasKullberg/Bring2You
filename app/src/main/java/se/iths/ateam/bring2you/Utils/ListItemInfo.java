@@ -83,9 +83,9 @@ public class ListItemInfo implements Serializable {
     public ListItemInfo(){
     }
 
-    public ListItemInfo(String adress, String name, String postalCode, String senderId) {
-        this.adress = adress;
+    public ListItemInfo(String name, String adress, String postalCode, String senderId) {
         this.name = name;
+        this.adress = adress;
         this.postalCode = postalCode;
         this.senderId = senderId;
     }
