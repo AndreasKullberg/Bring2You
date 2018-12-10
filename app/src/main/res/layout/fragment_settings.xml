@@ -27,7 +27,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="320dp"
         android:layout_marginEnd="8dp"
-        android:background="?attr/buttoncolor"
+        android:background="?attr/mybutton"
         android:text="@string/about"
         android:textColor="?attr/buttontextcolor"
         app:layout_constraintEnd_toEndOf="parent"
