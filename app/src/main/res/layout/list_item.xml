@@ -81,7 +81,6 @@
             android:background="#00000000"
             android:backgroundTint="#FF4A148C"
             android:elevation="10dp"
-            android:onClick="openMapsTest"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

@@ -11,7 +11,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,17 +39,16 @@ import se.iths.ateam.bring2you.Utils.ViewModel;
 
 public class ListFragment extends Fragment {
 
-    List<ListItemInfo> listItems = new ArrayList<>();
+    private List<ListItemInfo> listItems = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
     private FirebaseFirestore firestore;
-    private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String collection;
     private String title;
     private boolean status;
     private MyUser myUser = new MyUser();
-    ListenerRegistration registration;
+    private ListenerRegistration registration;
     ViewModel model;
 
     @Override
@@ -66,7 +64,7 @@ public class ListFragment extends Fragment {
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
 
 
-        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
          if(firebaseUser != null) {
@@ -104,8 +102,8 @@ public class ListFragment extends Fragment {
 
     });
 
-
     public void onResume() {
+        super.onResume();
         if(!model.isStart()){
             title = getString(R.string.titleNonDelivered);
 
@@ -139,7 +137,10 @@ public class ListFragment extends Fragment {
                            }
 
                             if (myUser.isAdmin()) {
-                                collection = "Delivered";
+
+                                    collection = "Delivered";
+
+
                                 Log.d("Collection", collection);
                                 try {
                                     getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);

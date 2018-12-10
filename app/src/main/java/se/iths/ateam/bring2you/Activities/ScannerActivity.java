@@ -14,12 +14,14 @@ import android.util.Log;
 import android.view.Window;
 import android.widget.Toast;
 
+
 import com.google.zxing.Result;
 
 import java.util.Locale;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 import se.iths.ateam.bring2you.R;
+import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.SettingsSharedPref;
 
 
@@ -30,10 +32,12 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
 
     private static final int requestCamera = 1;
     private ZXingScannerView scannerView;
+    private ListItemInfo item;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         SettingsSharedPref settingsSharedPref = new SettingsSharedPref(this);
+
 
         if(settingsSharedPref.loadDarkModeState()) {
             setTheme(R.style.darktheme);
@@ -139,6 +143,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
         startActivity(intent);
+        finish();
 
     }
 
