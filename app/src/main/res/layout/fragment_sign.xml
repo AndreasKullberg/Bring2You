@@ -65,7 +65,7 @@
             android:ems="10"
             android:hint="@string/printed_name"
             android:inputType="textPersonName"
-            android:textColorHint="?attr/textcolor"
+            android:textColorHint="@color/Secondary"
             app:layout_constraintEnd_toStartOf="@+id/clear_btn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
@@ -82,7 +82,7 @@
                 android:id="@+id/infoAdress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/textcolor"
+                android:textColor="@color/Secondary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Adress" />
@@ -91,7 +91,7 @@
                 android:id="@+id/infoPostalCode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="?attr/textcolor"
+                android:textColor="@color/Secondary"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 tools:text="Postal code" />
@@ -117,7 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="@string/name"
-                android:textColor="?attr/textAccentcolor"
+                android:textColor="@color/Secondary"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

@@ -54,7 +54,7 @@
                 android:layout_marginTop="8dp"
                 android:text="@string/name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                android:textColor="?attr/textcolor"
+                android:textColor="@color/Secondary"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -65,7 +65,8 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/adress"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="?attr/textcolor" />
+                android:textColor="@color/Secondary"
+                />
 
             <TextView
                 android:id="@+id/textPostalCode"
@@ -76,7 +77,8 @@
                 android:layout_marginBottom="0dp"
                 android:text="@string/postal_code_Placer"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="?attr/textcolor" />
+                android:textColor="@color/Secondary"
+                />
 
             <TextView
                 android:id="@+id/textSenderId"
@@ -85,7 +87,8 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/sender_id"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="?attr/textcolor" />
+                android:textColor="@color/Secondary"
+                />
         </LinearLayout>
 
         <ImageButton
