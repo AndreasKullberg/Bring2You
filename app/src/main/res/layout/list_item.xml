@@ -6,9 +6,12 @@
     android:layout_width="match_parent"
 
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="16dp"
     android:layout_marginBottom="0dp"
     android:background="?attr/colorPrimary"
+    android:elevation="8dp"
     android:outlineAmbientShadowColor="?attr/colorPrimary"
     android:outlineProvider="bounds"
     folding-cell:additionalFlipsCount="2"
@@ -37,7 +40,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:background="@color/mainColor"
+            android:background="?attr/cardBackColor"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/imageButton_maps"
@@ -64,8 +67,7 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/adress"
                 android:textAppearance="@style/TextAppearance.AppCompat"
-                android:textColor="@color/Secondary"
-                />
+                android:textColor="@color/Secondary" />
 
             <TextView
                 android:id="@+id/textPostalCode"
@@ -76,8 +78,7 @@
                 android:layout_marginBottom="0dp"
                 android:text="@string/postal_code_Placer"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/Secondary"
-                />
+                android:textColor="@color/Secondary" />
 
             <TextView
                 android:id="@+id/textSenderId"
@@ -86,8 +87,7 @@
                 android:layout_marginStart="10dp"
                 android:text="@string/sender_id"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textColor="@color/Secondary"
-                />
+                android:textColor="@color/Secondary" />
         </LinearLayout>
 
         <ImageButton

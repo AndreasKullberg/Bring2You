@@ -26,6 +26,11 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView infoAdress;
     private final TextView infoPostalCode;
     protected final ImageView signImage;
+    private final String infoSignedHolder;
+    private final String infopostholder;
+    private final String infoPlaceHolder;
+    private final String infoDateHolder;
+    private final String infoadressholder;
 
     private View itemview;
     public ImageButton openMap;
@@ -49,21 +54,27 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
         infoTime = itemView.findViewById(R.id.infoTime);
         infoDate = itemView.findViewById(R.id.infoDate);
         signImage = itemView.findViewById(R.id.signImage);
+        infoPlaceHolder = itemView.getResources().getString(R.string.infoTime);
+        infoDateHolder = itemView.getResources().getString(R.string.infoDate);
+        infopostholder = itemView.getResources().getString(R.string.infoPostalcode);
+        infoadressholder = itemView.getResources().getString(R.string.infoAddress);
+        infoSignedHolder = itemView.getResources().getString(R.string.infoSignedBy);
+
 
 
     }
 
     public void setData(ListItemInfo info) {
-        adress.setText(info.getAdress());
+        adress.setText(infoadressholder+info.getAdress());
         name.setText(info.getName());
-        postalCode.setText(info.getPostalCode());
+        postalCode.setText(infopostholder+info.getPostalCode());
         senderId.setText(info.getSenderId());
-        infoAdress.setText(info.getAdress());
+        infoAdress.setText(infoadressholder+info.getAdress());
         infoName.setText(info.getName());
-        infoPostalCode.setText(info.getPostalCode());
-        infoSignedBy.setText(info.getSignedBy());
-        infoDate.setText(info.getDate());
-        infoTime.setText(info.getTime());
+        infoPostalCode.setText(infopostholder+info.getPostalCode());
+        infoSignedBy.setText(infoSignedHolder+info.getSignedBy());
+        infoDate.setText(infoDateHolder+info.getDate());
+        infoTime.setText(infoPlaceHolder+info.getTime());
         imageUrl = info.getSignImageUrl();
 
     }

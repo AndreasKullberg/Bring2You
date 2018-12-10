@@ -31,7 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
     private final List<ListItemInfo> listItems;
     private Context context;
     private StorageReference storageReference;
-    ListItemInfo item;
+
     private Handler handler;
 
     public RecyclerViewAdapter(List<ListItemInfo> listItems) {
@@ -50,13 +50,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ListItemViewHolder listItemViewHolder, int index) {
-
-        item = listItems.get(index);
+                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+        ListItemInfo item = listItems.get(index);
         listItemViewHolder.setData(item);
-        Fragment signFragment = new SignFragment();
-
-
-
 
 
         if(item.isDelivered()){
@@ -72,9 +69,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
         else {
 
+            listItemViewHolder.foldingCell.fold(true);
             listItemViewHolder.foldingCell.setOnClickListener(v ->{
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-                FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+                Fragment signFragment = new SignFragment();
                 transaction(item, signFragment,v);
 
         });
@@ -101,11 +98,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
         Bundle bundle = new Bundle();
         bundle.putSerializable("Item",item);
         fragment.setArguments(bundle);
-        v = activity.findViewById(R.id.frameLayout);
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragment)
                 .addToBackStack(null).commit();
-        v.setVisibility(View.INVISIBLE);
-        slideUp(v);
+        slideUp(activity.findViewById(R.id.frameLayout));
 
 
 

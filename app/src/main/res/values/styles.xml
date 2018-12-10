@@ -6,10 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="mainBackground">@color/white</item>
+        <item name="mainBackground">@color/mainColor</item>
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="cardbackground">#DEDAD1</item>
-        <item name="cardBackColor">@color/mainColor</item>
+        <item name="cardBackColor">@color/white</item>
         <item name="textcolor">#000</item>
         <item name="textAccentcolor">#FFF</item>
         <item name="buttontextcolor">#d3d3d3</item>
