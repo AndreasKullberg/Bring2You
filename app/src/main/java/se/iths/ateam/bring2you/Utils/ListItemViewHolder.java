@@ -26,6 +26,11 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView infoAdress;
     private final TextView infoPostalCode;
     public final ImageView signImage;
+    private final String signedbyHolder;
+    private final String adressHolder;
+    private final String postCodeHolder;
+    private final String deteHolder;
+    private final String timeHolder;
 
     private View itemview;
     public ImageButton openMap;
@@ -49,22 +54,27 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
         infoTime = itemView.findViewById(R.id.infoTime);
         infoDate = itemView.findViewById(R.id.infoDate);
         signImage = itemView.findViewById(R.id.signImage);
+        signedbyHolder = itemView.getResources().getString(R.string.infoSignedBy);
+        adressHolder = itemView.getResources().getString(R.string.infoAddress);
+        postCodeHolder = itemView.getResources().getString(R.string.infoPostalcode);
+        deteHolder = itemView.getResources().getString(R.string.infoDate);
+        timeHolder = itemView.getResources().getString(R.string.infoTime);
 
 
 
     }
 
     public void setData(ListItemInfo info) {
-        adress.setText("Adress:"+info.getAdress());
+        adress.setText(info.getAdress());
         name.setText(info.getName());
-        postalCode.setText(R.string.postal_code_Placer+info.getPostalCode());
-        senderId.setText("Order id´: "+info.getSenderId());
-        infoAdress.setText(R.string.infoAddress+info.getAdress());
+        postalCode.setText(info.getPostalCode());
+        senderId.setText(info.getSenderId());
+        infoAdress.setText(info.getAdress());
         infoName.setText(info.getName());
-        infoPostalCode.setText(R.string.infoPostalcode+info.getPostalCode());
-        infoSignedBy.setText(R.string.infoSignedBy+info.getSignedBy());
-        infoDate.setText(R.string.infoDate+info.getDate());
-        infoTime.setText(R.string.infoTime+info.getTime());
+        infoPostalCode.setText(info.getPostalCode());
+        infoSignedBy.setText(info.getSignedBy());
+        infoDate.setText(info.getDate());
+        infoTime.setText(info.getTime());
         imageUrl = info.getSignImageUrl();
 
     }
