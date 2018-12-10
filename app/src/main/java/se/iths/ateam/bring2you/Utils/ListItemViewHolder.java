@@ -18,14 +18,14 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView name;
     private final TextView postalCode;
     private final TextView senderId;
-    public final FoldingCell foldingCell;
+    protected final FoldingCell foldingCell;
     private final TextView infoDate;
     private final TextView infoTime;
     private final TextView infoName;
     private final TextView infoSignedBy;
     private final TextView infoAdress;
     private final TextView infoPostalCode;
-    public final ImageView signImage;
+    protected final ImageView signImage;
 
     private View itemview;
     public ImageButton openMap;
@@ -51,26 +51,20 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
         signImage = itemView.findViewById(R.id.signImage);
 
 
-
     }
 
     public void setData(ListItemInfo info) {
-        adress.setText("Adress:"+info.getAdress());
-        name.setText(info.getName());
-        postalCode.setText(R.string.postal_code_Placer+info.getPostalCode());
-        senderId.setText("Order id´: "+info.getSenderId());
-        infoAdress.setText(R.string.infoAddress+info.getAdress());
-        infoName.setText(info.getName());
-        infoPostalCode.setText(R.string.infoPostalcode+info.getPostalCode());
+        adress.setText("Adress: " + info.getAdress());
+        name.setText(R.string.name + ": " + info.getName());
+        postalCode.setText(R.string.postal_code_Placer + ": " + info.getPostalCode());
+        senderId.setText(R.string.sender_id + ": " + info.getSenderId());
+        infoAdress.setText("Adress: " + info.getAdress());
+        infoName.setText(R.string.name + ": " + info.getName());
+        infoPostalCode.setText(R.string.postal_code_Placer + ": "+ info.getPostalCode());
         infoSignedBy.setText(R.string.infoSignedBy+info.getSignedBy());
         infoDate.setText(R.string.infoDate+info.getDate());
         infoTime.setText(R.string.infoTime+info.getTime());
         imageUrl = info.getSignImageUrl();
 
     }
-
-    public void setInfoData(ListItemInfo info) {
-    }
-
-
 }

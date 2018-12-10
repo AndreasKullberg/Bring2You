@@ -143,7 +143,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
-        MainActivity.startLoading(findViewById(R.id.main_proggress_bar));
+        /*MainActivity.startLoading(findViewById(R.id.main_proggress_bar));*/
         slideDown(scannerView);
         startActivity(intent);
         finish();

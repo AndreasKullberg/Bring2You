@@ -31,7 +31,7 @@
 
     <!-- Night Theme. -->
     <style name="darktheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="mainBackground">@drawable/backdrop_night</item>
+        <item name="mainBackground">#000000</item>
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#FFF</item>

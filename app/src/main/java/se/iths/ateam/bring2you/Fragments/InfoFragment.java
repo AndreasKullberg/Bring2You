@@ -1,4 +1,4 @@
-package se.iths.ateam.bring2you.Fragments;
+/*package se.iths.ateam.bring2you.Fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -71,3 +71,4 @@ public class InfoFragment extends Fragment {
         }
     }
 }
+*/

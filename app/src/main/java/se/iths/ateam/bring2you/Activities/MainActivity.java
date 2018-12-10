@@ -76,12 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public static void startLoading(ProgressBar progressBar) {
+    /*public static void startLoading(ProgressBar progressBar) {
         progressBar.setVisibility(View.VISIBLE);
-    }
-    public static void stopLoading(ProgressBar progressBar) {
+    }*/
+ /*   public static void stopLoading(ProgressBar progressBar) {
         progressBar.setVisibility(View.GONE);
-    }
+    }*/
 
 
     private void openList() {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             SignFragment.setScanResult(getIntent().getStringExtra("scanResult"));
             fragmentTransaction.replace(R.id.frameLayout,signfragment).commit();
-            stopLoading(progressBar);
+//            stopLoading(progressBar);
             v = findViewById(R.id.frameLayout);
             v.setVisibility(View.INVISIBLE);
             slideUp(v);
