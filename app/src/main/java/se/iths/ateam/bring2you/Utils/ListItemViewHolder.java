@@ -54,16 +54,16 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     }
 
     public void setData(ListItemInfo info) {
-        adress.setText("Adress: " + info.getAdress());
-        name.setText(R.string.name + ": " + info.getName());
-        postalCode.setText(R.string.postal_code_Placer + ": " + info.getPostalCode());
-        senderId.setText(R.string.sender_id + ": " + info.getSenderId());
-        infoAdress.setText("Adress: " + info.getAdress());
-        infoName.setText(R.string.name + ": " + info.getName());
-        infoPostalCode.setText(R.string.postal_code_Placer + ": "+ info.getPostalCode());
-        infoSignedBy.setText(R.string.infoSignedBy+info.getSignedBy());
-        infoDate.setText(R.string.infoDate+info.getDate());
-        infoTime.setText(R.string.infoTime+info.getTime());
+        adress.setText(info.getAdress());
+        name.setText(info.getName());
+        postalCode.setText(info.getPostalCode());
+        senderId.setText(info.getSenderId());
+        infoAdress.setText(info.getAdress());
+        infoName.setText(info.getName());
+        infoPostalCode.setText(info.getPostalCode());
+        infoSignedBy.setText(info.getSignedBy());
+        infoDate.setText(info.getDate());
+        infoTime.setText(info.getTime());
         imageUrl = info.getSignImageUrl();
 
     }
