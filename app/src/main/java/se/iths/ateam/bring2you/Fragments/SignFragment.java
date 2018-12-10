@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
@@ -76,7 +77,6 @@ public class SignFragment extends Fragment {
 
         if (scanResult != null){
         firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
-            Log.d("Scanner", scanResult);
         }
 
         if (scanResult == null) {
@@ -94,11 +94,11 @@ public class SignFragment extends Fragment {
         name = getActivity().findViewById(R.id.infoName);
         adress = getActivity().findViewById(R.id.infoAdress);
         postalCode = getActivity().findViewById(R.id.infoPostalCode);
-if (item != null) {
-    name.setText(getString(se.iths.ateam.bring2you.R.string.infoName) + "  " + item.getName());
-    postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode) + "  " + item.getPostalCode());
-    adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress) + "  " + item.getAdress());
-}
+        if (item != null) {
+            name.setText(getString(se.iths.ateam.bring2you.R.string.infoName) + "  " + item.getName());
+            postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode) + "  " + item.getPostalCode());
+            adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress) + "  " + item.getAdress());
+        }
         clear();
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {

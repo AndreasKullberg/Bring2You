@@ -27,7 +27,7 @@
     <string name="remember_me">Remember me</string>
     <string name="adress" translatable="false">Adress</string>
     <string name="name" translatable="false">Name</string>
-    <string name="postal_code" translatable="false">Postal code</string>
+    <string name="postal_code_Placer" translatable="false">Postal code:</string>
     <string name="sender_id" translatable="false">Sender id</string>
     <string name="logout" translatable="false">Log out</string>
     <string name="send" translatable="false">SEND</string>
@@ -75,6 +75,7 @@
     <string name="alreadyDelivered">This delivery is already delivered!</string>
     <string name="successDelivered">Successfully delivered!</string>
     <string name="deliveryFailed">Delivery failed!</string>
-    <string name="idNotExist">This id does not exist on this route!</string>
     <string name="printed_name">Printed name</string>
+    <string name="IdNotExist">This ID does not exist on this route!</string>
+    <string name="infoSender_id">order id:</string>
 </resources>

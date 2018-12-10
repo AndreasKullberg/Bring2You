@@ -3,25 +3,27 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#6200ee</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-        <item name="backgroundcolor">#fffcfc</item>
-        <item name="cardbackground">#ffffff</item>
-        <item name="textcolor">#000000</item>
-        <item name="buttontextcolor">#ffffff</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="mainBackground">@color/white</item>
+        <item name="backgroundcolor">#fcfcfc</item>
+        <item name="cardbackground">#DEDAD1</item>
+        <item name="cardBackColor">@color/mainColor</item>
+        <item name="textcolor">#000</item>
+        <item name="textAccentcolor">#FFF</item>
+        <item name="buttontextcolor">#d3d3d3</item>
         <item name="tintcolor">#000000</item>
-        <item name="buttoncolor">#4a148c</item>
-
+        <item name="buttoncolor">#2196F3</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
         <item name="android:statusBarColor">@color/colorPrimary</item>
         <item name="TopBarBack">@drawable/top_bar_light</item>
         <item name="BotBarBack">@drawable/botglowbar3</item>
         <item name="mybutton">@drawable/mybutton</item>
-        <item name="settingsTextColor">#6200ee</item>
-        <item name="canvasbackground">#ffffff</item>
-
+        <item name="android:textColorPrimary">@color/Secondary</item>
+        <item name="android:textColorSecondary">@color/Secondary</item>
+        <item name="cardBackDrop">#e0e0e0</item>
 
     </style>
 
@@ -29,12 +31,14 @@
 
     <!-- Night Theme. -->
     <style name="darktheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="mainBackground">#000000</item>
         <item name="colorPrimary">#000000</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#FFF</item>
         <item name="backgroundcolor">#000000</item>
         <item name="cardbackground">#424242</item>
         <item name="textcolor">#ffffff</item>
+        <item name="textAccentcolor">#FFF</item>
         <item name="tintcolor">#ffffff</item>
         <item name="buttoncolor">#aaa</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
@@ -42,8 +46,6 @@
         <item name="TopBarBack">@drawable/top_bar_black</item>
         <item name="BotBarBack">@drawable/bot_glow_bar_black3</item>
         <item name="mybutton">@drawable/mybutton_night</item>
-        <item name="settingsTextColor">#ffffff</item>
-        <item name="canvasbackground">#ffffff</item>
     </style>
 
 

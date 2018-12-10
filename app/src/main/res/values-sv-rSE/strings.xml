@@ -30,7 +30,7 @@
     <string name="adress">Adress</string>
     <string name="name">Namn</string>
     <string name="sender_id">Avsändarid</string>
-    <string name="postal_code">Postnummer</string>
+    <string name="postal_code_Placer">Postnummer:</string>
     <string name="quit">Avsluta</string>
     <string name="app_creation">Den här appen skapades 2018 av A-Team @ ITHS</string>
     <string name="Find">Hitta</string>
@@ -76,5 +76,6 @@
     <string name="alreadyDelivered">Leveransen är redan levererad!</string>
     <string name="successDelivered">Levererad!</string>
     <string name="deliveryFailed">Leverans misslycka</string>
-    <string name="idNotExist">Detta ID existerar inte på denna rutt!</string>
+    <string name="IdNotExist">Detta ID existerar inte på denna rutt!</string>
+    <string name="infoSender_id">order id:</string>
 </resources>

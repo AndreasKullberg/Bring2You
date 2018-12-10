@@ -11,9 +11,10 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
+import android.view.animation.TranslateAnimation;
 import android.widget.Toast;
-
 
 import com.google.zxing.Result;
 
@@ -141,9 +142,22 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
+        /*MainActivity.startLoading(findViewById(R.id.main_proggress_bar));*/
+        slideDown(scannerView);
         startActivity(intent);
         finish();
 
+
+    }
+    public void slideDown(View view){
+        TranslateAnimation animate = new TranslateAnimation(
+                0,                 // fromXDelta
+                0,                 // toXDelta
+                0,                 // fromYDelta
+                view.getHeight()); // toYDelta
+        animate.setDuration(700);
+        animate.setFillAfter(true);
+        view.startAnimation(animate);
     }
 
     private void setLanguageForApp(String languageToLoad){

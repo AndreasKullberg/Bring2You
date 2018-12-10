@@ -11,9 +11,13 @@ import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -43,6 +49,7 @@ public class ListFragment extends Fragment {
     private RecyclerViewAdapter adapter;
     private RecyclerView mRecyclerView;
     private FirebaseFirestore firestore;
+    private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
     private String collection;
     private String title;
@@ -50,6 +57,10 @@ public class ListFragment extends Fragment {
     private MyUser myUser = new MyUser();
     private ListenerRegistration registration;
     ViewModel model;
+    private ImageView signImage;
+    private StorageReference storageReference;
+    private String imageUrl;
+    private TextView name, signedBy, adress, postalCode, time, date;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -64,7 +75,7 @@ public class ListFragment extends Fragment {
         model = ViewModelProviders.of(getActivity()).get(ViewModel.class);
 
 
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
          if(firebaseUser != null) {
@@ -77,6 +88,7 @@ public class ListFragment extends Fragment {
                     .addToBackStack(null)
                     .commit();
         });
+
 
         return view;
     }
@@ -137,10 +149,7 @@ public class ListFragment extends Fragment {
                            }
 
                             if (myUser.isAdmin()) {
-
-                                    collection = "Delivered";
-
-
+                                collection = "Delivered";
                                 Log.d("Collection", collection);
                                 try {
                                     getActivity().findViewById(R.id.floatingActionButton).setVisibility(View.VISIBLE);
