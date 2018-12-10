@@ -51,7 +51,8 @@ public class SignFragment extends Fragment {
     private String collection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser firebaseUser;
-    private TextView name,  adress, postalCode;
+    private TextView name, adress, postalCode;
+    private Fragment listFragment = new ListFragment();
 
 
     public static void setScanResult(String myResult) {
@@ -116,6 +117,13 @@ if (item != null) {
         });
     }
 
+    public void onPause() {
+        super.onPause();
+
+        scanResult = null;
+    }
+
+
     private void upload() {
         StorageReference fileRef = storageReference.child(item.getId() + ".png");
         storageTask = fileRef.putBytes(makeSignature()).addOnSuccessListener(taskSnapshot -> {
@@ -132,6 +140,7 @@ if (item != null) {
             public void onSuccess(List<Object> objects) {
                 toastMessage(getString(R.string.successDelivered));
                 if(scanResult!=null){
+                    scanResult = null;
                     Fragment listFragment = new ListFragment();
                     getFragmentManager().beginTransaction().replace(R.id.frameLayout,listFragment)
                             .commit();
@@ -200,13 +209,15 @@ if (item != null) {
 
                 if(item.isDelivered()){
                     toastMessage(getString(R.string.alreadyDelivered));
-                    getFragmentManager().popBackStack();
+                    getFragmentManager().beginTransaction().replace(R.id.frameLayout,listFragment)
+                            .commit();
                 }
 
             }
             else {
                 toastMessage(getString(R.string.IdNotExist));
-                getFragmentManager().popBackStack();
+                getFragmentManager().beginTransaction().replace(R.id.frameLayout,listFragment)
+                        .commit();
             }
         }
     }

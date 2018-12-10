@@ -138,8 +138,7 @@ public class ScannerActivity extends AppCompatActivity implements ZXingScannerVi
         final String myResult = result.getText();
         Log.d("QRCodeScanner", result.getText());
         Log.d("QRCodeScanner", result.getBarcodeFormat().toString());
-
-        Toast.makeText(this, myResult, Toast.LENGTH_LONG).show();
+        
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("scanResult",myResult);
         startActivity(intent);
