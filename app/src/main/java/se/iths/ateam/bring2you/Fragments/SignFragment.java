@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class SignFragment extends Fragment {
 
         if (scanResult != null){
         firestore.collection(collection).document(scanResult).get().addOnCompleteListener(task -> checkScan(task));
+            Log.d("Scanner", scanResult);
         }
 
         if (scanResult == null) {
@@ -91,10 +93,11 @@ public class SignFragment extends Fragment {
         name = getActivity().findViewById(R.id.infoName);
         adress = getActivity().findViewById(R.id.infoAdress);
         postalCode = getActivity().findViewById(R.id.infoPostalCode);
-
-        name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+ "  " + item.getName());
-        postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+ "  " + item.getPostalCode());
-        adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+ "  " + item.getAdress());
+if (item != null) {
+    name.setText(getString(se.iths.ateam.bring2you.R.string.infoName) + "  " + item.getName());
+    postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode) + "  " + item.getPostalCode());
+    adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress) + "  " + item.getAdress());
+}
         clear();
 
         Objects.requireNonNull(getActivity()).findViewById(R.id.sendButton).setOnClickListener(v -> {
@@ -128,6 +131,11 @@ public class SignFragment extends Fragment {
             @Override
             public void onSuccess(List<Object> objects) {
                 toastMessage(getString(R.string.successDelivered));
+                if(scanResult!=null){
+                    Fragment listFragment = new ListFragment();
+                    getFragmentManager().beginTransaction().replace(R.id.frameLayout,listFragment)
+                            .commit();
+                }
                 getFragmentManager().popBackStack();
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -180,12 +188,21 @@ public class SignFragment extends Fragment {
         if (task.isSuccessful()) {
             DocumentSnapshot document = task.getResult();
             if (Objects.requireNonNull(document).exists()) {
+                String id = document.getId();
                 item = document.toObject(ListItemInfo.class);
+                item.setId(id);
+                Log.d("hej", item.getId());
+                if (item != null) {
+                    name.setText(getString(se.iths.ateam.bring2you.R.string.infoName) + "  " + item.getName());
+                    postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode) + "  " + item.getPostalCode());
+                    adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress) + "  " + item.getAdress());
+                }
+
                 if(item.isDelivered()){
                     toastMessage(getString(R.string.alreadyDelivered));
                     getFragmentManager().popBackStack();
                 }
-                Objects.requireNonNull(item).setId(scanResult);
+
             }
             else {
                 toastMessage(getString(R.string.idNotExist));

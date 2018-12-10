@@ -18,6 +18,7 @@ import java.util.List;
 
 import se.iths.ateam.bring2you.Activities.MapsActivity;
 import se.iths.ateam.bring2you.Fragments.InfoFragment;
+import se.iths.ateam.bring2you.Fragments.ListFragment;
 import se.iths.ateam.bring2you.Fragments.SignFragment;
 import se.iths.ateam.bring2you.R;
 
@@ -51,6 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
             transaction(item,infoFragment, v);
         }
         else {
+
             transaction(item, signFragment, v);
         }
         });

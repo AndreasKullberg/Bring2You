@@ -25,7 +25,11 @@ public class InfoFragment extends Fragment {
     private StorageReference storageReference;
     private String imageUrl;
     private ListItemInfo item;
-    private TextView name, signedBy, adress, postalCode, time, date;
+    private TextView name;
+    private TextView signedBy;
+    private TextView adress;
+    private TextView postalCode;
+    private TextView time;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -47,7 +51,7 @@ public class InfoFragment extends Fragment {
         adress = getActivity().findViewById(R.id.infoAdress);
         postalCode = getActivity().findViewById(R.id.infoPostalCode);
         time = getActivity().findViewById(R.id.infoTime);
-        date = getActivity().findViewById(R.id.infoDate);
+        TextView date = getActivity().findViewById(R.id.infoDate);
 
         postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode)+ "  " + item.getPostalCode());
         adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress)+ "  " + item.getAdress());
@@ -55,14 +59,15 @@ public class InfoFragment extends Fragment {
         name.setText(getString(se.iths.ateam.bring2you.R.string.infoName)+ "  " + item.getName());
         date.setText(getString(se.iths.ateam.bring2you.R.string.infoDate)+ "  " + item.getDate());
         time.setText(getString(se.iths.ateam.bring2you.R.string.infoTime)+ "  " + item.getTime());
-        imageUrl = item.getSignImageUrl();
+
+        if(item.isDelivered()) {
+            imageUrl = item.getSignImageUrl();
+            signImage = getActivity().findViewById(R.id.signImage);
+            storageReference = FirebaseStorage.getInstance()
+                    .getReferenceFromUrl(imageUrl);
 
 
-        signImage = getActivity().findViewById(R.id.signImage);
-        storageReference = FirebaseStorage.getInstance()
-                .getReferenceFromUrl(imageUrl);
-
-
-        Glide.with(this).load(storageReference).into(signImage);
+            Glide.with(this).load(storageReference).into(signImage);
+        }
     }
 }

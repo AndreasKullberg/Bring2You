@@ -1,7 +1,5 @@
 package se.iths.ateam.bring2you.Utils;
 
-import android.media.Image;
-
 import java.io.Serializable;
 
 public class ListItemInfo implements Serializable {

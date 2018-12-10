@@ -16,12 +16,11 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final TextView postalCode;
     private final TextView senderId;
     public final CardView constraintLayout;
-    private View itemview;
     public ImageButton openMap;
 
     public ListItemViewHolder(@NonNull View itemView) {
         super(itemView);
-        this.itemview = itemView;
+        View itemview = itemView;
         adress = itemview.findViewById(R.id.textAdress);
         name = itemView.findViewById(R.id.textName);
         postalCode = itemView.findViewById(R.id.textPostalCode);
