@@ -31,6 +31,9 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
     private final String infoPlaceHolder;
     private final String infoDateHolder;
     private final String infoadressholder;
+    private final String space;
+    protected ImageView cnClImgBtn;
+    protected final ImageView listIcon;
 
     private View itemview;
     public ImageButton openMap;
@@ -59,22 +62,25 @@ public class ListItemViewHolder extends RecyclerView.ViewHolder {
         infopostholder = itemView.getResources().getString(R.string.infoPostalcode);
         infoadressholder = itemView.getResources().getString(R.string.infoAddress);
         infoSignedHolder = itemView.getResources().getString(R.string.infoSignedBy);
+        space = " ";
+        listIcon = itemView.findViewById(R.id.listIcon);
+        cnClImgBtn = itemView.findViewById(R.id.cllogo3);
 
 
 
     }
 
     public void setData(ListItemInfo info) {
-        adress.setText(infoadressholder+info.getAdress());
+        adress.setText(infoadressholder+space+info.getAdress());
         name.setText(info.getName());
-        postalCode.setText(infopostholder+info.getPostalCode());
+        postalCode.setText(infopostholder+space+info.getPostalCode());
         senderId.setText(info.getSenderId());
-        infoAdress.setText(infoadressholder+info.getAdress());
+        infoAdress.setText(infoadressholder+space+info.getAdress());
         infoName.setText(info.getName());
-        infoPostalCode.setText(infopostholder+info.getPostalCode());
-        infoSignedBy.setText(infoSignedHolder+info.getSignedBy());
-        infoDate.setText(infoDateHolder+info.getDate());
-        infoTime.setText(infoPlaceHolder+info.getTime());
+        infoPostalCode.setText(infopostholder+space+info.getPostalCode());
+        infoSignedBy.setText(infoSignedHolder+space+info.getSignedBy());
+        infoDate.setText(infoDateHolder+space+info.getDate());
+        infoTime.setText(infoPlaceHolder+space+info.getTime());
         imageUrl = info.getSignImageUrl();
 
     }

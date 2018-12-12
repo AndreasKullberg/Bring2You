@@ -3,6 +3,7 @@ package se.iths.ateam.bring2you.Fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
@@ -36,8 +37,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import javax.annotation.Nullable;
 
+import se.iths.ateam.bring2you.Activities.MainActivity;
 import se.iths.ateam.bring2you.R;
 import se.iths.ateam.bring2you.Utils.ListItemInfo;
 import se.iths.ateam.bring2you.Utils.MyUser;
@@ -125,6 +130,11 @@ public class ListFragment extends Fragment {
         else {
             title = model.getTitle();
         }
+        final Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            //Do something after 100ms
+            getActivity().findViewById(R.id.main_proggress_bar).setVisibility(View.GONE);
+        }, 500);
         ((AppCompatActivity)getActivity()).getSupportActionBar().setTitle(title);
         status = model.isStatus();
 
@@ -187,6 +197,7 @@ public class ListFragment extends Fragment {
                 }
             });
         }
+
     }
 
     public void onPause() {
@@ -206,12 +217,15 @@ public class ListFragment extends Fragment {
                 model.setTitle(getString(R.string.titleDelivered));
                 model.setStart(true);
                 onResume();
+                getActivity().findViewById(R.id.main_proggress_bar).setVisibility(View.VISIBLE);
+
                 return true;
             case R.id.nonDelivered:
                 model.setStatus(false);
                 model.setTitle(getString(R.string.titleNonDelivered));
                 model.setStart(true);
                 onResume();
+                getActivity().findViewById(R.id.main_proggress_bar).setVisibility(View.VISIBLE);
                 return true;
             default:
                 break;

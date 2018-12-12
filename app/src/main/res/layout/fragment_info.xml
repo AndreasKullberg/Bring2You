@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimary"
-    android:elevation="3dp"
+    android:background="@drawable/mybutton_night"
+    android:elevation="10dp"
     android:orientation="vertical"
-    android:padding="1dp"
     tools:context=".Fragments.ListFragment">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/cardBackColor"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -36,11 +38,12 @@
 
         <LinearLayout
             android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
 
@@ -48,6 +51,7 @@
                 android:id="@+id/infoSignedBy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/Secondary"
                 android:textStyle="bold"
                 tools:text="Signed" />
@@ -56,6 +60,7 @@
                 android:id="@+id/infoAdress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/Secondary"
                 android:textStyle="bold"
                 tools:text="Adress" />
@@ -64,6 +69,7 @@
                 android:id="@+id/infoPostalCode"
                 android:layout_width="wrap_content"
                 android:layout_height="18dp"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/Secondary"
                 android:textStyle="bold"
                 tools:text="Postal code" />
@@ -72,6 +78,7 @@
                 android:id="@+id/infoDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/Secondary"
                 android:textStyle="bold"
                 tools:text="Date" />
@@ -80,6 +87,7 @@
                 android:id="@+id/infoTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:textColor="@color/Secondary"
                 android:textStyle="bold"
                 tools:text="Time" />
@@ -89,7 +97,7 @@
             android:id="@+id/relativeLayout"
             android:layout_width="0dp"
             android:layout_height="41dp"
-            android:background="?attr/colorPrimary"
+            android:background="@drawable/mybutton"
             android:clipChildren="false"
             android:clipToPadding="false"
             android:paddingLeft="12dp"
@@ -105,7 +113,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:text="@string/name"
-                android:textColor="@color/Secondary"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -122,7 +130,27 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/logob2u_spalsh" />
 
+            <ImageView
+                android:id="@+id/cllogo2"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:elevation="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="43dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="5dp"
+        android:src="@drawable/delivered"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

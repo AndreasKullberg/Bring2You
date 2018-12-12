@@ -7,7 +7,6 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:layout_marginBottom="0dp"
-    android:background="@color/colorPrimary"
     android:elevation="3dp"
     android:orientation="vertical"
     android:padding="1dp"
@@ -15,127 +14,171 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?attr/cardBackColor"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
+        android:layout_height="wrap_content"
+        android:background="@drawable/mybutton_night"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <se.iths.ateam.bring2you.Utils.MyCanvas
-            android:id="@+id/my_canvas"
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/st"
             android:layout_width="match_parent"
-            android:layout_height="147dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"
+            android:layout_height="match_parent"
+            android:padding="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signedBy" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
 
-        <Button
-            android:id="@+id/clear_btn"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/clear"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            app:layout_constraintBottom_toBottomOf="@+id/signedBy"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/signedBy"
-            app:layout_constraintTop_toTopOf="@+id/signedBy" />
+            <se.iths.ateam.bring2you.Utils.MyCanvas
+                android:id="@+id/my_canvas"
+                android:layout_width="match_parent"
+                android:layout_height="147dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signedBy" />
 
-        <Button
-            android:id="@+id/sendButton"
-            style="@style/Widget.MaterialComponents.Button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="@string/send"
-            android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/my_canvas" />
-
-        <EditText
-            android:id="@+id/signedBy"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/editTextTint"
-            android:ems="10"
-            android:hint="@string/printed_name"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/Secondary"
-            app:layout_constraintEnd_toStartOf="@+id/clear_btn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clipChildren="false"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-            <TextView
-                android:id="@+id/infoAdress"
+            <Button
+                android:id="@+id/clear_btn"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/Secondary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Adress" />
+                android:text="@string/clear"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
+                app:layout_constraintBottom_toBottomOf="@+id/signedBy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/signedBy"
+                app:layout_constraintTop_toTopOf="@+id/signedBy" />
 
-            <TextView
-                android:id="@+id/infoPostalCode"
-                android:layout_width="wrap_content"
+            <Button
+                android:id="@+id/sendButton"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/Secondary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Postal code" />
-        </LinearLayout>
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/relativeLayout"
-            android:layout_width="0dp"
-            android:layout_height="41dp"
-            android:background="?attr/colorPrimary"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:paddingLeft="12dp"
-            android:paddingTop="7dp"
-            android:paddingRight="12dp"
-            android:paddingBottom="7dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/infoName"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:text="@string/name"
-                android:textColor="?attr/textAccentcolor"
-                android:textSize="20sp"
+                android:text="@string/send"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Button"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/my_canvas"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/signedBy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:autofillHints=""
+                android:backgroundTint="@color/editTextTint"
+                android:ems="10"
+                android:hint="@string/printed_name"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/Secondary"
+                app:layout_constraintEnd_toStartOf="@+id/clear_btn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipChildren="false"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                <TextView
+                    android:id="@+id/infoAdress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Secondary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Adress" />
+
+                <TextView
+                    android:id="@+id/infoPostalCode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:textColor="@color/Secondary"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    tools:text="Postal code" />
+            </LinearLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="0dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:background="@drawable/mybutton"
+                android:clipChildren="false"
+                android:clipToPadding="false"
+                android:padding="0dp"
+                android:paddingLeft="0dp"
+                android:paddingTop="0dp"
+                android:paddingRight="0dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/infoName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/aclonica"
+                    android:text="@string/name"
+                    android:textColor="?attr/textAccentcolor"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/cllogo"
+                    android:layout_width="37dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="2dp"
+                    android:contentDescription="TODO"
+                    android:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logob2u_spalsh" />
+
+                <ImageView
+                    android:id="@+id/cllogo3"
+                    android:layout_width="30dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="4dp"
+                    android:elevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_cancel_black_24dp" />
+
+            </android.support.constraint.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/cllogo"
-                android:layout_width="30dp"
-                android:layout_height="0dp"
-                android:elevation="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logob2u_spalsh" />
-
+                android:id="@+id/imageView2"
+                android:layout_width="35dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="43dp"
+                android:layout_marginEnd="4dp"
+                android:src="@drawable/undelivered"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </android.support.constraint.ConstraintLayout>
     </android.support.constraint.ConstraintLayout>
 

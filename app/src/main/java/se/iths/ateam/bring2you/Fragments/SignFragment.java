@@ -95,7 +95,7 @@ public class SignFragment extends Fragment {
         adress = getActivity().findViewById(R.id.infoAdress);
         postalCode = getActivity().findViewById(R.id.infoPostalCode);
         if (item != null) {
-            name.setText(getString(se.iths.ateam.bring2you.R.string.infoName) + "  " + item.getName());
+            name.setText(item.getName());
             postalCode.setText(getString(se.iths.ateam.bring2you.R.string.infoPostalcode) + "  " + item.getPostalCode());
             adress.setText(getString(se.iths.ateam.bring2you.R.string.infoAddress) + "  " + item.getAdress());
         }

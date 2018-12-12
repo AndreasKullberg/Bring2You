@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
-        <item name="mainBackground">@color/mainColor</item>
+        <item name="mainBackground">@color/white</item>
         <item name="backgroundcolor">#fcfcfc</item>
         <item name="cardbackground">#DEDAD1</item>
         <item name="cardBackColor">@color/white</item>
@@ -17,7 +17,7 @@
         <item name="buttoncolor">#2196F3</item>
         <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
         <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
-        <item name="android:statusBarColor">@color/colorPrimary</item>
+        <item name="android:statusBarColor">@color/white</item>
         <item name="TopBarBack">@drawable/top_bar_light</item>
         <item name="BotBarBack">@drawable/botglowbar3</item>
         <item name="mybutton">@drawable/mybutton</item>

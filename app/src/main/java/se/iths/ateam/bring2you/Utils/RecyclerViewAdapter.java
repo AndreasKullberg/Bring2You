@@ -57,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
 
         if(item.isDelivered()){
+            listItemViewHolder.listIcon.setImageResource(R.drawable.delivered);
             listItemViewHolder.foldingCell.setOnClickListener(v -> {
                 storageReference = FirebaseStorage.getInstance()
                         .getReferenceFromUrl(listItemViewHolder.imageUrl);
@@ -69,7 +70,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<ListItemViewHolder
 
         else {
 
+
+            listItemViewHolder.listIcon.setImageResource(R.drawable.undelivered);
             listItemViewHolder.foldingCell.fold(true);
+
             listItemViewHolder.foldingCell.setOnClickListener(v ->{
                 Fragment signFragment = new SignFragment();
                 transaction(item, signFragment,v);
