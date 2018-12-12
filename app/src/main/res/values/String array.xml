@@ -1,0 +1,404 @@
+    <resources>
+<string-array name="item">
+        <item>Rutrum Urna Nec Consulting</item>
+        <item>8120 Facilisi. St.</item>
+        <item>01474</item>
+        <item>687567-4977</item>
+        <item>Parturient Montes Foundation</item>
+        <item>7350 A, Rd.</item>
+        <item>34272</item>
+        <item>716468-1327</item>
+        <item>Nisl Industries</item>
+        <item>674-1753 Eu, St.</item>
+        <item>11793</item>
+        <item>357821-8244</item>
+        <item>Ut Pellentesque Eget Associates</item>
+        <item>Ap #557-660 Scelerisque Av.</item>
+        <item>70409</item>
+        <item>687698-9341</item>
+        <item>Placerat LLP</item>
+        <item>1845 Lobortis, Rd.</item>
+        <item>47952</item>
+        <item>522473-4474</item>
+        <item>Sed Orci Lobortis Consulting</item>
+        <item>6035 At, Ave</item>
+        <item>48613</item>
+        <item>612948-0007</item>
+        <item>Adipiscing PC</item>
+        <item>3097 Fames Avenue</item>
+        <item>97855</item>
+        <item>548479-1180</item>
+        <item>Nunc In At LLC</item>
+        <item>2817 Fusce Rd.</item>
+        <item>01495</item>
+        <item>182063-0141</item>
+        <item>Ac Risus Morbi Limited</item>
+        <item>Ap #802-1586 Sed Rd.</item>
+        <item>31429</item>
+        <item>324782-6120</item>
+        <item>Donec Dignissim Magna Company</item>
+        <item>430-8642 Libero. St.</item>
+        <item>63200</item>
+        <item>302602-8716</item>
+        <item>At Auctor Industries</item>
+        <item>P.O. Box 369, 9631 Magna. Street</item>
+        <item>23807</item>
+        <item>324560-6581</item>
+        <item>Praesent Eu Nulla Associates</item>
+        <item>P.O. Box 995, 1595 Pellentesque. Rd.</item>
+        <item>96010</item>
+        <item>165436-7265</item>
+        <item>Massa Mauris Vestibulum Associates</item>
+        <item>8441 Luctus Rd.</item>
+        <item>39157</item>
+        <item>096682-8998</item>
+        <item>Donec Associates</item>
+        <item>962-2430 Eget St.</item>
+        <item>83658</item>
+        <item>707007-8485</item>
+        <item>Nunc Mauris Inc.</item>
+        <item>3943 Eget Av.</item>
+        <item>22696</item>
+        <item>677675-5503</item>
+        <item>Ipsum Ltd</item>
+        <item>Ap #698-6034 Orci, Av.</item>
+        <item>95179</item>
+        <item>378705-4653</item>
+        <item>Neque Associates</item>
+        <item>Ap #454-1494 Quisque Avenue</item>
+        <item>05009</item>
+        <item>602570-6828</item>
+        <item>Auctor Nunc Institute</item>
+        <item>869-2696 Libero Road</item>
+        <item>01031</item>
+        <item>394890-7609</item>
+        <item>Ultricies Dignissim Lacus Limited</item>
+        <item>4901 Egestas. Avenue</item>
+        <item>79045</item>
+        <item>838815-6070</item>
+        <item>Leo In Corp.</item>
+        <item>Ap #996-5272 Nunc Street</item>
+        <item>89893</item>
+        <item>002025-9230</item>
+        <item>Ante Industries</item>
+        <item>Ap #740-2877 Non Street</item>
+        <item>90179</item>
+        <item>785877-4941</item>
+        <item>Duis Cursus Corp.</item>
+        <item>P.O. Box 117, 8272 Dolor. St.</item>
+        <item>79274</item>
+        <item>388070-4949</item>
+        <item>Nec Euismod In Associates</item>
+        <item>Ap #811-9607 Sapien St.</item>
+        <item>54491</item>
+        <item>293005-6409</item>
+        <item>Nunc Foundation</item>
+        <item>Ap #653-4003 Vel Road</item>
+        <item>77500</item>
+        <item>137465-7920</item>
+        <item>Accumsan LLP</item>
+        <item>P.O. Box 412, 9862 Sed Ave</item>
+        <item>07471</item>
+        <item>427217-4485</item>
+        <item>In Faucibus Morbi Inc.</item>
+        <item>P.O. Box 281, 8015 Iaculis, St.</item>
+        <item>07527</item>
+        <item>286233-3594</item>
+        <item>Erat Eget Ipsum Incorporated</item>
+        <item>4142 Donec Rd.</item>
+        <item>20361</item>
+        <item>872304-1821</item>
+        <item>Libero Lacus Varius Corp.</item>
+        <item>P.O. Box 897, 6695 Fringilla Av.</item>
+        <item>45607</item>
+        <item>435819-8705</item>
+        <item>Pharetra Corporation</item>
+        <item>P.O. Box 449, 6317 Arcu Avenue</item>
+        <item>48494</item>
+        <item>197002-4608</item>
+        <item>Eget Venenatis Foundation</item>
+        <item>9790 Id Rd.</item>
+        <item>17174</item>
+        <item>252248-9687</item>
+        <item>Egestas Blandit Corporation</item>
+        <item>538-9161 Dapibus St.</item>
+        <item>36160</item>
+        <item>647384-6803</item>
+        <item>Pede Ac Limited</item>
+        <item>8116 Non Avenue</item>
+        <item>44610</item>
+        <item>473503-3203</item>
+        <item>Quisque Ornare Associates</item>
+        <item>594-1744 In Rd.</item>
+        <item>83523</item>
+        <item>226154-0633</item>
+        <item>Facilisis Facilisis Magna Limited</item>
+        <item>8013 Vitae, Street</item>
+        <item>98399</item>
+        <item>642913-4411</item>
+        <item>Urna Nunc Quis Inc.</item>
+        <item>P.O. Box 181, 6804 Bibendum Street</item>
+        <item>55134</item>
+        <item>804812-3833</item>
+        <item>Aliquam Limited</item>
+        <item>204 Est Road</item>
+        <item>68210</item>
+        <item>796905-6311</item>
+        <item>Sed Molestie Ltd</item>
+        <item>P.O. Box 118, 607 Posuere St.</item>
+        <item>65534</item>
+        <item>288514-1222</item>
+        <item>Neque Sed Dictum Ltd</item>
+        <item>P.O. Box 765, 4753 Risus, Road</item>
+        <item>79628</item>
+        <item>285793-1675</item>
+        <item>Non Lacinia At Corporation</item>
+        <item>366-426 Ornare, Avenue</item>
+        <item>92178</item>
+        <item>375119-1457</item>
+        <item>In Incorporated</item>
+        <item>894-1709 Donec St.</item>
+        <item>64678</item>
+        <item>299883-3715</item>
+        <item>Lorem Donec Elementum LLP</item>
+        <item>8228 Dui St.</item>
+        <item>02632</item>
+        <item>593184-5233</item>
+        <item>Ipsum Foundation</item>
+        <item>P.O. Box 963, 9377 Dolor St.</item>
+        <item>00121</item>
+        <item>123980-4113</item>
+        <item>At LLP</item>
+        <item>Ap #833-3914 Aliquet. St.</item>
+        <item>82364</item>
+        <item>508512-5986</item>
+        <item>Nunc Inc.</item>
+        <item>Ap #212-6708 Bibendum Ave</item>
+        <item>16399</item>
+        <item>387916-4741</item>
+        <item>Egestas Corp.</item>
+        <item>728-9674 Integer Rd.</item>
+        <item>88863</item>
+        <item>414882-0899</item>
+        <item>Sagittis Felis Donec Corp.</item>
+        <item>7955 Libero Rd.</item>
+        <item>01970</item>
+        <item>022116-3660</item>
+        <item>Dictum PC</item>
+        <item>661-5323 Nulla Road</item>
+        <item>61166</item>
+        <item>665708-4684</item>
+        <item>Dolor Vitae Dolor Foundation</item>
+        <item>P.O. Box 812, 4588 Ligula. Av.</item>
+        <item>66322</item>
+        <item>199273-7757</item>
+        <item>Risus Odio Auctor Corporation</item>
+        <item>332-3800 Libero. St.</item>
+        <item>94312</item>
+        <item>005448-1502</item>
+        <item>Ac Nulla PC</item>
+        <item>P.O. Box 626, 114 Molestie St.</item>
+        <item>45490</item>
+        <item>108495-6638</item>
+        <item>Turpis Limited</item>
+        <item>254 Justo Street</item>
+        <item>15430</item>
+        <item>925832-6710</item>
+        <item>Ornare Elit LLP</item>
+        <item>2775 Auctor Rd.</item>
+        <item>28134</item>
+        <item>838876-6928</item>
+        <item>Nulla Inc.</item>
+        <item>Ap #483-5740 Eu Avenue</item>
+        <item>30536</item>
+        <item>399982-0776</item>
+        <item>Ligula Elit Pretium Inc.</item>
+        <item>453-8108 Ipsum. Road</item>
+        <item>33797</item>
+        <item>646986-3259</item>
+        <item>Ipsum Phasellus Company</item>
+        <item>P.O. Box 927, 2642 Egestas Rd.</item>
+        <item>05954</item>
+        <item>467195-6011</item>
+        <item>At Egestas LLP</item>
+        <item>1428 Morbi Av.</item>
+        <item>11435</item>
+        <item>752622-2513</item>
+        <item>Phasellus Nulla LLP</item>
+        <item>104-397 Felis, Street</item>
+        <item>77730</item>
+        <item>034446-7931</item>
+        <item>Mi Tempor Corp.</item>
+        <item>P.O. Box 333, 811 Nullam St.</item>
+        <item>33306</item>
+        <item>366626-6477</item>
+        <item>Erat Corporation</item>
+        <item>106-4034 Malesuada Av.</item>
+        <item>64932</item>
+        <item>369773-1960</item>
+        <item>Elit Pretium PC</item>
+        <item>P.O. Box 226, 9165 Malesuada St.</item>
+        <item>71011</item>
+        <item>985974-9583</item>
+        <item>Lectus Institute</item>
+        <item>802-7725 Habitant Street</item>
+        <item>30764</item>
+        <item>359652-8202</item>
+        <item>Fermentum Arcu Incorporated</item>
+        <item>Ap #725-2458 Cras St.</item>
+        <item>26189</item>
+        <item>184636-2125</item>
+        <item>Et Corporation</item>
+        <item>Ap #979-1997 Massa. Ave</item>
+        <item>21260</item>
+        <item>228532-7454</item>
+        <item>Arcu Vestibulum Industries</item>
+        <item>P.O. Box 507, 3872 Erat. Rd.</item>
+        <item>41171</item>
+        <item>249833-1251</item>
+        <item>Dui Cras Pellentesque Corp.</item>
+        <item>Ap #593-6494 Lorem Ave</item>
+        <item>86493</item>
+        <item>268073-4676</item>
+        <item>Non Corporation</item>
+        <item>1822 Ipsum St.</item>
+        <item>04903</item>
+        <item>826208-1907</item>
+        <item>Nisl Maecenas Malesuada Consulting</item>
+        <item>7590 Dignissim Av.</item>
+        <item>59788</item>
+        <item>334658-9934</item>
+        <item>Elit Dictum Institute</item>
+        <item>4748 Leo. Street</item>
+        <item>63486</item>
+        <item>492733-8303</item>
+        <item>Enim Mauris Inc.</item>
+        <item>Ap #199-9673 Malesuada Rd.</item>
+        <item>13675</item>
+        <item>604923-3130</item>
+        <item>Non Justo Corp.</item>
+        <item>P.O. Box 566, 4107 Sed, Ave</item>
+        <item>20643</item>
+        <item>588457-6926</item>
+        <item>Semper Institute</item>
+        <item>228 Malesuada Street</item>
+        <item>03354</item>
+        <item>916441-8171</item>
+        <item>Vivamus Company</item>
+        <item>3360 Pellentesque Avenue</item>
+        <item>02390</item>
+        <item>958965-9870</item>
+        <item>Massa Non Corp.</item>
+        <item>516-5204 Convallis Rd.</item>
+        <item>90317</item>
+        <item>474539-4850</item>
+        <item>Adipiscing LLC</item>
+        <item>Ap #816-733 Suspendisse Rd.</item>
+        <item>01133</item>
+        <item>842531-6562</item>
+        <item>Nulla Facilisis Suspendisse Corp.</item>
+        <item>348 Faucibus Rd.</item>
+        <item>11180</item>
+        <item>279428-2729</item>
+        <item>At Risus Nunc PC</item>
+        <item>3352 Suspendisse Rd.</item>
+        <item>20452</item>
+        <item>534863-9609</item>
+        <item>Etiam Vestibulum PC</item>
+        <item>P.O. Box 717, 4359 Vitae Ave</item>
+        <item>58679</item>
+        <item>865231-5501</item>
+        <item>Etiam Ligula LLP</item>
+        <item>Ap #737-7582 Ante St.</item>
+        <item>47260</item>
+        <item>857267-5307</item>
+        <item>Sit Amet Consectetuer Company</item>
+        <item>9696 Lobortis, Street</item>
+        <item>20946</item>
+        <item>125650-0958</item>
+        <item>Sapien Incorporated</item>
+        <item>8716 Arcu. Road</item>
+        <item>04834</item>
+        <item>206082-5060</item>
+        <item>Rutrum Eu Inc.</item>
+        <item>P.O. Box 165, 1837 Pulvinar Street</item>
+        <item>20295</item>
+        <item>555413-0574</item>
+        <item>Mauris Sapien Industries</item>
+        <item>P.O. Box 877, 2597 Magna, Street</item>
+        <item>19431</item>
+        <item>018292-5727</item>
+        <item>Interdum Ltd</item>
+        <item>785 Risus. St.</item>
+        <item>24474</item>
+        <item>835421-3400</item>
+        <item>Mollis Lectus Associates</item>
+        <item>P.O. Box 672, 5985 Libero Street</item>
+        <item>13941</item>
+        <item>263104-8051</item>
+        <item>Risus Company</item>
+        <item>538-3866 Odio. St.</item>
+        <item>82671</item>
+        <item>885376-0588</item>
+        <item>Hymenaeos Mauris Ut Corporation</item>
+        <item>9847 Neque Rd.</item>
+        <item>17803</item>
+        <item>634305-6963</item>
+        <item>Nascetur Limited</item>
+        <item>Ap #673-548 Justo. Road</item>
+        <item>55865</item>
+        <item>169977-1349</item>
+        <item>Sit Company</item>
+        <item>678-5975 Vulputate St.</item>
+        <item>53252</item>
+        <item>732315-8217</item>
+        <item>Ipsum Nunc Id LLP</item>
+        <item>Ap #530-6412 Luctus Ave</item>
+        <item>60628</item>
+        <item>147849-9047</item>
+        <item>Ac Arcu Nunc LLP</item>
+        <item>P.O. Box 789, 7506 Eleifend. St.</item>
+        <item>68200</item>
+        <item>419584-9353</item>
+        <item>Rutrum Foundation</item>
+        <item>P.O. Box 435, 2701 Eu Av.</item>
+        <item>97343</item>
+        <item>268009-1796</item>
+        <item>Neque Vitae Corporation</item>
+        <item>P.O. Box 335, 2423 Maecenas Street</item>
+        <item>49217</item>
+        <item>302911-7946</item>
+        <item>Dapibus Gravida Industries</item>
+        <item>Ap #224-877 Ante Street</item>
+        <item>93762</item>
+        <item>738810-4064</item>
+        <item>Proin Dolor LLC</item>
+        <item>P.O. Box 667, 8431 Hendrerit Avenue</item>
+        <item>07854</item>
+        <item>727416-7068</item>
+        <item>Hendrerit LLC</item>
+        <item>8441 Eget Rd.</item>
+        <item>85625</item>
+        <item>142981-9012</item>
+        <item>Cum Sociis Incorporated</item>
+        <item>6518 Cras Avenue</item>
+        <item>84957</item>
+        <item>785222-9942</item>
+        <item>A Ltd</item>
+        <item>2578 Eget St.</item>
+        <item>95464</item>
+        <item>645135-5058</item>
+        <item>Imperdiet Dictum Magna LLC</item>
+        <item>P.O. Box 836, 1311 Sapien, Street</item>
+        <item>52403</item>
+        <item>078469-2030</item>
+        <item>Cum Incorporated</item>
+        <item>473-9815 Non St.</item>
+        <item>78905</item>
+        <item>952910-1058</item>
+        <item>Eu Ultrices Sit PC</item>
+        <item>564-6652 In Street</item>
+        <item>83542</item>
+        <item>025797-2307</item>
+</string-array>
+    </resources>
